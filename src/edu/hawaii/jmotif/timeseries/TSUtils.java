@@ -15,10 +15,10 @@ import edu.hawaii.jmotif.algorithm.MatrixFactory;
 import edu.hawaii.jmotif.distance.EuclideanDistance;
 import edu.hawaii.jmotif.sax.LargeWindowAlgorithm;
 import edu.hawaii.jmotif.sax.SAXFactory;
+import edu.hawaii.jmotif.sax.VisitRegistry;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.datastructures.DiscordRecord;
 import edu.hawaii.jmotif.sax.datastructures.DiscordRecords;
-import edu.hawaii.jmotif.sax.trie.VisitRegistry;
 
 /**
  * Implements algorithms for low-level data manipulation.
