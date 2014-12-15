@@ -1,6 +1,5 @@
 package edu.hawaii.jmotif.sax;
 
-import edu.hawaii.jmotif.sax.trie.VisitRegistry;
 
 public class RightWindowAlgorithm implements SlidingWindowMarkerAlgorithm {
 
