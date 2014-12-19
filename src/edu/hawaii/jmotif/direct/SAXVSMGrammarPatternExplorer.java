@@ -14,8 +14,16 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.repair.GrammarRuleRecord;
+import edu.hawaii.jmotif.repair.GrammarRules;
+import edu.hawaii.jmotif.repair.RePairFactory;
+import edu.hawaii.jmotif.repair.RePairRule;
+import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
+import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
+import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
+import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
@@ -29,16 +37,16 @@ import edu.hawaii.jmotif.util.UCRUtils;
  * @author psenin
  * 
  */
-public class SAXVSMPatternExplorer {
+public class SAXVSMGrammarPatternExplorer {
 
   // defines the amount of words from each class's vector to print
   //
-  private static final int MAX_WORDS_2_PRINT = 5;
+  private static final int MAX_WORDS_2_PRINT = 10;
 
   // how many patterns and how many series to output
   //
   private static final int MAX_SERIES_2PRINT = 5;
-  private static final int MAX_PATTERNS_2PRINT = 5;
+  private static final int MAX_PATTERNS_2PRINT = 10;
 
   private static String TRAINING_DATA;
   private static String TEST_DATA;
@@ -52,6 +60,8 @@ public class SAXVSMPatternExplorer {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat df = new DecimalFormat("0.00###", otherSymbols);
+
+  private static int[] params;
   private static final String COMMA = ", ";
   private static final String CR = "\n";
 
@@ -60,7 +70,7 @@ public class SAXVSMPatternExplorer {
   private static final Logger consoleLogger;
   private static final Level LOGGING_LEVEL = Level.INFO;
   static {
-    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMPatternExplorer.class);
+    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarPatternExplorer.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
@@ -100,6 +110,8 @@ public class SAXVSMPatternExplorer {
 
       STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[5].toUpperCase());
 
+      params = new int[] { WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE, STRATEGY.index() };
+
     }
     catch (Exception e) {
       System.err.println("There was parameters error....");
@@ -108,7 +120,7 @@ public class SAXVSMPatternExplorer {
 
     int[] params = new int[] { WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE, STRATEGY.index() };
 
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params);
+    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, params);
 
     // get tfidf statistics
     HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
@@ -164,8 +176,8 @@ public class SAXVSMPatternExplorer {
         do {
           if (hits.get(k).length > 0) {
             System.out.print(k + ": " + Arrays.toString(hits.get(k)) + ", ");
-            System.out.println(Arrays.toString(trainData.get(className).get(k)));
-            System.out.println(Arrays.toString(seriesValuesAsHeat(trainData.get(className).get(k),
+            System.out.println(ArraytoString(trainData.get(className).get(k)));
+            System.out.println(ArraytoString(seriesValuesAsHeat(trainData.get(className).get(k),
                 className, tfidf, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE)));
             for (int offset : hits.get(k)) {
               seriesBuff.append(String.valueOf(k + 1) + ",");
@@ -188,8 +200,7 @@ public class SAXVSMPatternExplorer {
       List<double[]> testD = testData.get(className);
       int seriesIdx = 0;
       for (double[] series : testD) {
-        int classificationResult = TextUtils.classify(className, series, tfidf, PAA_SIZE,
-            ALPHABET_SIZE, WINDOW_SIZE, STRATEGY);
+        int classificationResult = classifyGrammar(className, series, tfidf, params);
         if (0 == classificationResult) {
           System.out.println(seriesIdx + 1);
         }
@@ -198,6 +209,17 @@ public class SAXVSMPatternExplorer {
       System.out.println(" ============== ");
     }
 
+  }
+
+  private static String ArraytoString(double[] ds) {
+    StringBuffer sb = new StringBuffer();
+    sb.append("[");
+    for (double d : ds) {
+      sb.append(df.format(d)).append(COMMA);
+    }
+    sb.delete(sb.length() - 2, sb.length()-1);
+    sb.append("]");
+    return sb.toString();
   }
 
   private static double[] seriesValuesAsHeat(double[] series, String className,
@@ -252,6 +274,34 @@ public class SAXVSMPatternExplorer {
 
       List<Integer> arr = new ArrayList<Integer>();
 
+      ParallelSAXImplementation ps = new ParallelSAXImplementation();
+      SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize,
+          NumerosityReductionStrategy.fromValue(STRATEGY.index()), 0.05);
+      saxData.buildIndex();
+
+      @SuppressWarnings("unused")
+      RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
+      RePairRule.expandRules();
+      GrammarRules rules = RePairRule.toGrammarRulesData();
+
+      for (GrammarRuleRecord r : rules) {
+        if (0 == r.getRuleNumber()) {
+          // extracting all basic tokens
+          for (SaxRecord sr : saxData) {
+            if (pattern.equalsIgnoreCase(String.valueOf(sr.getPayload()))) {
+              arr.addAll(sr.getIndexes());
+            }
+          }
+        }
+        else {
+          // extracting all longer tokens
+          String str = r.getExpandedRuleString();
+          if (pattern.equalsIgnoreCase(String.valueOf(str))) {
+            arr.addAll(r.getOccurrences());
+          }
+        }
+      }
+
       for (int i = 0; i <= series.length - windowSize; i++) {
         double[] paa = TSUtils.paa(TSUtils.zNormalize(TSUtils.subseries(series, i, windowSize)),
             paaSize);
@@ -267,4 +317,115 @@ public class SAXVSMPatternExplorer {
 
     return res;
   }
+
+  private static int classifyGrammar(String classKey, double[] series,
+      HashMap<String, HashMap<String, Double>> tfidf, int[] params)
+      throws IndexOutOfBoundsException, TSException {
+
+    WordBag test = seriesToGrammarWordBag("test", series, params);
+
+    // it is Cosine similarity,
+    //
+    // which ranges from 0.0 for the angle of 90 to 1.0 for the angle of 0
+    // i.e. LARGES value is a SMALLEST distance
+    double minDist = Double.MIN_VALUE;
+    String className = "";
+    double[] cosines = new double[tfidf.entrySet().size()];
+
+    int index = 0;
+    for (Entry<String, HashMap<String, Double>> e : tfidf.entrySet()) {
+
+      double dist = TextUtils.cosineSimilarity(test, e.getValue());
+      cosines[index] = dist;
+      index++;
+
+      if (dist > minDist) {
+        className = e.getKey();
+        minDist = dist;
+      }
+
+    }
+
+    // sometimes, due to the VECTORs specific layout, all values are the same, NEED to take care
+    boolean allEqual = true;
+    double cosine = cosines[0];
+    for (int i = 1; i < cosines.length; i++) {
+      if (!(cosines[i] == cosine)) {
+        allEqual = false;
+      }
+    }
+
+    // report our findings
+    if (!(allEqual) && className.equalsIgnoreCase(classKey)) {
+      return 1;
+    }
+
+    // System.out.println("all equal " + allEqual + ", assigned to " + className + " instead of " +
+    // classKey);
+
+    return 0;
+  }
+
+  private static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
+      int[] params) throws IndexOutOfBoundsException, TSException {
+    // make a map of resulting bags
+    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
+
+    // process series one by one building word bags
+    for (Entry<String, List<double[]>> e : data.entrySet()) {
+
+      String classLabel = e.getKey();
+      WordBag bag = new WordBag(classLabel);
+
+      for (double[] series : e.getValue()) {
+        WordBag cb = seriesToGrammarWordBag("tmp", series, params);
+        bag.mergeWith(cb);
+      }
+
+      preRes.put(classLabel, bag);
+    }
+
+    List<WordBag> res = new ArrayList<WordBag>();
+    res.addAll(preRes.values());
+    return res;
+  }
+
+  private static WordBag seriesToGrammarWordBag(String label, double[] series, int[] params)
+      throws IndexOutOfBoundsException, TSException {
+
+    int windowSize = params[0];
+    int paaSize = params[1];
+    int alphabetSize = params[2];
+    NumerosityReductionStrategy strategy = NumerosityReductionStrategy.fromValue(params[3]);
+
+    WordBag resultBag = new WordBag(label);
+
+    ParallelSAXImplementation ps = new ParallelSAXImplementation();
+    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, 0.05);
+    saxData.buildIndex();
+
+    @SuppressWarnings("unused")
+    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
+    RePairRule.expandRules();
+    GrammarRules rules = RePairRule.toGrammarRulesData();
+
+    for (GrammarRuleRecord r : rules) {
+      if (0 == r.getRuleNumber()) {
+        // extracting all basic tokens
+        for (SaxRecord sr : saxData) {
+          resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
+        }
+      }
+      else {
+        // extracting all longer tokens
+        String str = r.getExpandedRuleString();
+        resultBag.addWord(str);
+      }
+    }
+
+    // System.out.println("Strategy: " + strategy.index());
+
+    return resultBag;
+  }
+
 }

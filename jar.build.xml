@@ -25,7 +25,7 @@
   <unjar src="${lib.dir}/logger/slf4j-api-1.7.7.jar" dest="${tmp.dir}" />
   <unjar src="${lib.dir}/time/joda-time-2.1.jar" dest="${tmp.dir}" />
 
-  <jar destfile="${basedir}/sax-vsm-classic${majorVersionNumber}${minorVersionNumber}.jar" basedir="${tmp.dir}">
+  <jar destfile="${basedir}/sax-vsm-g${majorVersionNumber}${minorVersionNumber}.jar" basedir="${tmp.dir}">
    <manifest>
     <attribute name="Implementation-Title" value="SAX-VSM Classic" />
     <attribute name="Implementation-Version" value="${version}" />

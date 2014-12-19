@@ -9,19 +9,25 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.StringTokenizer;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import edu.hawaii.jmotif.direct.SAXVSMDirectSampler;
+import edu.hawaii.jmotif.repair.GrammarRuleRecord;
+import edu.hawaii.jmotif.repair.GrammarRules;
+import edu.hawaii.jmotif.repair.RePairFactory;
+import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXFactory;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
+import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
+import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
+import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
 import edu.hawaii.jmotif.timeseries.TSException;
-import edu.hawaii.jmotif.timeseries.TSUtils;
 import edu.hawaii.jmotif.util.UCRUtils;
 
 public class CBFgrammar {
@@ -47,9 +53,9 @@ public class CBFgrammar {
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
-  private static final String TRAINING_DATA = "/media/Stock/git/sax-vsm-g.git/data/cbf/CBF_TRAIN";
-  private static final String TEST_DATA = "/media/Stock/git/sax-vsm-g.git/data/cbf/CBF_TEST";
-  private static final int[] PARAMS = { 60, 5, 6, NumerosityReductionStrategy.EXACT.index() };
+  private static final String TRAINING_DATA = "/media/Stock/git/sax-vsm-g.git/data/shield/shield_train";
+  private static final String TEST_DATA = "/media/Stock/git/sax-vsm-g.git/data/shield/shield_test";
+  private static final int[] PARAMS = { 150, 12, 4, NumerosityReductionStrategy.EXACT.index() };
 
   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, TSException {
 
@@ -139,45 +145,6 @@ public class CBFgrammar {
     return 0;
   }
 
-  private static WordBag seriesToGrammarWordBag(String label, double[] series, int[] params)
-      throws IndexOutOfBoundsException, TSException {
-
-    WordBag resultBag = new WordBag(label);
-
-    int windowSize = params[0];
-    int paaSize = params[1];
-    int alphabetSize = params[2];
-    SAXNumerosityReductionStrategy strategy = SAXNumerosityReductionStrategy.fromValue(params[3]);
-
-    // System.out.println("Strategy: " + strategy.index());
-
-    String oldStr = "";
-    for (int i = 0; i <= series.length - windowSize; i++) {
-
-      double[] paa = TSUtils.optimizedPaa(
-          TSUtils.zNormalize(TSUtils.subseries(series, i, windowSize)), paaSize);
-
-      char[] sax = TSUtils.ts2String(paa, a.getCuts(alphabetSize));
-
-      if (SAXNumerosityReductionStrategy.CLASSIC.equals(strategy)) {
-        if (oldStr.length() > 0 && SAXFactory.strDistance(sax, oldStr.toCharArray()) == 0) {
-          continue;
-        }
-      }
-      else if (SAXNumerosityReductionStrategy.EXACT.equals(strategy)) {
-        if (oldStr.equalsIgnoreCase(String.valueOf(sax))) {
-          continue;
-        }
-      }
-
-      oldStr = String.valueOf(sax);
-
-      resultBag.addWord(String.valueOf(sax));
-    }
-
-    return resultBag;
-  }
-
   private static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
       int[] params) throws IndexOutOfBoundsException, TSException {
     // make a map of resulting bags
@@ -200,6 +167,44 @@ public class CBFgrammar {
     List<WordBag> res = new ArrayList<WordBag>();
     res.addAll(preRes.values());
     return res;
+  }
+
+  private static WordBag seriesToGrammarWordBag(String label, double[] series, int[] params)
+      throws IndexOutOfBoundsException, TSException {
+
+    int windowSize = params[0];
+    int paaSize = params[1];
+    int alphabetSize = params[2];
+    NumerosityReductionStrategy strategy = NumerosityReductionStrategy.fromValue(params[3]);
+
+    WordBag resultBag = new WordBag(label);
+
+    ParallelSAXImplementation ps = new ParallelSAXImplementation();
+    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, 0.05);
+    saxData.buildIndex();
+
+    @SuppressWarnings("unused")
+    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
+    RePairRule.expandRules();
+    GrammarRules rules = RePairRule.toGrammarRulesData();
+
+    for (GrammarRuleRecord r : rules) {
+      if (0 == r.getRuleNumber()) {
+        // extracting all basic tokens
+        for (SaxRecord sr : saxData) {
+          resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
+        }
+      }
+      else {
+        // extracting all longer tokens
+        String str = r.getExpandedRuleString();
+        resultBag.addWord(str);
+      }
+    }
+
+    // System.out.println("Strategy: " + strategy.index());
+
+    return resultBag;
   }
 
   protected static String toLogStr(int[] p, double accuracy, double error) {
