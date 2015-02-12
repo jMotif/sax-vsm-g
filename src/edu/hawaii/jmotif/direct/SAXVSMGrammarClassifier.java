@@ -237,8 +237,17 @@ public class SAXVSMGrammarClassifier {
     for (GrammarRuleRecord r : rules) {
       if (0 == r.getRuleNumber()) {
         // extracting all basic tokens
-        for (SaxRecord sr : saxData) {
-          resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
+        // for (SaxRecord sr : saxData) {
+        // resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
+        // }
+        // words not in rules
+        GrammarRuleRecord r0 = rules.get(0);
+        String[] split = r0.getRuleString().trim().split("\\s");
+        for (String s : split) {
+          if (s.startsWith("R")) {
+            continue;
+          }
+          resultBag.addWord(s);
         }
       }
       else {
