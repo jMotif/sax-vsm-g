@@ -1,6 +1,7 @@
 package edu.hawaii.jmotif.direct;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
-import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
 import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.text.TextUtils;
@@ -78,6 +78,8 @@ public class SAXVSMContinuousGrammarSampler {
 
   private static SAXVSMGrammarCVErrorFunction function;
 
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
+
   // static block - we instantiate the logger
   //
   private static final Logger consoleLogger;
@@ -85,6 +87,7 @@ public class SAXVSMContinuousGrammarSampler {
 
   private static final String COMMA = ", ";
   private static final String CR = "\n";
+
   static {
     consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMContinuousGrammarSampler.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
@@ -100,6 +103,7 @@ public class SAXVSMContinuousGrammarSampler {
   private static String TEST_DATA;
   private static int HOLD_OUT_NUM = 1;
   private static int ITERATIONS_NUM = 1;
+  private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
@@ -110,7 +114,7 @@ public class SAXVSMContinuousGrammarSampler {
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
       consoleLogger.info("processing paramleters: " + Arrays.toString(args));
 
-      if (10 == args.length) {
+      if (10 == args.length || 11 == args.length) {
         TRAINING_DATA = args[0];
         TEST_DATA = args[1];
         trainData = UCRUtils.readUCRData(TRAINING_DATA);
@@ -137,6 +141,10 @@ public class SAXVSMContinuousGrammarSampler {
         // Iterations
         HOLD_OUT_NUM = Integer.valueOf(args[8]);
         ITERATIONS_NUM = Integer.valueOf(args[9]);
+
+        if (args.length > 10) {
+          NORMALIZATION_THRESHOLD = Double.valueOf(args[10]);
+        }
       }
       else {
         System.out.print(printHelp());
@@ -181,6 +189,7 @@ public class SAXVSMContinuousGrammarSampler {
     sb.append(" [8] maximal Alphabet size").append(CR);
     sb.append(" [8] cross-validation hold-out number").append(CR);
     sb.append(" [8] maximal amount of sampling iterations").append(CR);
+    sb.append(" [9] OPTIONAL: normalization threshold").append(CR);
     sb.append("An execution example: $java -cp \"sax-vsm-classic20.jar\" edu.hawaii.jmotif.direct.SAXVSMDirectSampler");
     sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10").append(CR);
     return sb.toString();
@@ -948,7 +957,8 @@ public class SAXVSMContinuousGrammarSampler {
     WordBag resultBag = new WordBag(label);
 
     ParallelSAXImplementation ps = new ParallelSAXImplementation();
-    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, 0.05);
+    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy,
+        NORMALIZATION_THRESHOLD);
     saxData.buildIndex();
 
     @SuppressWarnings("unused")

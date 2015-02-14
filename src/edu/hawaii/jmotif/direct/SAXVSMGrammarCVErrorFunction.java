@@ -36,6 +36,8 @@ import edu.hawaii.jmotif.util.StackTrace;
  */
 public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
 
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
+
   public static final Character DELIMITER = '~';
 
   /** The latin alphabet, lower case letters a-z. */
@@ -756,7 +758,7 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
     WordBag resultBag = new WordBag(label);
 
     ParallelSAXImplementation ps = new ParallelSAXImplementation();
-    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, 0.05);
+    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, DEFAULT_NORMALIZATION_THRESHOLD);
     saxData.buildIndex();
 
     @SuppressWarnings("unused")
