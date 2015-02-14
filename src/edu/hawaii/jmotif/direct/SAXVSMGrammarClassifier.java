@@ -49,6 +49,8 @@ public class SAXVSMGrammarClassifier {
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
   private static SAXNumerosityReductionStrategy STRATEGY;
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
+  private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
   // static block - we instantiate the logger
   //
@@ -71,6 +73,11 @@ public class SAXVSMGrammarClassifier {
       ALPHABET_SIZE = Integer.valueOf(args[4]);
 
       STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[5].toUpperCase());
+      
+      if (args.length > 6) {
+        NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);
+      }
+
 
       TRAINING_DATA = args[0];
       TEST_DATA = args[1];
@@ -226,7 +233,7 @@ public class SAXVSMGrammarClassifier {
     WordBag resultBag = new WordBag(label);
 
     ParallelSAXImplementation ps = new ParallelSAXImplementation();
-    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, 0.05);
+    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, NORMALIZATION_THRESHOLD);
     saxData.buildIndex();
 
     @SuppressWarnings("unused")
