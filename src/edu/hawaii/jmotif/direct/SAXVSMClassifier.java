@@ -40,6 +40,9 @@ public class SAXVSMClassifier {
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
   private static SAXNumerosityReductionStrategy STRATEGY;
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
+  private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
+
 
   // static block - we instantiate the logger
   //
@@ -63,6 +66,10 @@ public class SAXVSMClassifier {
 
       STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[5].toUpperCase());
 
+
+      if (args.length > 6) {
+        NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);
+      }
       
       TRAINING_DATA = args[0];
       TEST_DATA = args[1];
@@ -91,7 +98,7 @@ public class SAXVSMClassifier {
 
   private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
     // making training bags collection
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params);
+    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params, NORMALIZATION_THRESHOLD);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
     // classifying
@@ -101,7 +108,7 @@ public class SAXVSMClassifier {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         positiveTestCounter = positiveTestCounter
-            + TextUtils.classify(label, series, tfidf, params);
+            + TextUtils.classify(label, series, tfidf, params, NORMALIZATION_THRESHOLD);
         testSampleSize++;
       }
     }

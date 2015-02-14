@@ -78,6 +78,8 @@ public class SAXVSMDirectSampler {
 
   private static final String COMMA = ", ";
   private static final String CR = "\n";
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05D;
+  private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
   static {
     consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMDirectSampler.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
@@ -130,6 +132,11 @@ public class SAXVSMDirectSampler {
         // Iterations
         HOLD_OUT_NUM = Integer.valueOf(args[8]);
         ITERATIONS_NUM = Integer.valueOf(args[9]);
+        
+        if (args.length > 10) {
+          NORMALIZATION_THRESHOLD = Double.valueOf(args[10]);
+        }
+
       }
       else {
         System.out.print(printHelp());
@@ -181,7 +188,7 @@ public class SAXVSMDirectSampler {
 
   private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
     // making training bags collection
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params);
+    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params, NORMALIZATION_THRESHOLD);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
     // classifying
@@ -191,7 +198,7 @@ public class SAXVSMDirectSampler {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         positiveTestCounter = positiveTestCounter
-            + TextUtils.classify(label, series, tfidf, params);
+            + TextUtils.classify(label, series, tfidf, params, NORMALIZATION_THRESHOLD);
         testSampleSize++;
       }
     }
@@ -207,7 +214,8 @@ public class SAXVSMDirectSampler {
 
   private static int[] sample(SAXNumerosityReductionStrategy strategy) {
 
-    function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy);
+    function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy,
+        DEFAULT_NORMALIZATION_THRESHOLD);
     // the whole bunch of inits
     //
     centerPoints = new ArrayList<Double[]>();
@@ -434,7 +442,7 @@ public class SAXVSMDirectSampler {
       Double f_m1 = checkCache(pointToSample1, functionHash);
       if (null == f_m1) {
         f_m1 = function.valueAt(pointToSample1);
-        consoleLogger.info("@" + f_m1 + "\t"+pointToSample1.toLogString());
+        consoleLogger.info("@" + f_m1 + "\t" + pointToSample1.toLogString());
         saveCache(pointToSample1, f_m1, functionHash);
       }
       else {
@@ -460,7 +468,7 @@ public class SAXVSMDirectSampler {
       Double f_m2 = checkCache(pointToSample2, functionHash);
       if (null == f_m2) {
         f_m2 = function.valueAt(pointToSample2);
-        consoleLogger.info("@" + f_m2 + "\t"+pointToSample2.toLogString());
+        consoleLogger.info("@" + f_m2 + "\t" + pointToSample2.toLogString());
         saveCache(pointToSample2, f_m2, functionHash);
       }
       else {

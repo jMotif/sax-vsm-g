@@ -55,6 +55,8 @@ public class SAXVSMContinuousDirectSampler {
   // array used to track sampled points and function values
   private static ArrayList<ValuePointColored> coordinates;
 
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
+
   private static final double precision = 1E-16;
   private static int b = 0;
   private static double[] resultMinimum;
@@ -92,6 +94,7 @@ public class SAXVSMContinuousDirectSampler {
   private static String TEST_DATA;
   private static int HOLD_OUT_NUM = 1;
   private static int ITERATIONS_NUM = 1;
+  private static Double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
@@ -129,6 +132,11 @@ public class SAXVSMContinuousDirectSampler {
         // Iterations
         HOLD_OUT_NUM = Integer.valueOf(args[8]);
         ITERATIONS_NUM = Integer.valueOf(args[9]);
+
+        if (args.length > 10) {
+          NORMALIZATION_THRESHOLD = Double.valueOf(args[10]);
+        }
+
       }
       else {
         System.out.print(printHelp());
@@ -154,9 +162,9 @@ public class SAXVSMContinuousDirectSampler {
         + SAXNumerosityReductionStrategy.NOREDUCTION.toString() + " strategy...");
     int[] noredParams = sample(SAXNumerosityReductionStrategy.NOREDUCTION);
 
-    classify(classicParams);
-    classify(exactParams);
-    classify(noredParams);
+    classify(classicParams, NORMALIZATION_THRESHOLD);
+    classify(exactParams, NORMALIZATION_THRESHOLD);
+    classify(noredParams, NORMALIZATION_THRESHOLD);
   }
 
   private static String printHelp() {
@@ -178,9 +186,10 @@ public class SAXVSMContinuousDirectSampler {
     return sb.toString();
   }
 
-  private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
+  private static void classify(int[] params, Double nt) throws IndexOutOfBoundsException,
+      TSException {
     // making training bags collection
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params);
+    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params, nt);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
     // classifying
@@ -190,7 +199,7 @@ public class SAXVSMContinuousDirectSampler {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         positiveTestCounter = positiveTestCounter
-            + TextUtils.classify(label, series, tfidf, params);
+            + TextUtils.classify(label, series, tfidf, params, nt);
         testSampleSize++;
       }
     }
@@ -206,7 +215,7 @@ public class SAXVSMContinuousDirectSampler {
 
   private static int[] sample(SAXNumerosityReductionStrategy strategy) {
 
-    function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy);
+    function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy, NORMALIZATION_THRESHOLD);
     // the whole bunch of inits
     //
     centerPoints = new ArrayList<Double[]>();
@@ -430,7 +439,7 @@ public class SAXVSMContinuousDirectSampler {
       Point pointToSample1 = Point.at(x_m1);
       // TODO: here needs to be a check
       Double f_m1 = function.valueAt(pointToSample1);
-      consoleLogger.info("@" + f_m1 + "\t"+pointToSample1.toLogString());
+      consoleLogger.info("@" + f_m1 + "\t" + pointToSample1.toLogString());
 
       // add to all points
       coordinates.add(ValuePointColored.at(pointToSample1, f_m1, false));
@@ -449,7 +458,7 @@ public class SAXVSMContinuousDirectSampler {
       Point pointToSample2 = Point.at(x_m2);
       // TODO: here needs to be a check
       Double f_m2 = function.valueAt(pointToSample2);
-      consoleLogger.info("@" + f_m2 + "\t"+pointToSample2.toLogString());
+      consoleLogger.info("@" + f_m2 + "\t" + pointToSample2.toLogString());
 
       // add to all points
       coordinates.add(ValuePointColored.at(pointToSample2, f_m2, false));

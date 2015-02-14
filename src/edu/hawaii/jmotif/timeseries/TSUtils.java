@@ -32,7 +32,7 @@ public final class TSUtils {
   static final char[] ALPHABET = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
-  private static final double GLOBAL_NORMALIZATION_THRESHOLD = 0.05D;
+  public static final double GLOBAL_NORMALIZATION_THRESHOLD = 0.05D;
 
   // logging stuff
   //
@@ -1217,6 +1217,11 @@ public final class TSUtils {
 
     return elapsedHours + "h " + elapsedMinutes + "m " + elapsedSeconds + "s "
         + elapsedMilliseconds + "ms";
+  }
+
+  public static double[] zNormalize(double[] subseries, double normalizationThresholdValue) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }

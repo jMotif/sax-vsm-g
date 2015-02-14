@@ -35,7 +35,7 @@ public class SAXVSMCVErrorFunction implements AbstractErrorFunction {
   private Alphabet a = new NormalAlphabet();
 
   // the default normalization threshold
-  private static final double NORMALIZATION_THRESHOLD = 0.05D;
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05D;
 
   // the default numerosity strategy
   private SAXNumerosityReductionStrategy numerosityReductionStrategy;
@@ -45,6 +45,8 @@ public class SAXVSMCVErrorFunction implements AbstractErrorFunction {
 
   // the hold out sample size
   private int holdOutSampleSize;
+
+  private Double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
   // static block - we instantiate the logger
   //
@@ -60,9 +62,10 @@ public class SAXVSMCVErrorFunction implements AbstractErrorFunction {
    * 
    * @param data
    * @param holdOutSampleSize
+   * @param normalizationThresholdValue
    */
   public SAXVSMCVErrorFunction(Map<String, List<double[]>> data, int holdOutSampleSize,
-      SAXNumerosityReductionStrategy strategy) {
+      SAXNumerosityReductionStrategy strategy, Double normalizationThresholdValue) {
 
     this.tsData = new HashMap<String, double[]>();
 
@@ -77,6 +80,7 @@ public class SAXVSMCVErrorFunction implements AbstractErrorFunction {
 
     this.holdOutSampleSize = holdOutSampleSize;
     this.numerosityReductionStrategy = strategy;
+    this.NORMALIZATION_THRESHOLD = normalizationThresholdValue;
   }
 
   /**

@@ -97,19 +97,19 @@ public final class TextUtils {
           // compute TF: we take a log and correct for 0 by adding 1
 
           // OSULeaf: 0.09091
-//          double tfValue = Math.log(1.0D + Integer.valueOf(wordInBagFrequency).doubleValue());
+          // double tfValue = Math.log(1.0D + Integer.valueOf(wordInBagFrequency).doubleValue());
 
           // OSULeaf: 0.08678
           double tfValue = 1.0D + Math.log(Integer.valueOf(wordInBagFrequency).doubleValue());
 
           // OSULeaf: 0.1405
-//           double tfValue = normalizedTF(bag, word.getKey());
+          // double tfValue = normalizedTF(bag, word.getKey());
 
           // OSULeaf: 0.08678
-//           double tfValue = augmentedTF(bag, word.getKey());
+          // double tfValue = augmentedTF(bag, word.getKey());
 
           // OSULeaf: 0.08678
-//           double tfValue = logAveTF(bag, word.getKey());
+          // double tfValue = logAveTF(bag, word.getKey());
 
           // compute the IDF
           //
@@ -552,8 +552,8 @@ public final class TextUtils {
     return res;
   }
 
-  public static synchronized WordBag seriesToWordBag(String label, double[] series, int[] params)
-      throws IndexOutOfBoundsException, TSException {
+  public static synchronized WordBag seriesToWordBag(String label, double[] series, int[] params,
+      double normalizationThresholdValue) throws IndexOutOfBoundsException, TSException {
 
     WordBag resultBag = new WordBag(label);
 
@@ -567,8 +567,8 @@ public final class TextUtils {
     String oldStr = "";
     for (int i = 0; i <= series.length - windowSize; i++) {
 
-      double[] paa = TSUtils.optimizedPaa(
-          TSUtils.zNormalize(TSUtils.subseries(series, i, windowSize)), paaSize);
+      double[] paa = TSUtils.optimizedPaa(TSUtils.optimizedZNorm(
+          TSUtils.subseries(series, i, windowSize), normalizationThresholdValue), paaSize);
 
       char[] sax = TSUtils.ts2String(paa, a.getCuts(alphabetSize));
 
@@ -656,7 +656,7 @@ public final class TextUtils {
     params[1] = paaSize;
     params[2] = alphabetSize;
     params[3] = strategy.index();
-    return labeledSeries2WordBags(data, params);
+    return labeledSeries2WordBags(data, params, TSUtils.GLOBAL_NORMALIZATION_THRESHOLD);
   }
 
   /**
@@ -667,12 +667,14 @@ public final class TextUtils {
    * @param data The map of class labels and representatives.
    * @param params The set of SAX parameters to use, index 0 - sliding window size, index 1 - PAA
    * size, index 2 - alphabet size.
+   * @param normalizationThresholdValue
    * @return The words bag.
    * @throws IndexOutOfBoundsException If error occurs.
    * @throws TSException If error occurs.
    */
   public static synchronized List<WordBag> labeledSeries2WordBags(Map<String, List<double[]>> data,
-      int[] params) throws IndexOutOfBoundsException, TSException {
+      int[] params, double normalizationThresholdValue) throws IndexOutOfBoundsException,
+      TSException {
 
     // make a map of resulting bags
     Map<String, WordBag> preRes = new HashMap<String, WordBag>();
@@ -684,7 +686,7 @@ public final class TextUtils {
       WordBag bag = new WordBag(classLabel);
 
       for (double[] series : e.getValue()) {
-        WordBag cb = seriesToWordBag("tmp", series, params);
+        WordBag cb = seriesToWordBag("tmp", series, params, normalizationThresholdValue);
         bag.mergeWith(cb);
       }
 
@@ -716,7 +718,7 @@ public final class TextUtils {
 
         for (double[] currSeries : series) {
 
-          WordBag cb = seriesToWordBag("tmp", currSeries, params);
+          WordBag cb = seriesToWordBag("tmp", currSeries, params, TSUtils.GLOBAL_NORMALIZATION_THRESHOLD);
           bag.mergeWith(cb);
 
         }
@@ -758,14 +760,14 @@ public final class TextUtils {
 
   public static synchronized int classify(String classKey, double[] series,
       HashMap<String, HashMap<String, Double>> tfidf, int paaSize, int alphabetSize,
-      int windowSize, SAXNumerosityReductionStrategy strategy) throws IndexOutOfBoundsException,
+      int windowSize, SAXNumerosityReductionStrategy strategy, double nt) throws IndexOutOfBoundsException,
       TSException {
     int[] params = new int[4];
     params[0] = windowSize;
     params[1] = paaSize;
     params[2] = alphabetSize;
     params[3] = strategy.index();
-    return classify(classKey, series, tfidf, params);
+    return classify(classKey, series, tfidf, params, nt);
   }
 
   /**
@@ -775,16 +777,17 @@ public final class TextUtils {
    * @param series The series to test.
    * @param tfidf The TF*IDF weights data structure.
    * @param params SAX parameters to use.
+   * @param nt 
    * @return 1 if the series vector aligns with a class vector, or 0 otherwise.
    * 
    * @throws IndexOutOfBoundsException
    * @throws TSException
    */
   public static synchronized int classify(String classKey, double[] series,
-      HashMap<String, HashMap<String, Double>> tfidf, int[] params)
+      HashMap<String, HashMap<String, Double>> tfidf, int[] params, Double nt)
       throws IndexOutOfBoundsException, TSException {
 
-    WordBag test = seriesToWordBag("test", series, params);
+    WordBag test = seriesToWordBag("test", series, params, nt);
 
     // it is Cosine similarity,
     //

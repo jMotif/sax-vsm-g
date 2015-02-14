@@ -108,7 +108,8 @@ public class SAXVSMPatternExplorer {
 
     int[] params = new int[] { WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE, STRATEGY.index() };
 
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params);
+    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params,
+        TSUtils.GLOBAL_NORMALIZATION_THRESHOLD);
 
     // get tfidf statistics
     HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
@@ -189,7 +190,7 @@ public class SAXVSMPatternExplorer {
       int seriesIdx = 0;
       for (double[] series : testD) {
         int classificationResult = TextUtils.classify(className, series, tfidf, PAA_SIZE,
-            ALPHABET_SIZE, WINDOW_SIZE, STRATEGY);
+            ALPHABET_SIZE, WINDOW_SIZE, STRATEGY, TSUtils.GLOBAL_NORMALIZATION_THRESHOLD);
         if (0 == classificationResult) {
           System.out.println(seriesIdx + 1);
         }
