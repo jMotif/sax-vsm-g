@@ -43,7 +43,6 @@ public class SAXVSMClassifier {
   private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
-
   // static block - we instantiate the logger
   //
   private static final Logger consoleLogger;
@@ -66,11 +65,10 @@ public class SAXVSMClassifier {
 
       STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[5].toUpperCase());
 
-
       if (args.length > 6) {
         NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);
       }
-      
+
       TRAINING_DATA = args[0];
       TEST_DATA = args[1];
       trainData = UCRUtils.readUCRData(TRAINING_DATA);
@@ -98,7 +96,8 @@ public class SAXVSMClassifier {
 
   private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
     // making training bags collection
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params, NORMALIZATION_THRESHOLD);
+    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params,
+        NORMALIZATION_THRESHOLD);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
     // classifying
