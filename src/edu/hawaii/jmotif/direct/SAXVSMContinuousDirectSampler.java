@@ -105,7 +105,7 @@ public class SAXVSMContinuousDirectSampler {
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
       consoleLogger.info("processing paramleters: " + Arrays.toString(args));
 
-      if (10 == args.length) {
+      if (10 == args.length || 11 == args.length ) {
         TRAINING_DATA = args[0];
         TEST_DATA = args[1];
         trainData = UCRUtils.readUCRData(TRAINING_DATA);
