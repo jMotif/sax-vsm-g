@@ -181,8 +181,9 @@ public class SAXVSMContinuousDirectSampler {
     sb.append(" [8] maximal Alphabet size").append(CR);
     sb.append(" [8] cross-validation hold-out number").append(CR);
     sb.append(" [8] maximal amount of sampling iterations").append(CR);
+    sb.append(" [9] OPTIONAL: normalization threshold").append(CR);
     sb.append("An execution example: $java -cp \"sax-vsm-classic20.jar\" edu.hawaii.jmotif.direct.SAXVSMDirectSampler");
-    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10").append(CR);
+    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10 0.01").append(CR);
     return sb.toString();
   }
 

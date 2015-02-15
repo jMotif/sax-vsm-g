@@ -28,18 +28,18 @@ public class SAXVSMClassifier {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat fmt = new DecimalFormat("0.00###", otherSymbols);
-
   private static final String COMMA = ", ";
 
   private static String TRAINING_DATA;
   private static String TEST_DATA;
+  private static Map<String, List<double[]>> trainData;
+  private static Map<String, List<double[]>> testData;
 
   private static Integer WINDOW_SIZE;
   private static Integer PAA_SIZE;
   private static Integer ALPHABET_SIZE;
-  private static Map<String, List<double[]>> trainData;
-  private static Map<String, List<double[]>> testData;
   private static SAXNumerosityReductionStrategy STRATEGY;
+  
   private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
@@ -47,12 +47,19 @@ public class SAXVSMClassifier {
   //
   private static final Logger consoleLogger;
   private static final Level LOGGING_LEVEL = Level.INFO;
-
   static {
     consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMClassifier.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
+  /**
+   * Main CLI runnable.
+   * 
+   * @param args the command line args.
+   * @throws IOException if error occurs.
+   * @throws IndexOutOfBoundsException if error occurs.
+   * @throws TSException if error occurs.
+   */
   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, TSException {
 
     try {

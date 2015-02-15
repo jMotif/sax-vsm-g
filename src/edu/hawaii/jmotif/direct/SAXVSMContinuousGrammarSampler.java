@@ -1,7 +1,6 @@
 package edu.hawaii.jmotif.direct;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -104,6 +103,7 @@ public class SAXVSMContinuousGrammarSampler {
   private static int HOLD_OUT_NUM = 1;
   private static int ITERATIONS_NUM = 1;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
+  private static SAXNumerosityReductionStrategy STRATEGY = null;
 
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
@@ -114,7 +114,7 @@ public class SAXVSMContinuousGrammarSampler {
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
       consoleLogger.info("processing paramleters: " + Arrays.toString(args));
 
-      if (10 == args.length || 11 == args.length) {
+      if (10 == args.length || 11 == args.length || 12 == args.length) {
         TRAINING_DATA = args[0];
         TEST_DATA = args[1];
         trainData = UCRUtils.readUCRData(TRAINING_DATA);
@@ -145,6 +145,11 @@ public class SAXVSMContinuousGrammarSampler {
         if (args.length > 10) {
           NORMALIZATION_THRESHOLD = Double.valueOf(args[10]);
         }
+
+        if (args.length > 11) {
+          STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[11].toUpperCase());
+        }
+
       }
       else {
         System.out.print(printHelp());
@@ -158,21 +163,30 @@ public class SAXVSMContinuousGrammarSampler {
       System.exit(-10);
     }
 
-    consoleLogger.info("running sampling for " + SAXNumerosityReductionStrategy.CLASSIC.toString()
-        + " strategy...");
-    int[] classicParams = sample(SAXNumerosityReductionStrategy.CLASSIC);
+    if (null == STRATEGY) {
+      consoleLogger.info("running sampling for "
+          + SAXNumerosityReductionStrategy.CLASSIC.toString() + " strategy...");
+      int[] classicParams = sample(SAXNumerosityReductionStrategy.CLASSIC);
 
-    consoleLogger.info("running sampling for " + SAXNumerosityReductionStrategy.EXACT.toString()
-        + " strategy...");
-    int[] exactParams = sample(SAXNumerosityReductionStrategy.EXACT);
+      consoleLogger.info("running sampling for " + SAXNumerosityReductionStrategy.EXACT.toString()
+          + " strategy...");
+      int[] exactParams = sample(SAXNumerosityReductionStrategy.EXACT);
 
-    consoleLogger.info("running sampling for "
-        + SAXNumerosityReductionStrategy.NOREDUCTION.toString() + " strategy...");
-    int[] noredParams = sample(SAXNumerosityReductionStrategy.NOREDUCTION);
+      consoleLogger.info("running sampling for "
+          + SAXNumerosityReductionStrategy.NOREDUCTION.toString() + " strategy...");
+      int[] noredParams = sample(SAXNumerosityReductionStrategy.NOREDUCTION);
 
-    classify(classicParams);
-    classify(exactParams);
-    classify(noredParams);
+      classify(classicParams);
+      classify(exactParams);
+      classify(noredParams);
+    }
+    else {
+      consoleLogger.info("running sampling for " + STRATEGY.toString() + " strategy...");
+      int[] params = sample(STRATEGY);
+
+      classify(params);
+
+    }
   }
 
   private static String printHelp() {
@@ -190,8 +204,9 @@ public class SAXVSMContinuousGrammarSampler {
     sb.append(" [8] cross-validation hold-out number").append(CR);
     sb.append(" [8] maximal amount of sampling iterations").append(CR);
     sb.append(" [9] OPTIONAL: normalization threshold").append(CR);
+    sb.append(" [10] OPTIONAL: specific NR restriction").append(CR);
     sb.append("An execution example: $java -cp \"sax-vsm-classic20.jar\" edu.hawaii.jmotif.direct.SAXVSMDirectSampler");
-    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10").append(CR);
+    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10 0.01 EXACT").append(CR);
     return sb.toString();
   }
 

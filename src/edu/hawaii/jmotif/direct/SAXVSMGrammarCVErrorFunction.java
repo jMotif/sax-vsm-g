@@ -21,7 +21,6 @@ import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
-import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
 import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.text.TextUtils;

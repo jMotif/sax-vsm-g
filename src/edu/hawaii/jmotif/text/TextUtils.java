@@ -792,7 +792,7 @@ public final class TextUtils {
     // it is Cosine similarity,
     //
     // which ranges from 0.0 for the angle of 90 to 1.0 for the angle of 0
-    // i.e. LARGES value is a SMALLEST distance
+    // i.e. LARGER value is a SMALLEST distance
     double minDist = Double.MIN_VALUE;
     String className = "";
     double[] cosines = new double[tfidf.entrySet().size()];
