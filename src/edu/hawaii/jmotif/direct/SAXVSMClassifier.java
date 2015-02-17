@@ -64,7 +64,7 @@ public class SAXVSMClassifier {
 
     try {
       // args: <train dataset>, <test dataset>, Wsize , Psize, Asize, Startegy
-      consoleLogger.info("processing paramleters: " + Arrays.toString(args));
+      consoleLogger.info("processing parameters: " + Arrays.toString(args));
 
       WINDOW_SIZE = Integer.valueOf(args[2]);
       PAA_SIZE = Integer.valueOf(args[3]);

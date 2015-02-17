@@ -1,0 +1,1 @@
+cat HandOutlines_TRAIN.arff | sed '/^\s*$/d' | grep -v "@" | sed "s/,/ /g" | awk '{printf $NF; printf " "; for (i=1;i<NF;i++) {printf delim "%s", $i; delim = OFS}; printf "\n"}' >HandOutlines_TRAIN.txt

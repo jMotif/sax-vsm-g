@@ -1,0 +1,555 @@
+17:52:33.690 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [CBF/CBF_TRAIN, CBF/CBF_TEST, 10, 120, 10, 60, 2, 16, 1, 30]
+17:53:05.565 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 65, PAA 11, alphabet 3,  accuracy 0.79556,  error 0.20444
+17:53:06.003 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 36, PAA 13, alphabet 3,  accuracy 0.99,  error 0.01
+17:53:06.433 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 41, PAA 13, alphabet 3,  accuracy 0.99333,  error 0.00667
+Epilog : job finished at mar. déc. 23 17:53:06 CET 2014
+17:52:33.690 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [synthetic_control/synthetic_control_TRAIN, synthetic_control/synthetic_control_TEST, 5, 60, 2, 40, 2, 16, 1, 30]
+18:06:50.592 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 26, PAA 4, alphabet 11,  accuracy 0.92667,  error 0.07333
+18:06:50.685 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 39, PAA 7, alphabet 5,  accuracy 0.98667,  error 0.01333
+18:06:50.760 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 41, PAA 8, alphabet 4,  accuracy 0.98333,  error 0.01667
+Epilog : job finished at mar. déc. 23 18:06:50 CET 2014
+17:52:33.690 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Gun_Point/Gun_Point_TRAIN, Gun_Point/Gun_Point_TEST, 10, 150, 10, 100, 2, 16, 1, 30]
+17:54:08.743 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 33, PAA 25, alphabet 8,  accuracy 0.95333,  error 0.04667
+17:54:08.902 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 28, PAA 25, alphabet 9,  accuracy 0.98667,  error 0.01333
+17:54:09.069 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 33, PAA 25, alphabet 9,  accuracy 0.98,  error 0.02
+Epilog : job finished at mar. déc. 23 17:54:09 CET 2014
+17:52:33.692 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [50words/50words_TRAIN, 50words/50words_TEST, 10, 270, 10, 120, 2, 16, 1, 40]
+14:44:19.947 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 159, PAA 12, alphabet 3,  accuracy 0.36923,  error 0.63077
+14:44:27.239 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 159, PAA 12, alphabet 3,  accuracy 0.62198,  error 0.37802
+14:44:31.676 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 169, PAA 10, alphabet 3,  accuracy 0.62637,  error 0.37363
+Epilog : job finished at mer. déc. 24 14:44:32 CET 2014
+17:52:33.694 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Trace/Trace_TRAIN, Trace/Trace_TEST, 10, 275, 10, 120, 2, 16, 1, 30]
+18:02:06.592 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 133, PAA 16, alphabet 5,  accuracy 0.98,  error 0.02
+18:02:07.104 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 54, PAA 28, alphabet 3,  accuracy 1.00,  error 0.00
+18:02:07.797 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 162, PAA 28, alphabet 4,  accuracy 1.00,  error 0.00
+Epilog : job finished at mar. déc. 23 18:02:07 CET 2014
+17:52:33.693 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Adiac/Adiac_TRAIN, Adiac/Adiac_TEST, 10, 170, 10, 60, 2, 16, 1, 40]
+21:30:11.924 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 72, PAA 18, alphabet 14,  accuracy 0.49616,  error 0.50384
+21:30:15.461 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 72, PAA 16, alphabet 15,  accuracy 0.56522,  error 0.43478
+21:30:21.358 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 49, PAA 41, alphabet 8,  accuracy 0.58312,  error 0.41688
+Epilog : job finished at mar. déc. 23 21:30:21 CET 2014
+17:52:33.691 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [yoga/yoga_TRAIN, yoga/yoga_TEST, 10, 420, 10, 200, 2, 16, 1, 30]
+20:21:19.879 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 94, PAA 14, alphabet 8,  accuracy 0.776,  error 0.224
+20:21:35.260 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 83, PAA 14, alphabet 14,  accuracy 0.849,  error 0.151
+20:21:58.704 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 124, PAA 21, alphabet 10,  accuracy 0.838,  error 0.162
+Epilog : job finished at mar. déc. 23 20:21:59 CET 2014
+17:53:32.973 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [CBF/CBF_TRAIN, CBF/CBF_TEST, 10, 120, 10, 60, 2, 16, 1, 30]
+17:55:31.242 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 53, PAA 13, alphabet 2,  accuracy 0.91667,  error 0.08333
+17:55:32.316 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 49, PAA 11, alphabet 4,  accuracy 0.98778,  error 0.01222
+17:55:33.540 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 114, PAA 11, alphabet 9,  accuracy 0.62778,  error 0.37222
+Epilog : job finished at mar. déc. 23 17:55:33 CET 2014
+17:53:37.342 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [synthetic_control/synthetic_control_TRAIN, synthetic_control/synthetic_control_TEST, 5, 60, 2, 40, 2, 16, 1, 30]
+18:34:08.699 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 36, PAA 7, alphabet 5,  accuracy 0.98,  error 0.02
+18:34:09.043 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 37, PAA 7, alphabet 5,  accuracy 0.98,  error 0.02
+18:34:09.255 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 37, PAA 8, alphabet 3,  accuracy 0.88,  error 0.12
+Epilog : job finished at mar. déc. 23 18:34:09 CET 2014
+17:54:17.288 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Gun_Point/Gun_Point_TRAIN, Gun_Point/Gun_Point_TEST, 10, 150, 10, 100, 2, 16, 1, 30]
+17:58:00.749 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 33, PAA 25, alphabet 9,  accuracy 0.96,  error 0.04
+17:58:01.158 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 33, PAA 25, alphabet 9,  accuracy 0.98667,  error 0.01333
+17:58:01.595 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 44, PAA 25, alphabet 9,  accuracy 0.88667,  error 0.11333
+Epilog : job finished at mar. déc. 23 17:58:01 CET 2014
+17:56:14.527 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [50words/50words_TRAIN, 50words/50words_TEST, 10, 270, 10, 120, 2, 16, 1, 40]
+15:40:58.814 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 169, PAA 10, alphabet 3,  accuracy 0.55604,  error 0.44396
+15:41:13.009 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 169, PAA 12, alphabet 3,  accuracy 0.63736,  error 0.36264
+15:41:19.634 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 150, PAA 12, alphabet 3,  accuracy 0.44835,  error 0.55165
+Epilog : job finished at ven. déc. 26 15:41:20 CET 2014
+17:58:13.325 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Trace/Trace_TRAIN, Trace/Trace_TEST, 10, 275, 10, 120, 2, 16, 1, 30]
+18:33:45.053 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 162, PAA 28, alphabet 4,  accuracy 0.96,  error 0.04
+18:33:46.372 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 133, PAA 16, alphabet 7,  accuracy 1.00,  error 0.00
+18:33:48.506 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 143, PAA 28, alphabet 4,  accuracy 0.99,  error 0.01
+Epilog : job finished at mar. déc. 23 18:33:48 CET 2014
+18:02:13.401 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Adiac/Adiac_TRAIN, Adiac/Adiac_TEST, 10, 170, 10, 60, 2, 16, 1, 40]
+05:14:01.531 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 49, PAA 29, alphabet 12,  accuracy 0.63171,  error 0.36829
+05:14:12.652 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 49, PAA 29, alphabet 15,  accuracy 0.62916,  error 0.37084
+05:14:16.832 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 37, PAA 15, alphabet 15,  accuracy 0.55243,  error 0.44757
+Epilog : job finished at mer. déc. 24 05:14:17 CET 2014
+18:07:33.036 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [yoga/yoga_TRAIN, yoga/yoga_TEST, 10, 420, 10, 200, 2, 16, 1, 30]
+02:53:45.813 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 139, PAA 21, alphabet 11,  accuracy 0.84433,  error 0.15567
+02:53:58.420 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 63, PAA 21, alphabet 6,  accuracy 0.83633,  error 0.16367
+02:55:23.977 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 352, PAA 21, alphabet 9,  accuracy 0.75767,  error 0.24233
+Epilog : job finished at mer. déc. 24 02:55:24 CET 2014
+11:58:57.077 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Beef/Beef_TRAIN, Beef/Beef_TEST, 10, 450, 10, 200, 2, 16, 1, 40]
+12:41:58.365 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 426, PAA 84, alphabet 14,  accuracy 0.43333,  error 0.56667
+12:42:00.862 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 230, PAA 42, alphabet 15,  accuracy 0.53333,  error 0.46667
+12:42:01.972 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 83, PAA 42, alphabet 15,  accuracy 0.20,  error 0.80
+Epilog : job finished at mer. déc. 24 12:42:02 CET 2014
+11:58:57.082 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Coffee/Coffee_TRAIN, Coffee/Coffee_TEST, 5, 280, 2, 200, 2, 16, 1, 30]
+12:07:45.018 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 20, PAA 13, alphabet 14,  accuracy 1.00,  error 0.00
+12:07:45.146 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 20, PAA 13, alphabet 4,  accuracy 0.96429,  error 0.03571
+12:07:45.246 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 20, PAA 13, alphabet 14,  accuracy 1.00,  error 0.00
+Epilog : job finished at mer. déc. 24 12:07:45 CET 2014
+11:58:56.591 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [OliveOil/OliveOil_TRAIN, OliveOil/OliveOil_TEST, 10, 570, 10, 300, 2, 16, 1, 30]
+13:14:06.026 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 352, PAA 155, alphabet 14,  accuracy 0.86667,  error 0.13333
+13:14:21.115 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 352, PAA 155, alphabet 14,  accuracy 0.86667,  error 0.13333
+13:14:34.517 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 290, PAA 155, alphabet 12,  accuracy 0.86667,  error 0.13333
+Epilog : job finished at mer. déc. 24 13:14:34 CET 2014
+11:58:57.080 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [ECG200/ECG200_TRAIN, ECG200/ECG200_TEST, 5, 95, 10, 60, 2, 16, 1, 30]
+12:04:30.484 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 40, PAA 12, alphabet 4,  accuracy 0.81,  error 0.19
+12:04:30.825 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 49, PAA 29, alphabet 3,  accuracy 0.73,  error 0.27
+12:04:31.017 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 93, PAA 13, alphabet 7,  accuracy 0.71,  error 0.29
+Epilog : job finished at mer. déc. 24 12:04:31 CET 2014
+11:58:57.078 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [ECGFiveDays/ECGFiveDays_TRAIN, ECGFiveDays/ECGFiveDays_TEST, 10, 135, 10, 120, 2, 16, 1, 30]
+11:59:54.622 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 73, PAA 28, alphabet 3,  accuracy 0.98374,  error 0.01626
+11:59:56.844 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 59, PAA 28, alphabet 3,  accuracy 0.99071,  error 0.00929
+11:59:58.264 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 59, PAA 16, alphabet 9,  accuracy 0.86876,  error 0.13124
+Epilog : job finished at mer. déc. 24 11:59:58 CET 2014
+11:58:57.081 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [FaceAll/FaceAll_TRAIN, FaceAll/FaceAll_TEST, 10, 130, 10, 100, 2, 16, 1, 30]
+22:22:19.802 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 43, PAA 12, alphabet 3,  accuracy 0.73669,  error 0.26331
+22:22:43.049 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 70, PAA 15, alphabet 3,  accuracy 0.71065,  error 0.28935
+22:22:53.802 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 30, PAA 12, alphabet 3,  accuracy 0.70355,  error 0.29645
+Epilog : job finished at mer. déc. 24 22:22:54 CET 2014
+12:00:26.292 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [FaceFour/FaceFour_TRAIN, FaceFour/FaceFour_TEST, 10, 350, 10, 250, 2, 16, 1, 30]
+12:24:28.215 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 67, PAA 14, alphabet 3,  accuracy 0.97727,  error 0.02273
+12:24:28.766 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 67, PAA 14, alphabet 3,  accuracy 1.00,  error 0.00
+12:24:38.924 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 306, PAA 130, alphabet 9,  accuracy 0.42045,  error 0.57955
+Epilog : job finished at mer. déc. 24 12:24:38 CET 2014
+12:04:57.410 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [FacesUCR/FacesUCR_TRAIN, FacesUCR/FacesUCR_TEST, 10, 130, 10, 100, 2, 16, 1, 30]
+14:06:43.225 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 34, PAA 11, alphabet 3,  accuracy 0.88244,  error 0.11756
+14:06:48.576 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 66, PAA 11, alphabet 3,  accuracy 0.90585,  error 0.09415
+14:06:54.559 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 30, PAA 12, alphabet 3,  accuracy 0.80488,  error 0.19512
+Epilog : job finished at mer. déc. 24 14:06:54 CET 2014
+12:07:52.493 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Beef/Beef_TRAIN, Beef/Beef_TEST, 10, 450, 10, 200, 2, 16, 1, 40]
+12:17:08.668 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 83, PAA 42, alphabet 15,  accuracy 0.03333,  error 0.96667
+12:17:09.185 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 311, PAA 14, alphabet 11,  accuracy 0.10,  error 0.90
+12:17:09.673 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 311, PAA 14, alphabet 11,  accuracy 0.13333,  error 0.86667
+Epilog : job finished at mer. déc. 24 12:17:09 CET 2014
+12:17:31.316 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Coffee/Coffee_TRAIN, Coffee/Coffee_TEST, 5, 280, 2, 200, 2, 16, 1, 30]
+12:20:03.541 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 20, PAA 13, alphabet 11,  accuracy 1.00,  error 0.00
+12:20:03.605 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 20, PAA 13, alphabet 9,  accuracy 1.00,  error 0.00
+12:20:03.653 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 20, PAA 13, alphabet 9,  accuracy 1.00,  error 0.00
+Epilog : job finished at mer. déc. 24 12:20:03 CET 2014
+12:20:11.257 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [OliveOil/OliveOil_TRAIN, OliveOil/OliveOil_TEST, 10, 570, 10, 300, 2, 16, 1, 30]
+12:33:57.786 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 352, PAA 187, alphabet 14,  accuracy 0.86667,  error 0.13333
+12:34:01.419 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 414, PAA 155, alphabet 14,  accuracy 0.86667,  error 0.13333
+12:34:05.049 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 414, PAA 155, alphabet 14,  accuracy 0.86667,  error 0.13333
+Epilog : job finished at mer. déc. 24 12:34:05 CET 2014
+12:25:06.224 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [ECG200/ECG200_TRAIN, ECG200/ECG200_TEST, 5, 95, 10, 60, 2, 16, 1, 30]
+12:26:53.084 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 40, PAA 13, alphabet 5,  accuracy 0.73,  error 0.27
+12:26:53.136 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 60, PAA 13, alphabet 3,  accuracy 0.85,  error 0.15
+12:26:53.204 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 27, PAA 15, alphabet 4,  accuracy 0.86,  error 0.14
+Epilog : job finished at mer. déc. 24 12:26:53 CET 2014
+12:27:36.370 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [ECGFiveDays/ECGFiveDays_TRAIN, ECGFiveDays/ECGFiveDays_TEST, 10, 135, 10, 120, 2, 16, 1, 30]
+12:28:16.357 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 48, PAA 28, alphabet 3,  accuracy 0.92334,  error 0.07666
+12:28:17.737 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 54, PAA 28, alphabet 3,  accuracy 0.99535,  error 0.00465
+12:28:18.932 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 54, PAA 28, alphabet 3,  accuracy 0.99652,  error 0.00348
+Epilog : job finished at mer. déc. 24 12:28:18 CET 2014
+12:28:51.331 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [FaceAll/FaceAll_TRAIN, FaceAll/FaceAll_TEST, 10, 130, 10, 100, 2, 16, 1, 30]
+21:02:02.060 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 30, PAA 12, alphabet 3,  accuracy 0.7071,  error 0.2929
+21:02:22.998 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 40, PAA 11, alphabet 3,  accuracy 0.74852,  error 0.25148
+21:02:31.271 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 43, PAA 10, alphabet 3,  accuracy 0.75562,  error 0.24438
+Epilog : job finished at mer. déc. 24 21:02:31 CET 2014
+12:34:31.298 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [FaceFour/FaceFour_TRAIN, FaceFour/FaceFour_TEST, 10, 350, 10, 250, 2, 16, 1, 30]
+12:37:37.340 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 67, PAA 14, alphabet 3,  accuracy 0.88636,  error 0.11364
+12:37:37.811 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 104, PAA 23, alphabet 3,  accuracy 0.88636,  error 0.11364
+12:37:38.274 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 104, PAA 23, alphabet 3,  accuracy 0.875,  error 0.125
+Epilog : job finished at mer. déc. 24 12:37:38 CET 2014
+12:37:46.258 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [FacesUCR/FacesUCR_TRAIN, FacesUCR/FacesUCR_TEST, 10, 130, 10, 100, 2, 16, 1, 30]
+13:18:44.537 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 30, PAA 12, alphabet 3,  accuracy 0.75805,  error 0.24195
+13:18:51.833 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 43, PAA 12, alphabet 3,  accuracy 0.89122,  error 0.10878
+13:18:57.912 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 49, PAA 12, alphabet 3,  accuracy 0.90,  error 0.10
+Epilog : job finished at mer. déc. 24 13:18:57 CET 2014
+12:42:31.427 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [fish/FISH_TRAIN, fish/FISH_TEST, 10, 450, 10, 250, 2, 16, 1, 40]
+14:38:27.577 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 72, PAA 14, alphabet 9,  accuracy 0.90286,  error 0.09714
+14:38:30.297 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 76, PAA 32, alphabet 6,  accuracy 0.97143,  error 0.02857
+14:38:33.034 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 100, PAA 26, alphabet 7,  accuracy 0.98286,  error 0.01714
+Epilog : job finished at mer. déc. 24 14:38:33 CET 2014
+13:14:57.251 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [SwedishLeaf/SwedishLeaf_TRAIN, SwedishLeaf/SwedishLeaf_TEST, 5, 125, 2, 100, 2, 16, 1, 30]
+15:25:36.702 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 38, PAA 7, alphabet 9,  accuracy 0.6528,  error 0.3472
+15:25:38.724 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 52, PAA 7, alphabet 9,  accuracy 0.7248,  error 0.2752
+15:25:41.220 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 52, PAA 7, alphabet 10,  accuracy 0.72,  error 0.28
+Epilog : job finished at mer. déc. 24 15:25:41 CET 2014
+13:19:36.373 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [OSULeaf/OSULeaf_TRAIN, OSULeaf/OSULeaf_TEST, 10, 420, 10, 300, 2, 16, 1, 30]
+14:49:03.926 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 33, PAA 15, alphabet 4,  accuracy 0.69421,  error 0.30579
+14:49:05.787 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 78, PAA 15, alphabet 4,  accuracy 0.83471,  error 0.16529
+14:49:07.305 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 33, PAA 15, alphabet 7,  accuracy 0.84711,  error 0.15289
+Epilog : job finished at mer. déc. 24 14:49:07 CET 2014
+14:07:04.146 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Lighting2/Lighting2_TRAIN, Lighting2/Lighting2_TEST, 10, 630, 10, 350, 2, 16, 1, 40]
+15:28:44.050 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 106, PAA 12, alphabet 6,  accuracy 0.72131,  error 0.27869
+15:28:45.248 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 182, PAA 16, alphabet 3,  accuracy 0.7377,  error 0.2623
+15:28:46.439 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 152, PAA 16, alphabet 3,  accuracy 0.77049,  error 0.22951
+Epilog : job finished at mer. déc. 24 15:28:46 CET 2014
+14:39:12.087 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Lighting7/Lighting7_TRAIN, Lighting7/Lighting7_TEST, 10, 310, 10, 200, 2, 16, 1, 30]
+14:51:18.562 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 93, PAA 21, alphabet 4,  accuracy 0.45205,  error 0.54795
+14:51:19.222 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 149, PAA 14, alphabet 3,  accuracy 0.65753,  error 0.34247
+14:51:20.109 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 90, PAA 21, alphabet 3,  accuracy 0.58904,  error 0.41096
+Epilog : job finished at mer. déc. 24 14:51:20 CET 2014
+14:45:01.937 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [wafer/wafer_TRAIN, wafer/wafer_TEST, 10, 152, 10, 100, 2, 16, 10, 30]
+15:09:44.674 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 34, PAA 28, alphabet 4,  accuracy 0.9974,  error 0.0026
+15:09:51.872 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 34, PAA 25, alphabet 4,  accuracy 0.99773,  error 0.00227
+15:09:59.295 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 34, PAA 25, alphabet 4,  accuracy 0.99773,  error 0.00227
+Epilog : job finished at mer. déc. 24 15:09:59 CET 2014
+14:49:32.227 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Two_Patterns/Two_Patterns_TRAIN, Two_Patterns/Two_Patterns_TEST, 10, 120, 10, 80, 2, 16, 10, 30]
+15:52:42.014 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 81, PAA 11, alphabet 3,  accuracy 0.95775,  error 0.04225
+15:52:45.319 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 102, PAA 14, alphabet 3,  accuracy 0.996,  error 0.004
+15:52:48.287 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 106, PAA 14, alphabet 3,  accuracy 0.9965,  error 0.0035
+Epilog : job finished at mer. déc. 24 15:52:48 CET 2014
+14:51:41.205 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [TwoLeadECG/TwoLeadECG_TRAIN, TwoLeadECG/TwoLeadECG_TEST, 5, 80, 5, 60, 2, 16, 1, 30]
+14:52:02.533 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 9, PAA 8, alphabet 15,  accuracy 0.92625,  error 0.07375
+14:52:02.855 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 15, PAA 14, alphabet 4,  accuracy 0.98771,  error 0.01229
+14:52:03.170 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 15, PAA 14, alphabet 4,  accuracy 0.98859,  error 0.01141
+Epilog : job finished at mer. déc. 24 14:52:03 CET 2014
+14:52:21.264 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [fish/FISH_TRAIN, fish/FISH_TEST, 10, 450, 10, 250, 2, 16, 1, 40]
+20:39:57.443 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 132, PAA 14, alphabet 11,  accuracy 0.97143,  error 0.02857
+20:40:04.266 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 100, PAA 26, alphabet 7,  accuracy 0.96,  error 0.04
+20:40:08.142 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 132, PAA 14, alphabet 6,  accuracy 0.84571,  error 0.15429
+Epilog : job finished at mer. déc. 24 20:40:08 CET 2014
+15:10:21.495 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [SwedishLeaf/SwedishLeaf_TRAIN, SwedishLeaf/SwedishLeaf_TEST, 5, 125, 2, 100, 2, 16, 1, 30]
+19:20:15.812 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 65, PAA 18, alphabet 7,  accuracy 0.7552,  error 0.2448
+19:20:23.188 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 38, PAA 15, alphabet 6,  accuracy 0.7728,  error 0.2272
+19:20:25.829 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 47, PAA 13, alphabet 5,  accuracy 0.744,  error 0.256
+Epilog : job finished at mer. déc. 24 19:20:26 CET 2014
+15:26:17.148 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [OSULeaf/OSULeaf_TRAIN, OSULeaf/OSULeaf_TEST, 10, 420, 10, 300, 2, 16, 1, 30]
+20:40:05.518 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 48, PAA 19, alphabet 5,  accuracy 0.88017,  error 0.11983
+20:40:07.981 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 28, PAA 15, alphabet 5,  accuracy 0.87603,  error 0.12397
+20:40:11.682 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 149, PAA 12, alphabet 3,  accuracy 0.59917,  error 0.40083
+Epilog : job finished at mer. déc. 24 20:40:11 CET 2014
+15:29:01.742 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Lighting2/Lighting2_TRAIN, Lighting2/Lighting2_TEST, 10, 630, 10, 350, 2, 16, 1, 40]
+21:10:22.067 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 259, PAA 29, alphabet 5,  accuracy 0.72131,  error 0.27869
+21:10:29.841 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 389, PAA 25, alphabet 3,  accuracy 0.67213,  error 0.32787
+21:10:37.538 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 113, PAA 41, alphabet 9,  accuracy 0.70492,  error 0.29508
+Epilog : job finished at mer. déc. 24 21:10:37 CET 2014
+15:52:51.372 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Lighting7/Lighting7_TRAIN, Lighting7/Lighting7_TEST, 10, 310, 10, 200, 2, 16, 1, 30]
+16:36:25.839 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 141, PAA 21, alphabet 3,  accuracy 0.61644,  error 0.38356
+16:36:27.350 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 138, PAA 21, alphabet 3,  accuracy 0.64384,  error 0.35616
+16:36:28.271 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 123, PAA 14, alphabet 6,  accuracy 0.46575,  error 0.53425
+Epilog : job finished at mer. déc. 24 16:36:28 CET 2014
+16:36:52.206 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [wafer/wafer_TRAIN, wafer/wafer_TEST, 10, 152, 10, 100, 2, 16, 10, 30]
+18:12:02.887 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 65, PAA 25, alphabet 6,  accuracy 0.99221,  error 0.00779
+18:12:22.720 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 28, PAA 25, alphabet 15,  accuracy 0.99805,  error 0.00195
+18:12:56.194 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 65, PAA 35, alphabet 6,  accuracy 0.99335,  error 0.00665
+Epilog : job finished at mer. déc. 24 18:12:56 CET 2014
+18:13:34.133 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Two_Patterns/Two_Patterns_TRAIN, Two_Patterns/Two_Patterns_TEST, 10, 120, 10, 80, 2, 16, 10, 30]
+22:43:26.013 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 110, PAA 14, alphabet 3,  accuracy 0.999,  error 0.001
+22:43:33.382 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 98, PAA 14, alphabet 3,  accuracy 0.9965,  error 0.0035
+22:43:45.389 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 102, PAA 15, alphabet 3,  accuracy 0.9895,  error 0.0105
+Epilog : job finished at mer. déc. 24 22:43:45 CET 2014
+19:21:02.084 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [TwoLeadECG/TwoLeadECG_TRAIN, TwoLeadECG/TwoLeadECG_TEST, 5, 80, 5, 60, 2, 16, 1, 30]
+19:21:30.497 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 15, PAA 14, alphabet 4,  accuracy 0.98244,  error 0.01756
+19:21:31.076 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 15, PAA 14, alphabet 4,  accuracy 0.98595,  error 0.01405
+19:21:31.593 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 15, PAA 14, alphabet 7,  accuracy 0.96137,  error 0.03863
+Epilog : job finished at mer. déc. 24 19:21:31 CET 2014
+19:21:41.512 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [ChlorineConcentration/ChlorineConcentration_TRAIN, ChlorineConcentration/ChlorineConcentration_TEST, 5, 165, 10, 100, 2, 16, 5, 30]
+20:03:02.692 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 26, PAA 15, alphabet 9,  accuracy 0.65677,  error 0.34323
+20:03:13.812 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 32, PAA 25, alphabet 5,  accuracy 0.65885,  error 0.34115
+20:03:21.147 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 30, PAA 15, alphabet 6,  accuracy 0.65807,  error 0.34193
+Epilog : job finished at mer. déc. 24 20:03:21 CET 2014
+22:25:56.031 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Haptics/Haptics_TRAIN, Haptics/Haptics_TEST, 10, 1090, 5, 200, 2, 16, 1, 40]
+03:41:54.159 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 270, PAA 11, alphabet 4,  accuracy 0.3539,  error 0.6461
+03:42:09.713 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 310, PAA 23, alphabet 3,  accuracy 0.42532,  error 0.57468
+03:42:22.611 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 310, PAA 16, alphabet 9,  accuracy 0.37662,  error 0.62338
+Epilog : job finished at jeu. déc. 25 03:42:22 CET 2014
+20:03:41.203 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Cricket_X/Cricket_X_TRAIN, Cricket_X/Cricket_X_TEST, 5, 160, 2, 100, 2, 16, 1, 30]
+03:22:19.786 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 83, PAA 7, alphabet 4,  accuracy 0.51795,  error 0.48205
+03:22:22.045 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 111, PAA 7, alphabet 6,  accuracy 0.69231,  error 0.30769
+03:22:23.305 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 118, PAA 7, alphabet 4,  accuracy 0.67436,  error 0.32564
+Epilog : job finished at jeu. déc. 25 03:22:23 CET 2014
+20:40:21.818 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Cricket_Y/Cricket_Y_TRAIN, Cricket_Y/Cricket_Y_TEST, 5, 160, 2, 100, 2, 16, 1, 30]
+04:27:15.738 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 84, PAA 7, alphabet 4,  accuracy 0.47436,  error 0.52564
+04:27:17.694 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 111, PAA 7, alphabet 5,  accuracy 0.68205,  error 0.31795
+04:27:18.554 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 119, PAA 7, alphabet 4,  accuracy 0.64872,  error 0.35128
+Epilog : job finished at jeu. déc. 25 04:27:18 CET 2014
+20:40:56.202 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Cricket_Z/Cricket_Z_TRAIN, Cricket_Z/Cricket_Z_TEST, 5, 160, 2, 100, 2, 16, 1, 30]
+02:56:41.356 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 75, PAA 7, alphabet 4,  accuracy 0.49231,  error 0.50769
+02:56:42.954 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 123, PAA 7, alphabet 5,  accuracy 0.67949,  error 0.32051
+02:56:44.596 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 95, PAA 7, alphabet 5,  accuracy 0.70256,  error 0.29744
+Epilog : job finished at jeu. déc. 25 02:56:44 CET 2014
+21:02:51.173 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [SonyAIBORobot Surface/SonyAIBORobotSurface_TRAIN, SonyAIBORobot Surface/SonyAIBORobotSurface_TEST, 5, 70, 5, 70, 2, 16, 1, 30]
+21:02:59.105 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 13, PAA 9, alphabet 3,  accuracy 0.62895,  error 0.37105
+21:02:59.185 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 16, PAA 9, alphabet 4,  accuracy 0.69384,  error 0.30616
+21:02:59.268 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 16, PAA 9, alphabet 4,  accuracy 0.69052,  error 0.30948
+Epilog : job finished at mer. déc. 24 21:02:59 CET 2014
+21:03:31.109 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TRAIN, SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TEST, 5, 70, 5, 70, 2, 16, 1, 30]
+21:03:37.957 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 13, PAA 9, alphabet 4,  accuracy 0.85519,  error 0.14481
+21:03:38.071 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 13, PAA 9, alphabet 4,  accuracy 0.87408,  error 0.12592
+21:03:38.187 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 13, PAA 9, alphabet 4,  accuracy 0.87408,  error 0.12592
+Epilog : job finished at mer. déc. 24 21:03:38 CET 2014
+21:04:11.131 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [WordsSynonyms/WordsSynonyms_TRAIN, WordsSynonyms/WordsSynonyms_TEST, 10, 270, 10, 200, 2, 16, 1, 40]
+01:31:19.231 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 69, PAA 14, alphabet 3,  accuracy 0.30878,  error 0.69122
+01:31:22.825 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 159, PAA 11, alphabet 3,  accuracy 0.55956,  error 0.44044
+01:31:25.892 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 179, PAA 11, alphabet 3,  accuracy 0.56426,  error 0.43574
+Epilog : job finished at jeu. déc. 25 01:31:25 CET 2014
+21:11:01.173 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [CinC_ECG_torso/CinC_ECG_torso_TRAIN, CinC_ECG_torso/CinC_ECG_torso_TEST, 10, 1600, 10, 200, 2, 16, 1, 50]
+23:52:36.482 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 216, PAA 14, alphabet 4,  accuracy 0.6558,  error 0.3442
+23:57:05.657 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 275, PAA 70, alphabet 3,  accuracy 0.64783,  error 0.35217
+00:01:17.937 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 275, PAA 70, alphabet 3,  accuracy 0.64348,  error 0.35652
+Epilog : job finished at jeu. déc. 25 00:01:18 CET 2014
+22:23:17.335 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [DiatomSizeReduction/DiatomSizeReduction_TRAIN, DiatomSizeReduction/DiatomSizeReduction_TEST, 5, 340, 5, 200, 2, 16, 1, 30]
+22:25:21.979 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 98, PAA 38, alphabet 8,  accuracy 0.75817,  error 0.24183
+22:25:22.638 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 61, PAA 16, alphabet 9,  accuracy 0.87908,  error 0.12092
+22:25:22.996 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 24, PAA 16, alphabet 14,  accuracy 0.87582,  error 0.12418
+Epilog : job finished at mer. déc. 24 22:25:23 CET 2014
+22:44:02.864 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [ChlorineConcentration/ChlorineConcentration_TRAIN, ChlorineConcentration/ChlorineConcentration_TEST, 5, 165, 10, 100, 2, 16, 5, 30]
+00:31:46.577 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 49, PAA 25, alphabet 8,  accuracy 0.65729,  error 0.34271
+00:31:57.919 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 30, PAA 15, alphabet 6,  accuracy 0.64974,  error 0.35026
+00:32:17.484 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 24, PAA 21, alphabet 7,  accuracy 0.66146,  error 0.33854
+Epilog : job finished at jeu. déc. 25 00:32:17 CET 2014
+03:49:16.011 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Haptics/Haptics_TRAIN, Haptics/Haptics_TEST, 10, 1090, 5, 200, 2, 16, 1, 40]
+22:37:53.811 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 310, PAA 38, alphabet 4,  accuracy 0.36688,  error 0.63312
+22:38:02.968 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 950, PAA 38, alphabet 3,  accuracy 0.37013,  error 0.62987
+22:38:56.267 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 923, PAA 16, alphabet 4,  accuracy 0.33442,  error 0.66558
+Epilog : job finished at jeu. déc. 25 22:38:56 CET 2014
+00:01:46.448 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Cricket_X/Cricket_X_TRAIN, Cricket_X/Cricket_X_TEST, 5, 160, 2, 100, 2, 16, 1, 30]
+19:46:52.819 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 157, PAA 7, alphabet 5,  accuracy 0.65385,  error 0.34615
+19:47:03.014 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 134, PAA 7, alphabet 5,  accuracy 0.63846,  error 0.36154
+19:47:08.418 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 83, PAA 7, alphabet 4,  accuracy 0.51538,  error 0.48462
+Epilog : job finished at jeu. déc. 25 19:47:08 CET 2014
+00:32:41.278 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Cricket_Y/Cricket_Y_TRAIN, Cricket_Y/Cricket_Y_TEST, 5, 160, 2, 100, 2, 16, 1, 30]
+16:21:28.159 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 110, PAA 7, alphabet 5,  accuracy 0.62821,  error 0.37179
+16:21:32.605 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 125, PAA 7, alphabet 5,  accuracy 0.63077,  error 0.36923
+16:21:35.536 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 100, PAA 7, alphabet 4,  accuracy 0.48462,  error 0.51538
+Epilog : job finished at jeu. déc. 25 16:21:35 CET 2014
+01:31:36.105 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Cricket_Z/Cricket_Z_TRAIN, Cricket_Z/Cricket_Z_TEST, 5, 160, 2, 100, 2, 16, 1, 30]
+17:53:50.418 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 94, PAA 7, alphabet 5,  accuracy 0.62308,  error 0.37692
+17:53:54.510 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 134, PAA 7, alphabet 6,  accuracy 0.64103,  error 0.35897
+17:53:55.568 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 98, PAA 7, alphabet 4,  accuracy 0.52051,  error 0.47949
+Epilog : job finished at jeu. déc. 25 17:53:55 CET 2014
+02:56:56.677 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [SonyAIBORobot Surface/SonyAIBORobotSurface_TRAIN, SonyAIBORobot Surface/SonyAIBORobotSurface_TEST, 5, 70, 5, 70, 2, 16, 1, 30]
+02:57:18.164 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 30, PAA 16, alphabet 2,  accuracy 0.57737,  error 0.42263
+02:57:18.401 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 16, PAA 9, alphabet 4,  accuracy 0.67221,  error 0.32779
+02:57:18.622 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 23, PAA 9, alphabet 4,  accuracy 0.60732,  error 0.39268
+Epilog : job finished at jeu. déc. 25 02:57:18 CET 2014
+02:57:35.954 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TRAIN, SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TEST, 5, 70, 5, 70, 2, 16, 1, 30]
+02:58:06.955 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 30, PAA 11, alphabet 3,  accuracy 0.87198,  error 0.12802
+02:58:07.349 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 29, PAA 9, alphabet 3,  accuracy 0.88458,  error 0.11542
+02:58:07.974 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 52, PAA 18, alphabet 3,  accuracy 0.72193,  error 0.27807
+Epilog : job finished at jeu. déc. 25 02:58:07 CET 2014
+02:58:15.955 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [WordsSynonyms/WordsSynonyms_TRAIN, WordsSynonyms/WordsSynonyms_TEST, 10, 270, 10, 200, 2, 16, 1, 40]
+11:20:21.710 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 172, PAA 11, alphabet 3,  accuracy 0.5094,  error 0.4906
+11:20:28.548 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 252, PAA 11, alphabet 3,  accuracy 0.52038,  error 0.47962
+11:20:33.140 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 89, PAA 14, alphabet 3,  accuracy 0.36991,  error 0.63009
+Epilog : job finished at jeu. déc. 25 11:20:33 CET 2014
+03:23:01.751 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [CinC_ECG_torso/CinC_ECG_torso_TRAIN, CinC_ECG_torso/CinC_ECG_torso_TEST, 10, 1600, 10, 200, 2, 16, 1, 50]
+08:07:11.376 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 452, PAA 42, alphabet 3,  accuracy 0.71159,  error 0.28841
+08:16:28.663 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 334, PAA 63, alphabet 3,  accuracy 0.66304,  error 0.33696
+08:20:28.269 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 452, PAA 20, alphabet 4,  accuracy 0.62174,  error 0.37826
+Epilog : job finished at jeu. déc. 25 08:20:28 CET 2014
+03:42:35.997 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [DiatomSizeReduction/DiatomSizeReduction_TRAIN, DiatomSizeReduction/DiatomSizeReduction_TEST, 5, 340, 5, 200, 2, 16, 1, 30]
+03:49:02.707 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 61, PAA 38, alphabet 9,  accuracy 0.81046,  error 0.18954
+03:49:04.524 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 61, PAA 16, alphabet 9,  accuracy 0.83987,  error 0.16013
+03:49:06.547 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 98, PAA 16, alphabet 9,  accuracy 0.91176,  error 0.08824
+Epilog : job finished at jeu. déc. 25 03:49:06 CET 2014
+04:27:41.387 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [InlineSkate/InlineSkate_TRAIN, InlineSkate/InlineSkate_TEST, 5, 1800, 10, 200, 2, 16, 1, 30]
+14:53:19.595 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 703, PAA 21, alphabet 3,  accuracy 0.34545,  error 0.65455
+14:55:25.373 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 326, PAA 56, alphabet 9,  accuracy 0.33455,  error 0.66545
+14:56:40.551 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 969, PAA 21, alphabet 5,  accuracy 0.40727,  error 0.59273
+Epilog : job finished at jeu. déc. 25 14:56:40 CET 2014
+14:25:24.352 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TRAIN, uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+19:53:46.631 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 225, PAA 9, alphabet 3,  accuracy 0.50698,  error 0.49302
+19:53:52.227 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 203, PAA 6, alphabet 5,  accuracy 0.61055,  error 0.38945
+19:53:56.989 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 259, PAA 9, alphabet 3,  accuracy 0.63624,  error 0.36376
+Epilog : job finished at jeu. déc. 25 19:53:57 CET 2014
+14:25:24.992 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [uWaveGestureLibrary_X/uWaveGestureLibrary_X_TRAIN, uWaveGestureLibrary_X/uWaveGestureLibrary_X_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+19:39:09.817 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 203, PAA 9, alphabet 3,  accuracy 0.60441,  error 0.39559
+19:39:25.517 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 188, PAA 9, alphabet 5,  accuracy 0.66862,  error 0.33138
+19:39:36.593 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 203, PAA 9, alphabet 4,  accuracy 0.677,  error 0.323
+Epilog : job finished at jeu. déc. 25 19:39:36 CET 2014
+08:21:01.917 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [ItalyPowerDemand/ItalyPowerDemand_TRAIN, ItalyPowerDemand/ItalyPowerDemand_TEST, 2, 23, 1, 22, 2, 16, 1, 30]
+08:21:08.397 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 10, PAA 5, alphabet 9,  accuracy 0.77259,  error 0.22741
+08:21:08.427 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 13, PAA 5, alphabet 6,  accuracy 0.88047,  error 0.11953
+08:21:08.451 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 17, PAA 9, alphabet 3,  accuracy 0.91059,  error 0.08941
+Epilog : job finished at jeu. déc. 25 08:21:08 CET 2014
+08:21:41.096 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [MALLAT/MALLAT_TRAIN, MALLAT/MALLAT_TEST, 10, 1200, 2, 200, 2, 16, 1, 30]
+09:23:52.733 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 385, PAA 35, alphabet 3,  accuracy 0.74542,  error 0.25458
+09:27:31.757 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 429, PAA 57, alphabet 3,  accuracy 0.79915,  error 0.20085
+09:31:15.987 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 473, PAA 57, alphabet 3,  accuracy 0.80085,  error 0.19915
+Epilog : job finished at jeu. déc. 25 09:31:16 CET 2014
+09:31:42.079 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [MedicalImages/MedicalImages_TRAIN, MedicalImages/MedicalImages_TEST, 5, 98, 5, 98, 2, 16, 1, 30]
+10:14:54.184 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 14, PAA 10, alphabet 7,  accuracy 0.45263,  error 0.54737
+10:14:55.439 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 27, PAA 10, alphabet 5,  accuracy 0.48421,  error 0.51579
+10:14:56.327 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 10, PAA 10, alphabet 7,  accuracy 0.44474,  error 0.55526
+Epilog : job finished at jeu. déc. 25 10:14:56 CET 2014
+10:15:01.196 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [MoteStrain/MoteStrain_TRAIN, MoteStrain/MoteStrain_TEST, 5, 83, 5, 82, 2, 16, 1, 30]
+10:15:08.639 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 15, PAA 6, alphabet 5,  accuracy 0.80671,  error 0.19329
+10:15:08.748 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 18, PAA 9, alphabet 3,  accuracy 0.87141,  error 0.12859
+10:15:08.886 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 14, PAA 9, alphabet 3,  accuracy 0.88339,  error 0.11661
+Epilog : job finished at jeu. déc. 25 10:15:08 CET 2014
+10:15:41.078 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TRAIN, SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TEST, 5, 70, 5, 70, 2, 16, 1, 30]
+10:15:47.316 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 13, PAA 9, alphabet 4,  accuracy 0.85519,  error 0.14481
+10:15:47.423 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 13, PAA 9, alphabet 4,  accuracy 0.87408,  error 0.12592
+10:15:47.530 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 13, PAA 9, alphabet 4,  accuracy 0.87408,  error 0.12592
+Epilog : job finished at jeu. déc. 25 10:15:47 CET 2014
+10:16:21.079 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [StarLightCurves/StarLightCurves_TRAIN, StarLightCurves/StarLightCurves_TEST, 10, 1020, 10, 200, 2, 16, 10, 40]
+18:11:04.964 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 224, PAA 14, alphabet 6,  accuracy 0.89085,  error 0.10915
+18:13:45.835 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 66, PAA 21, alphabet 14,  accuracy 0.87773,  error 0.12227
+18:26:44.933 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 291, PAA 42, alphabet 5,  accuracy 0.8923,  error 0.1077
+Epilog : job finished at ven. déc. 26 18:26:45 CET 2014
+11:21:01.995 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Symbols/Symbols_TRAIN, Symbols/Symbols_TEST, 10, 397, 5, 200, 2, 16, 1, 40]
+11:25:00.551 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 118, PAA 16, alphabet 3,  accuracy 0.71256,  error 0.28744
+11:25:03.011 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 60, PAA 16, alphabet 6,  accuracy 0.91055,  error 0.08945
+11:25:03.688 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 32, PAA 16, alphabet 7,  accuracy 0.87638,  error 0.12362
+Epilog : job finished at jeu. déc. 25 11:25:03 CET 2014
+11:25:41.102 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [uWaveGestureLibrary_X/uWaveGestureLibrary_X_TRAIN, uWaveGestureLibrary_X/uWaveGestureLibrary_X_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+16:31:33.481 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 203, PAA 9, alphabet 3,  accuracy 0.60441,  error 0.39559
+16:31:47.924 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 188, PAA 9, alphabet 5,  accuracy 0.66862,  error 0.33138
+16:32:02.194 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 195, PAA 9, alphabet 5,  accuracy 0.67644,  error 0.32356
+Epilog : job finished at jeu. déc. 25 16:32:02 CET 2014
+14:25:24.962 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [InlineSkate/InlineSkate_TRAIN, InlineSkate/InlineSkate_TEST, 5, 1800, 10, 200, 2, 16, 1, 30]
+20:37:09.186 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 1612, PAA 14, alphabet 4,  accuracy 0.32364,  error 0.67636
+20:41:27.890 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 1168, PAA 21, alphabet 5,  accuracy 0.41636,  error 0.58364
+20:45:08.706 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 910, PAA 21, alphabet 3,  accuracy 0.37636,  error 0.62364
+Epilog : job finished at ven. déc. 26 20:45:08 CET 2014
+16:22:08.514 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TRAIN, uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+17:02:44.278 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 309, PAA 9, alphabet 4,  accuracy 0.61753,  error 0.38247
+17:03:24.825 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 304, PAA 9, alphabet 5,  accuracy 0.64629,  error 0.35371
+17:03:55.101 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 293, PAA 9, alphabet 4,  accuracy 0.58012,  error 0.41988
+Epilog : job finished at ven. déc. 26 17:03:55 CET 2014
+16:32:22.873 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [uWaveGestureLibrary_X/uWaveGestureLibrary_X_TRAIN, uWaveGestureLibrary_X/uWaveGestureLibrary_X_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+14:06:11.207 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 286, PAA 9, alphabet 4,  accuracy 0.71748,  error 0.28252
+14:06:53.263 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 282, PAA 9, alphabet 5,  accuracy 0.73339,  error 0.26661
+14:07:23.306 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 259, PAA 9, alphabet 4,  accuracy 0.689,  error 0.311
+Epilog : job finished at ven. déc. 26 14:07:23 CET 2014
+14:57:04.145 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [ItalyPowerDemand/ItalyPowerDemand_TRAIN, ItalyPowerDemand/ItalyPowerDemand_TEST, 2, 23, 1, 22, 2, 16, 1, 30]
+14:57:23.898 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 13, PAA 9, alphabet 4,  accuracy 0.931,  error 0.069
+14:57:24.104 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 13, PAA 9, alphabet 4,  accuracy 0.931,  error 0.069
+14:57:24.255 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 15, PAA 5, alphabet 6,  accuracy 0.90185,  error 0.09815
+Epilog : job finished at jeu. déc. 25 14:57:24 CET 2014
+14:57:43.096 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [MALLAT/MALLAT_TRAIN, MALLAT/MALLAT_TEST, 10, 1200, 2, 200, 2, 16, 1, 30]
+19:59:37.694 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 1002, PAA 13, alphabet 9,  accuracy 0.92495,  error 0.07505
+20:00:30.617 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 869, PAA 11, alphabet 6,  accuracy 0.91045,  error 0.08955
+20:08:25.968 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 605, PAA 35, alphabet 3,  accuracy 0.7838,  error 0.2162
+Epilog : job finished at jeu. déc. 25 20:08:26 CET 2014
+15:32:44.445 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [MedicalImages/MedicalImages_TRAIN, MedicalImages/MedicalImages_TEST, 5, 98, 5, 98, 2, 16, 1, 30]
+17:48:22.398 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 72, PAA 23, alphabet 4,  accuracy 0.39868,  error 0.60132
+17:48:24.459 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 31, PAA 14, alphabet 3,  accuracy 0.49605,  error 0.50395
+17:48:26.238 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 21, PAA 11, alphabet 6,  accuracy 0.45921,  error 0.54079
+Epilog : job finished at jeu. déc. 25 17:48:26 CET 2014
+15:32:43.008 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [MoteStrain/MoteStrain_TRAIN, MoteStrain/MoteStrain_TEST, 5, 83, 5, 82, 2, 16, 1, 30]
+15:33:08.297 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 79, PAA 21, alphabet 4,  accuracy 0.74361,  error 0.25639
+15:33:08.755 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 18, PAA 9, alphabet 3,  accuracy 0.85703,  error 0.14297
+15:33:09.055 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 18, PAA 6, alphabet 3,  accuracy 0.77636,  error 0.22364
+Epilog : job finished at jeu. déc. 25 15:33:09 CET 2014
+15:32:44.390 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TRAIN, SonyAIBORobot SurfaceII/SonyAIBORobotSurfaceII_TEST, 5, 70, 5, 70, 2, 16, 1, 30]
+15:33:15.197 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 30, PAA 11, alphabet 3,  accuracy 0.87198,  error 0.12802
+15:33:15.588 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 29, PAA 9, alphabet 3,  accuracy 0.88458,  error 0.11542
+15:33:16.216 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 52, PAA 18, alphabet 3,  accuracy 0.72193,  error 0.27807
+Epilog : job finished at jeu. déc. 25 15:33:16 CET 2014
+15:33:38.277 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [StarLightCurves/StarLightCurves_TRAIN, StarLightCurves/StarLightCurves_TEST, 10, 1020, 10, 200, 2, 16, 10, 40]
+01:31:26.467 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 291, PAA 147, alphabet 4,  accuracy 0.85017,  error 0.14983
+01:41:03.650 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 66, PAA 42, alphabet 14,  accuracy 0.90542,  error 0.09458
+01:51:57.923 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 403, PAA 17, alphabet 5,  accuracy 0.84665,  error 0.15335
+Epilog : job finished at jeu. janv.  1 01:51:58 CET 2015
+15:33:57.886 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Symbols/Symbols_TRAIN, Symbols/Symbols_TEST, 10, 397, 5, 200, 2, 16, 1, 40]
+15:55:04.082 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 146, PAA 16, alphabet 3,  accuracy 0.75578,  error 0.24422
+15:55:25.168 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 184, PAA 30, alphabet 3,  accuracy 0.82513,  error 0.17487
+15:55:40.707 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 332, PAA 16, alphabet 5,  accuracy 0.64824,  error 0.35176
+Epilog : job finished at jeu. déc. 25 15:55:40 CET 2014
+15:55:58.131 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [uWaveGestureLibrary_X/uWaveGestureLibrary_X_TRAIN, uWaveGestureLibrary_X/uWaveGestureLibrary_X_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+10:23:31.345 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 286, PAA 9, alphabet 4,  accuracy 0.71748,  error 0.28252
+10:24:07.919 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 282, PAA 9, alphabet 5,  accuracy 0.73339,  error 0.26661
+10:24:36.137 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 293, PAA 9, alphabet 4,  accuracy 0.69123,  error 0.30877
+Epilog : job finished at ven. déc. 26 10:24:36 CET 2014
+10:32:29.383 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TRAIN, uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+09:19:19.778 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 258, PAA 9, alphabet 5,  accuracy 0.66164,  error 0.33836
+09:19:51.415 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 308, PAA 9, alphabet 4,  accuracy 0.68286,  error 0.31714
+09:20:21.957 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 293, PAA 9, alphabet 4,  accuracy 0.61781,  error 0.38219
+Epilog : job finished at sam. déc. 27 09:20:22 CET 2014
+12:42:59.373 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [CinC_ECG_torso/CinC_ECG_torso_TRAIN, CinC_ECG_torso/CinC_ECG_torso_TEST, 10, 1600, 200, 600, 2, 16, 1, 50]
+14:17:32.205 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 452, PAA 222, alphabet 2,  accuracy 0.52971,  error 0.47029
+14:53:51.054 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 334, PAA 237, alphabet 3,  accuracy 0.47971,  error 0.52029
+15:54:06.848 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 746, PAA 207, alphabet 4,  accuracy 0.31449,  error 0.68551
+Epilog : job finished at dim. déc. 28 15:54:07 CET 2014
+10:32:29.393 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TRAIN, uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TEST, 5, 310, 5, 200, 2, 16, 5, 30]
+16:32:34.384 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 199, PAA 9, alphabet 3,  accuracy 0.55248,  error 0.44752
+16:32:45.438 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 206, PAA 9, alphabet 4,  accuracy 0.62786,  error 0.37214
+16:33:00.467 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 206, PAA 9, alphabet 5,  accuracy 0.6435,  error 0.3565
+Epilog : job finished at ven. déc. 26 16:33:00 CET 2014
+10:32:29.389 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [MedicalImages/MedicalImages_TRAIN, MedicalImages/MedicalImages_TEST, 2, 98, 2, 98, 2, 18, 1, 50]
+12:28:31.397 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 86, PAA 7, alphabet 10,  accuracy 0.39474,  error 0.60526
+12:28:33.610 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 29, PAA 15, alphabet 3,  accuracy 0.47368,  error 0.52632
+12:28:34.847 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 31, PAA 14, alphabet 3,  accuracy 0.44474,  error 0.55526
+Epilog : job finished at ven. déc. 26 12:28:35 CET 2014
+10:32:29.389 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [MedicalImages/MedicalImages_TRAIN, MedicalImages/MedicalImages_TEST, 5, 98, 5, 98, 2, 18, 1, 50]
+12:42:42.862 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 71, PAA 10, alphabet 10,  accuracy 0.38816,  error 0.61184
+12:42:44.990 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 31, PAA 14, alphabet 3,  accuracy 0.49605,  error 0.50395
+12:42:46.566 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 11, PAA 10, alphabet 8,  accuracy 0.44211,  error 0.55789
+Epilog : job finished at ven. déc. 26 12:42:46 CET 2014
+10:32:29.390 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [InlineSkate/InlineSkate_TRAIN, InlineSkate/InlineSkate_TEST, 5, 1800, 200, 600, 2, 16, 1, 40]
+23:18:05.527 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 504, PAA 222, alphabet 3,  accuracy 0.11273,  error 0.88727
+23:28:55.359 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 570, PAA 212, alphabet 3,  accuracy 0.29091,  error 0.70909
+23:42:18.414 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 703, PAA 237, alphabet 3,  accuracy 0.28545,  error 0.71455
+Epilog : job finished at sam. déc. 27 23:42:19 CET 2014
+10:32:29.390 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [InlineSkate/InlineSkate_TRAIN, InlineSkate/InlineSkate_TEST, 5, 1800, 200, 600, 2, 16, 1, 40]
+05:05:43.124 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 903, PAA 267, alphabet 3,  accuracy 0.29636,  error 0.70364
+05:50:02.347 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 903, PAA 252, alphabet 3,  accuracy 0.31455,  error 0.68545
+06:34:52.448 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 1301, PAA 207, alphabet 3,  accuracy 0.12727,  error 0.87273
+Epilog : job finished at jeu. janv.  1 06:34:52 CET 2015
+10:32:29.387 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [MALLAT/MALLAT_TRAIN, MALLAT/MALLAT_TEST, 10, 1200, 200, 600, 2, 16, 1, 30]
+15:30:10.491 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 429, PAA 202, alphabet 3,  accuracy 0.46141,  error 0.53859
+15:43:31.871 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 429, PAA 207, alphabet 2,  accuracy 0.78465,  error 0.21535
+15:58:52.166 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 429, PAA 237, alphabet 2,  accuracy 0.77271,  error 0.22729
+Epilog : job finished at ven. déc. 26 15:58:52 CET 2014
+10:32:29.387 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [MALLAT/MALLAT_TRAIN, MALLAT/MALLAT_TEST, 10, 1200, 200, 600, 2, 16, 1, 30]
+14:52:04.443 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 429, PAA 356, alphabet 2,  accuracy 0.75991,  error 0.24009
+15:30:58.424 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 429, PAA 207, alphabet 2,  accuracy 0.82772,  error 0.17228
+16:43:56.058 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 869, PAA 265, alphabet 4,  accuracy 0.5177,  error 0.4823
+Epilog : job finished at sam. déc. 27 16:43:56 CET 2014
+12:29:03.286 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [CinC_ECG_torso/CinC_ECG_torso_TRAIN, CinC_ECG_torso/CinC_ECG_torso_TEST, 10, 1600, 200, 600, 2, 16, 1, 50]
+21:02:13.217 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 393, PAA 222, alphabet 4,  accuracy 0.13986,  error 0.86014
+21:17:13.066 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 334, PAA 227, alphabet 3,  accuracy 0.47464,  error 0.52536
+21:30:23.188 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 295, PAA 222, alphabet 3,  accuracy 0.50942,  error 0.49058
+Epilog : job finished at ven. déc. 26 21:30:23 CET 2014
+14:07:45.976 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [AIBO/Sony_TRAIN, AIBO/Sony_TEST, 5, 69, 5, 69, 2, 16, 1, 30]
+14:08:07.268 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 39, PAA 9, alphabet 14,  accuracy 0.54243,  error 0.45757
+14:08:07.545 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 16, PAA 9, alphabet 4,  accuracy 0.67221,  error 0.32779
+14:08:07.835 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 23, PAA 9, alphabet 4,  accuracy 0.60732,  error 0.39268
+Epilog : job finished at ven. déc. 26 14:08:07 CET 2014
+16:45:50.384 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [arrowhead/arrowhead_train, arrowhead/arrowhead_test, 5, 450, 2, 300, 2, 18, 1, 40]
+16:57:57.018 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 96, PAA 8, alphabet 3,  accuracy 0.59429,  error 0.40571
+16:57:58.827 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 123, PAA 19, alphabet 6,  accuracy 0.56571,  error 0.43429
+16:57:59.994 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 74, PAA 19, alphabet 3,  accuracy 0.45143,  error 0.54857
+Epilog : job finished at ven. déc. 26 16:58:00 CET 2014
+16:58:31.002 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [mallet/MALLET_TRAIN, mallet/MALLET_TEST, 5, 255, 2, 200, 2, 16, 1, 30]
+22:09:08.254 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 121, PAA 28, alphabet 4,  accuracy 0.9649,  error 0.0351
+22:09:23.606 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 130, PAA 13, alphabet 9,  accuracy 0.9601,  error 0.0399
+22:09:40.054 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 158, PAA 13, alphabet 9,  accuracy 0.95577,  error 0.04423
+Epilog : job finished at ven. déc. 26 22:09:40 CET 2014
+17:04:20.671 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [mallet/MALLET_TRAIN, mallet/MALLET_TEST, 5, 255, 2, 200, 2, 16, 1, 30]
+18:31:15.135 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 102, PAA 30, alphabet 3,  accuracy 0.94038,  error 0.05962
+18:31:18.614 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 213, PAA 13, alphabet 9,  accuracy 0.9649,  error 0.0351
+18:31:23.609 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 213, PAA 13, alphabet 14,  accuracy 0.94952,  error 0.05048
+Epilog : job finished at ven. déc. 26 18:31:23 CET 2014
+17:31:20.513 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [shield/shield_train, shield/shield_test, 5, 1200, 2, 600, 2, 18, 1, 40]
+07:47:54.910 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 116, PAA 35, alphabet 5,  accuracy 0.93798,  error 0.06202
+07:48:20.918 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 204, PAA 35, alphabet 2,  accuracy 0.86822,  error 0.13178
+07:48:29.850 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 204, PAA 13, alphabet 5,  accuracy 0.87597,  error 0.12403
+Epilog : job finished at sam. déc. 27 07:48:30 CET 2014
+18:27:07.385 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [shield/shield_train, shield/shield_test, 5, 1200, 2, 600, 2, 18, 1, 40]
+20:04:06.166 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 71, PAA 13, alphabet 5,  accuracy 0.82946,  error 0.17054
+20:04:52.294 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 204, PAA 168, alphabet 2,  accuracy 0.87597,  error 0.12403
+20:05:02.260 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 204, PAA 35, alphabet 2,  accuracy 0.8062,  error 0.1938
+Epilog : job finished at ven. déc. 26 20:05:02 CET 2014
+14:08:23.488 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [AIBO/Sony_TRAIN, AIBO/Sony_TEST, 5, 69, 5, 69, 2, 16, 1, 30]
+14:08:29.161 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 13, PAA 9, alphabet 3,  accuracy 0.62895,  error 0.37105
+14:08:29.237 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 16, PAA 9, alphabet 4,  accuracy 0.69384,  error 0.30616
+14:08:29.314 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 16, PAA 9, alphabet 4,  accuracy 0.69052,  error 0.30948
+Epilog : job finished at ven. déc. 26 14:08:29 CET 2014
+14:09:03.630 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Cricket/Cricket_TRAIN, Cricket/Cricket_TEST, 5, 305, 5, 200, 2, 16, 1, 30]
+14:13:08.132 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 155, PAA 38, alphabet 14,  accuracy 0.94898,  error 0.05102
+14:13:08.699 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 88, PAA 16, alphabet 4,  accuracy 0.89796,  error 0.10204
+14:13:09.510 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 155, PAA 16, alphabet 4,  accuracy 0.70408,  error 0.29592
+Epilog : job finished at ven. déc. 26 14:13:09 CET 2014
+14:13:43.494 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Cricket/Cricket_TRAIN, Cricket/Cricket_TEST, 5, 305, 5, 200, 2, 16, 1, 30]
+14:14:34.053 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 88, PAA 16, alphabet 6,  accuracy 0.18367,  error 0.81633
+14:14:34.679 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 155, PAA 38, alphabet 4,  accuracy 0.03061,  error 0.96939
+14:14:35.310 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 155, PAA 38, alphabet 14,  accuracy 0.00,  error 1.00
+Epilog : job finished at ven. déc. 26 14:14:35 CET 2014
+15:41:52.554 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [ElectricDevices/ElectricDevices_TRAIN, ElectricDevices/ElectricDevices_TEST, 5, 95, 5, 95, 1, 18, 10, 40]
+20:42:17.047 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 20, PAA 7, alphabet 16,  accuracy 0.61743,  error 0.38257
+20:47:16.032 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 17, PAA 8, alphabet 12,  accuracy 0.62608,  error 0.37392
+20:51:57.938 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 17, PAA 8, alphabet 12,  accuracy 0.62595,  error 0.37405
+Epilog : job finished at mar. déc. 30 20:51:58 CET 2014
+15:59:20.914 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [Passgraph/Passgraph_TRAIN, Passgraph/Passgraph_TEST, 5, 360, 5, 200, 2, 16, 1, 40]
+16:37:32.578 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 143, PAA 38, alphabet 3,  accuracy 0.64885,  error 0.35115
+16:37:36.735 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 143, PAA 38, alphabet 3,  accuracy 0.68702,  error 0.31298
+16:37:37.233 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 261, PAA 9, alphabet 4,  accuracy 0.64122,  error 0.35878
+Epilog : job finished at ven. déc. 26 16:37:37 CET 2014
+16:33:11.991 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - processing paramleters: [Passgraph/Passgraph_TRAIN, Passgraph/Passgraph_TEST, 5, 360, 5, 200, 2, 16, 1, 40]
+16:45:31.469 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: CLASSIC, window 183, PAA 16, alphabet 4,  accuracy 0.56489,  error 0.43511
+16:45:32.992 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: EXACT, window 143, PAA 38, alphabet 3,  accuracy 0.65649,  error 0.34351
+16:45:34.399 [main] INFO  e.h.j.d.SAXVSMContinuousDirectSampler - classification results: NOREDUCTION, window 130, PAA 38, alphabet 2,  accuracy 0.62595,  error 0.37405
+Epilog : job finished at ven. déc. 26 16:45:34 CET 2014
+16:38:00.898 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - processing paramleters: [arrowhead/arrowhead_train, arrowhead/arrowhead_test, 5, 450, 2, 300, 2, 18, 1, 40]
+17:30:30.863 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: CLASSIC, window 178, PAA 8, alphabet 8,  accuracy 0.68571,  error 0.31429
+17:30:34.783 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: EXACT, window 129, PAA 19, alphabet 6,  accuracy 0.58286,  error 0.41714
+17:30:55.677 [main] INFO  e.h.j.d.SAXVSMContinuousGrammarSampler - classification results: NOREDUCTION, window 365, PAA 52, alphabet 14,  accuracy 0.60571,  error 0.39429
+Epilog : job finished at ven. déc. 26 17:30:55 CET 2014

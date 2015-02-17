@@ -1,0 +1,555 @@
+SAXVSMContinuousDirectSampler CBF 
+ CLASSIC  65 - 11 - 3, 0.20444
+ EXACT  36 - 13 - 3, 0.01
+ NOREDUCTION  41 - 13 - 3, 0.00667
+Epilog : job finished at mar. déc. 23 17:53:06 CET 2014
+SAXVSMContinuousDirectSampler synthetic_control 
+ CLASSIC  26 - 4 - 11, 0.07333
+ EXACT  39 - 7 - 5, 0.01333
+ NOREDUCTION  41 - 8 - 4, 0.01667
+Epilog : job finished at mar. déc. 23 18:06:50 CET 2014
+SAXVSMContinuousDirectSampler Gun_Point 
+ CLASSIC  33 - 25 - 8, 0.04667
+ EXACT  28 - 25 - 9, 0.01333
+ NOREDUCTION  33 - 25 - 9, 0.02
+Epilog : job finished at mar. déc. 23 17:54:09 CET 2014
+SAXVSMContinuousDirectSampler 50words 
+ CLASSIC  159 - 12 - 3, 0.63077
+ EXACT  159 - 12 - 3, 0.37802
+ NOREDUCTION  169 - 10 - 3, 0.37363
+Epilog : job finished at mer. déc. 24 14:44:32 CET 2014
+SAXVSMContinuousDirectSampler Trace 
+ CLASSIC  133 - 16 - 5, 0.02
+ EXACT  54 - 28 - 3, 0.00
+ NOREDUCTION  162 - 28 - 4, 0.00
+Epilog : job finished at mar. déc. 23 18:02:07 CET 2014
+SAXVSMContinuousDirectSampler Adiac 
+ CLASSIC  72 - 18 - 14, 0.50384
+ EXACT  72 - 16 - 15, 0.43478
+ NOREDUCTION  49 - 41 - 8, 0.41688
+Epilog : job finished at mar. déc. 23 21:30:21 CET 2014
+SAXVSMContinuousDirectSampler yoga 
+ CLASSIC  94 - 14 - 8, 0.224
+ EXACT  83 - 14 - 14, 0.151
+ NOREDUCTION  124 - 21 - 10, 0.162
+Epilog : job finished at mar. déc. 23 20:21:59 CET 2014
+SAXVSMContinuousGrammarSampler CBF 
+ CLASSIC  53 - 13 - 2, 0.08333
+ EXACT  49 - 11 - 4, 0.01222
+ NOREDUCTION  114 - 11 - 9, 0.37222
+Epilog : job finished at mar. déc. 23 17:55:33 CET 2014
+SAXVSMContinuousGrammarSampler synthetic_control 
+ CLASSIC  36 - 7 - 5, 0.02
+ EXACT  37 - 7 - 5, 0.02
+ NOREDUCTION  37 - 8 - 3, 0.12
+Epilog : job finished at mar. déc. 23 18:34:09 CET 2014
+SAXVSMContinuousGrammarSampler Gun_Point 
+ CLASSIC  33 - 25 - 9, 0.04
+ EXACT  33 - 25 - 9, 0.01333
+ NOREDUCTION  44 - 25 - 9, 0.11333
+Epilog : job finished at mar. déc. 23 17:58:01 CET 2014
+SAXVSMContinuousGrammarSampler 50words 
+ CLASSIC  169 - 10 - 3, 0.44396
+ EXACT  169 - 12 - 3, 0.36264
+ NOREDUCTION  150 - 12 - 3, 0.55165
+Epilog : job finished at ven. déc. 26 15:41:20 CET 2014
+SAXVSMContinuousGrammarSampler Trace 
+ CLASSIC  162 - 28 - 4, 0.04
+ EXACT  133 - 16 - 7, 0.00
+ NOREDUCTION  143 - 28 - 4, 0.01
+Epilog : job finished at mar. déc. 23 18:33:48 CET 2014
+SAXVSMContinuousGrammarSampler Adiac 
+ CLASSIC  49 - 29 - 12, 0.36829
+ EXACT  49 - 29 - 15, 0.37084
+ NOREDUCTION  37 - 15 - 15, 0.44757
+Epilog : job finished at mer. déc. 24 05:14:17 CET 2014
+SAXVSMContinuousGrammarSampler yoga 
+ CLASSIC  139 - 21 - 11, 0.15567
+ EXACT  63 - 21 - 6, 0.16367
+ NOREDUCTION  352 - 21 - 9, 0.24233
+Epilog : job finished at mer. déc. 24 02:55:24 CET 2014
+SAXVSMContinuousGrammarSampler Beef 
+ CLASSIC  426 - 84 - 14, 0.56667
+ EXACT  230 - 42 - 15, 0.46667
+ NOREDUCTION  83 - 42 - 15, 0.80
+Epilog : job finished at mer. déc. 24 12:42:02 CET 2014
+SAXVSMContinuousGrammarSampler Coffee 
+ CLASSIC  20 - 13 - 14, 0.00
+ EXACT  20 - 13 - 4, 0.03571
+ NOREDUCTION  20 - 13 - 14, 0.00
+Epilog : job finished at mer. déc. 24 12:07:45 CET 2014
+SAXVSMContinuousGrammarSampler OliveOil 
+ CLASSIC  352 - 155 - 14, 0.13333
+ EXACT  352 - 155 - 14, 0.13333
+ NOREDUCTION  290 - 155 - 12, 0.13333
+Epilog : job finished at mer. déc. 24 13:14:34 CET 2014
+SAXVSMContinuousGrammarSampler ECG200 
+ CLASSIC  40 - 12 - 4, 0.19
+ EXACT  49 - 29 - 3, 0.27
+ NOREDUCTION  93 - 13 - 7, 0.29
+Epilog : job finished at mer. déc. 24 12:04:31 CET 2014
+SAXVSMContinuousGrammarSampler ECGFiveDays 
+ CLASSIC  73 - 28 - 3, 0.01626
+ EXACT  59 - 28 - 3, 0.00929
+ NOREDUCTION  59 - 16 - 9, 0.13124
+Epilog : job finished at mer. déc. 24 11:59:58 CET 2014
+SAXVSMContinuousGrammarSampler FaceAll 
+ CLASSIC  43 - 12 - 3, 0.26331
+ EXACT  70 - 15 - 3, 0.28935
+ NOREDUCTION  30 - 12 - 3, 0.29645
+Epilog : job finished at mer. déc. 24 22:22:54 CET 2014
+SAXVSMContinuousGrammarSampler FaceFour 
+ CLASSIC  67 - 14 - 3, 0.02273
+ EXACT  67 - 14 - 3, 0.00
+ NOREDUCTION  306 - 130 - 9, 0.57955
+Epilog : job finished at mer. déc. 24 12:24:38 CET 2014
+SAXVSMContinuousGrammarSampler FacesUCR 
+ CLASSIC  34 - 11 - 3, 0.11756
+ EXACT  66 - 11 - 3, 0.09415
+ NOREDUCTION  30 - 12 - 3, 0.19512
+Epilog : job finished at mer. déc. 24 14:06:54 CET 2014
+SAXVSMContinuousDirectSampler Beef 
+ CLASSIC  83 - 42 - 15, 0.96667
+ EXACT  311 - 14 - 11, 0.90
+ NOREDUCTION  311 - 14 - 11, 0.86667
+Epilog : job finished at mer. déc. 24 12:17:09 CET 2014
+SAXVSMContinuousDirectSampler Coffee 
+ CLASSIC  20 - 13 - 11, 0.00
+ EXACT  20 - 13 - 9, 0.00
+ NOREDUCTION  20 - 13 - 9, 0.00
+Epilog : job finished at mer. déc. 24 12:20:03 CET 2014
+SAXVSMContinuousDirectSampler OliveOil 
+ CLASSIC  352 - 187 - 14, 0.13333
+ EXACT  414 - 155 - 14, 0.13333
+ NOREDUCTION  414 - 155 - 14, 0.13333
+Epilog : job finished at mer. déc. 24 12:34:05 CET 2014
+SAXVSMContinuousDirectSampler ECG200 
+ CLASSIC  40 - 13 - 5, 0.27
+ EXACT  60 - 13 - 3, 0.15
+ NOREDUCTION  27 - 15 - 4, 0.14
+Epilog : job finished at mer. déc. 24 12:26:53 CET 2014
+SAXVSMContinuousDirectSampler ECGFiveDays 
+ CLASSIC  48 - 28 - 3, 0.07666
+ EXACT  54 - 28 - 3, 0.00465
+ NOREDUCTION  54 - 28 - 3, 0.00348
+Epilog : job finished at mer. déc. 24 12:28:18 CET 2014
+SAXVSMContinuousDirectSampler FaceAll 
+ CLASSIC  30 - 12 - 3, 0.2929
+ EXACT  40 - 11 - 3, 0.25148
+ NOREDUCTION  43 - 10 - 3, 0.24438
+Epilog : job finished at mer. déc. 24 21:02:31 CET 2014
+SAXVSMContinuousDirectSampler FaceFour 
+ CLASSIC  67 - 14 - 3, 0.11364
+ EXACT  104 - 23 - 3, 0.11364
+ NOREDUCTION  104 - 23 - 3, 0.125
+Epilog : job finished at mer. déc. 24 12:37:38 CET 2014
+SAXVSMContinuousDirectSampler FacesUCR 
+ CLASSIC  30 - 12 - 3, 0.24195
+ EXACT  43 - 12 - 3, 0.10878
+ NOREDUCTION  49 - 12 - 3, 0.10
+Epilog : job finished at mer. déc. 24 13:18:57 CET 2014
+SAXVSMContinuousDirectSampler fish 
+ CLASSIC  72 - 14 - 9, 0.09714
+ EXACT  76 - 32 - 6, 0.02857
+ NOREDUCTION  100 - 26 - 7, 0.01714
+Epilog : job finished at mer. déc. 24 14:38:33 CET 2014
+SAXVSMContinuousDirectSampler SwedishLeaf 
+ CLASSIC  38 - 7 - 9, 0.3472
+ EXACT  52 - 7 - 9, 0.2752
+ NOREDUCTION  52 - 7 - 10, 0.28
+Epilog : job finished at mer. déc. 24 15:25:41 CET 2014
+SAXVSMContinuousDirectSampler OSULeaf 
+ CLASSIC  33 - 15 - 4, 0.30579
+ EXACT  78 - 15 - 4, 0.16529
+ NOREDUCTION  33 - 15 - 7, 0.15289
+Epilog : job finished at mer. déc. 24 14:49:07 CET 2014
+SAXVSMContinuousDirectSampler Lighting2 
+ CLASSIC  106 - 12 - 6, 0.27869
+ EXACT  182 - 16 - 3, 0.2623
+ NOREDUCTION  152 - 16 - 3, 0.22951
+Epilog : job finished at mer. déc. 24 15:28:46 CET 2014
+SAXVSMContinuousDirectSampler Lighting7 
+ CLASSIC  93 - 21 - 4, 0.54795
+ EXACT  149 - 14 - 3, 0.34247
+ NOREDUCTION  90 - 21 - 3, 0.41096
+Epilog : job finished at mer. déc. 24 14:51:20 CET 2014
+SAXVSMContinuousDirectSampler wafer 
+ CLASSIC  34 - 28 - 4, 0.0026
+ EXACT  34 - 25 - 4, 0.00227
+ NOREDUCTION  34 - 25 - 4, 0.00227
+Epilog : job finished at mer. déc. 24 15:09:59 CET 2014
+SAXVSMContinuousDirectSampler Two_Patterns 
+ CLASSIC  81 - 11 - 3, 0.04225
+ EXACT  102 - 14 - 3, 0.004
+ NOREDUCTION  106 - 14 - 3, 0.0035
+Epilog : job finished at mer. déc. 24 15:52:48 CET 2014
+SAXVSMContinuousDirectSampler TwoLeadECG 
+ CLASSIC  9 - 8 - 15, 0.07375
+ EXACT  15 - 14 - 4, 0.01229
+ NOREDUCTION  15 - 14 - 4, 0.01141
+Epilog : job finished at mer. déc. 24 14:52:03 CET 2014
+SAXVSMContinuousGrammarSampler fish 
+ CLASSIC  132 - 14 - 11, 0.02857
+ EXACT  100 - 26 - 7, 0.04
+ NOREDUCTION  132 - 14 - 6, 0.15429
+Epilog : job finished at mer. déc. 24 20:40:08 CET 2014
+SAXVSMContinuousGrammarSampler SwedishLeaf 
+ CLASSIC  65 - 18 - 7, 0.2448
+ EXACT  38 - 15 - 6, 0.2272
+ NOREDUCTION  47 - 13 - 5, 0.256
+Epilog : job finished at mer. déc. 24 19:20:26 CET 2014
+SAXVSMContinuousGrammarSampler OSULeaf 
+ CLASSIC  48 - 19 - 5, 0.11983
+ EXACT  28 - 15 - 5, 0.12397
+ NOREDUCTION  149 - 12 - 3, 0.40083
+Epilog : job finished at mer. déc. 24 20:40:11 CET 2014
+SAXVSMContinuousGrammarSampler Lighting2 
+ CLASSIC  259 - 29 - 5, 0.27869
+ EXACT  389 - 25 - 3, 0.32787
+ NOREDUCTION  113 - 41 - 9, 0.29508
+Epilog : job finished at mer. déc. 24 21:10:37 CET 2014
+SAXVSMContinuousGrammarSampler Lighting7 
+ CLASSIC  141 - 21 - 3, 0.38356
+ EXACT  138 - 21 - 3, 0.35616
+ NOREDUCTION  123 - 14 - 6, 0.53425
+Epilog : job finished at mer. déc. 24 16:36:28 CET 2014
+SAXVSMContinuousGrammarSampler wafer 
+ CLASSIC  65 - 25 - 6, 0.00779
+ EXACT  28 - 25 - 15, 0.00195
+ NOREDUCTION  65 - 35 - 6, 0.00665
+Epilog : job finished at mer. déc. 24 18:12:56 CET 2014
+SAXVSMContinuousGrammarSampler Two_Patterns 
+ CLASSIC  110 - 14 - 3, 0.001
+ EXACT  98 - 14 - 3, 0.0035
+ NOREDUCTION  102 - 15 - 3, 0.0105
+Epilog : job finished at mer. déc. 24 22:43:45 CET 2014
+SAXVSMContinuousGrammarSampler TwoLeadECG 
+ CLASSIC  15 - 14 - 4, 0.01756
+ EXACT  15 - 14 - 4, 0.01405
+ NOREDUCTION  15 - 14 - 7, 0.03863
+Epilog : job finished at mer. déc. 24 19:21:31 CET 2014
+SAXVSMContinuousDirectSampler ChlorineConcentration 
+ CLASSIC  26 - 15 - 9, 0.34323
+ EXACT  32 - 25 - 5, 0.34115
+ NOREDUCTION  30 - 15 - 6, 0.34193
+Epilog : job finished at mer. déc. 24 20:03:21 CET 2014
+SAXVSMContinuousDirectSampler Haptics 
+ CLASSIC  270 - 11 - 4, 0.6461
+ EXACT  310 - 23 - 3, 0.57468
+ NOREDUCTION  310 - 16 - 9, 0.62338
+Epilog : job finished at jeu. déc. 25 03:42:22 CET 2014
+SAXVSMContinuousDirectSampler Cricket_X 
+ CLASSIC  83 - 7 - 4, 0.48205
+ EXACT  111 - 7 - 6, 0.30769
+ NOREDUCTION  118 - 7 - 4, 0.32564
+Epilog : job finished at jeu. déc. 25 03:22:23 CET 2014
+SAXVSMContinuousDirectSampler Cricket_Y 
+ CLASSIC  84 - 7 - 4, 0.52564
+ EXACT  111 - 7 - 5, 0.31795
+ NOREDUCTION  119 - 7 - 4, 0.35128
+Epilog : job finished at jeu. déc. 25 04:27:18 CET 2014
+SAXVSMContinuousDirectSampler Cricket_Z 
+ CLASSIC  75 - 7 - 4, 0.50769
+ EXACT  123 - 7 - 5, 0.32051
+ NOREDUCTION  95 - 7 - 5, 0.29744
+Epilog : job finished at jeu. déc. 25 02:56:44 CET 2014
+SAXVSMContinuousDirectSampler SonyAIBORobot Surface 
+ CLASSIC  13 - 9 - 3, 0.37105
+ EXACT  16 - 9 - 4, 0.30616
+ NOREDUCTION  16 - 9 - 4, 0.30948
+Epilog : job finished at mer. déc. 24 21:02:59 CET 2014
+SAXVSMContinuousDirectSampler SonyAIBORobot SurfaceII 
+ CLASSIC  13 - 9 - 4, 0.14481
+ EXACT  13 - 9 - 4, 0.12592
+ NOREDUCTION  13 - 9 - 4, 0.12592
+Epilog : job finished at mer. déc. 24 21:03:38 CET 2014
+SAXVSMContinuousDirectSampler WordsSynonyms 
+ CLASSIC  69 - 14 - 3, 0.69122
+ EXACT  159 - 11 - 3, 0.44044
+ NOREDUCTION  179 - 11 - 3, 0.43574
+Epilog : job finished at jeu. déc. 25 01:31:25 CET 2014
+SAXVSMContinuousDirectSampler CinC_ECG_torso 
+ CLASSIC  216 - 14 - 4, 0.3442
+ EXACT  275 - 70 - 3, 0.35217
+ NOREDUCTION  275 - 70 - 3, 0.35652
+Epilog : job finished at jeu. déc. 25 00:01:18 CET 2014
+SAXVSMContinuousDirectSampler DiatomSizeReduction 
+ CLASSIC  98 - 38 - 8, 0.24183
+ EXACT  61 - 16 - 9, 0.12092
+ NOREDUCTION  24 - 16 - 14, 0.12418
+Epilog : job finished at mer. déc. 24 22:25:23 CET 2014
+SAXVSMContinuousGrammarSampler ChlorineConcentration 
+ CLASSIC  49 - 25 - 8, 0.34271
+ EXACT  30 - 15 - 6, 0.35026
+ NOREDUCTION  24 - 21 - 7, 0.33854
+Epilog : job finished at jeu. déc. 25 00:32:17 CET 2014
+SAXVSMContinuousGrammarSampler Haptics 
+ CLASSIC  310 - 38 - 4, 0.63312
+ EXACT  950 - 38 - 3, 0.62987
+ NOREDUCTION  923 - 16 - 4, 0.66558
+Epilog : job finished at jeu. déc. 25 22:38:56 CET 2014
+SAXVSMContinuousGrammarSampler Cricket_X 
+ CLASSIC  157 - 7 - 5, 0.34615
+ EXACT  134 - 7 - 5, 0.36154
+ NOREDUCTION  83 - 7 - 4, 0.48462
+Epilog : job finished at jeu. déc. 25 19:47:08 CET 2014
+SAXVSMContinuousGrammarSampler Cricket_Y 
+ CLASSIC  110 - 7 - 5, 0.37179
+ EXACT  125 - 7 - 5, 0.36923
+ NOREDUCTION  100 - 7 - 4, 0.51538
+Epilog : job finished at jeu. déc. 25 16:21:35 CET 2014
+SAXVSMContinuousGrammarSampler Cricket_Z 
+ CLASSIC  94 - 7 - 5, 0.37692
+ EXACT  134 - 7 - 6, 0.35897
+ NOREDUCTION  98 - 7 - 4, 0.47949
+Epilog : job finished at jeu. déc. 25 17:53:55 CET 2014
+SAXVSMContinuousGrammarSampler SonyAIBORobot Surface 
+ CLASSIC  30 - 16 - 2, 0.42263
+ EXACT  16 - 9 - 4, 0.32779
+ NOREDUCTION  23 - 9 - 4, 0.39268
+Epilog : job finished at jeu. déc. 25 02:57:18 CET 2014
+SAXVSMContinuousGrammarSampler SonyAIBORobot SurfaceII 
+ CLASSIC  30 - 11 - 3, 0.12802
+ EXACT  29 - 9 - 3, 0.11542
+ NOREDUCTION  52 - 18 - 3, 0.27807
+Epilog : job finished at jeu. déc. 25 02:58:07 CET 2014
+SAXVSMContinuousGrammarSampler WordsSynonyms 
+ CLASSIC  172 - 11 - 3, 0.4906
+ EXACT  252 - 11 - 3, 0.47962
+ NOREDUCTION  89 - 14 - 3, 0.63009
+Epilog : job finished at jeu. déc. 25 11:20:33 CET 2014
+SAXVSMContinuousGrammarSampler CinC_ECG_torso 
+ CLASSIC  452 - 42 - 3, 0.28841
+ EXACT  334 - 63 - 3, 0.33696
+ NOREDUCTION  452 - 20 - 4, 0.37826
+Epilog : job finished at jeu. déc. 25 08:20:28 CET 2014
+SAXVSMContinuousGrammarSampler DiatomSizeReduction 
+ CLASSIC  61 - 38 - 9, 0.18954
+ EXACT  61 - 16 - 9, 0.16013
+ NOREDUCTION  98 - 16 - 9, 0.08824
+Epilog : job finished at jeu. déc. 25 03:49:06 CET 2014
+SAXVSMContinuousDirectSampler InlineSkate 
+ CLASSIC  703 - 21 - 3, 0.65455
+ EXACT  326 - 56 - 9, 0.66545
+ NOREDUCTION  969 - 21 - 5, 0.59273
+Epilog : job finished at jeu. déc. 25 14:56:40 CET 2014
+SAXVSMContinuousDirectSampler uWaveGestureLibrary_Y 
+ CLASSIC  225 - 9 - 3, 0.49302
+ EXACT  203 - 6 - 5, 0.38945
+ NOREDUCTION  259 - 9 - 3, 0.36376
+Epilog : job finished at jeu. déc. 25 19:53:57 CET 2014
+SAXVSMContinuousDirectSampler uWaveGestureLibrary_X 
+ CLASSIC  203 - 9 - 3, 0.39559
+ EXACT  188 - 9 - 5, 0.33138
+ NOREDUCTION  203 - 9 - 4, 0.323
+Epilog : job finished at jeu. déc. 25 19:39:36 CET 2014
+SAXVSMContinuousDirectSampler ItalyPowerDemand 
+ CLASSIC  10 - 5 - 9, 0.22741
+ EXACT  13 - 5 - 6, 0.11953
+ NOREDUCTION  17 - 9 - 3, 0.08941
+Epilog : job finished at jeu. déc. 25 08:21:08 CET 2014
+SAXVSMContinuousDirectSampler MALLAT 
+ CLASSIC  385 - 35 - 3, 0.25458
+ EXACT  429 - 57 - 3, 0.20085
+ NOREDUCTION  473 - 57 - 3, 0.19915
+Epilog : job finished at jeu. déc. 25 09:31:16 CET 2014
+SAXVSMContinuousDirectSampler MedicalImages 
+ CLASSIC  14 - 10 - 7, 0.54737
+ EXACT  27 - 10 - 5, 0.51579
+ NOREDUCTION  10 - 10 - 7, 0.55526
+Epilog : job finished at jeu. déc. 25 10:14:56 CET 2014
+SAXVSMContinuousDirectSampler MoteStrain 
+ CLASSIC  15 - 6 - 5, 0.19329
+ EXACT  18 - 9 - 3, 0.12859
+ NOREDUCTION  14 - 9 - 3, 0.11661
+Epilog : job finished at jeu. déc. 25 10:15:08 CET 2014
+SAXVSMContinuousDirectSampler SonyAIBORobot SurfaceII 
+ CLASSIC  13 - 9 - 4, 0.14481
+ EXACT  13 - 9 - 4, 0.12592
+ NOREDUCTION  13 - 9 - 4, 0.12592
+Epilog : job finished at jeu. déc. 25 10:15:47 CET 2014
+SAXVSMContinuousDirectSampler StarLightCurves 
+ CLASSIC  224 - 14 - 6, 0.10915
+ EXACT  66 - 21 - 14, 0.12227
+ NOREDUCTION  291 - 42 - 5, 0.1077
+Epilog : job finished at ven. déc. 26 18:26:45 CET 2014
+SAXVSMContinuousDirectSampler Symbols 
+ CLASSIC  118 - 16 - 3, 0.28744
+ EXACT  60 - 16 - 6, 0.08945
+ NOREDUCTION  32 - 16 - 7, 0.12362
+Epilog : job finished at jeu. déc. 25 11:25:03 CET 2014
+SAXVSMContinuousDirectSampler uWaveGestureLibrary_X 
+ CLASSIC  203 - 9 - 3, 0.39559
+ EXACT  188 - 9 - 5, 0.33138
+ NOREDUCTION  195 - 9 - 5, 0.32356
+Epilog : job finished at jeu. déc. 25 16:32:02 CET 2014
+SAXVSMContinuousGrammarSampler InlineSkate 
+ CLASSIC  1612 - 14 - 4, 0.67636
+ EXACT  1168 - 21 - 5, 0.58364
+ NOREDUCTION  910 - 21 - 3, 0.62364
+Epilog : job finished at ven. déc. 26 20:45:08 CET 2014
+SAXVSMContinuousGrammarSampler uWaveGestureLibrary_Y 
+ CLASSIC  309 - 9 - 4, 0.38247
+ EXACT  304 - 9 - 5, 0.35371
+ NOREDUCTION  293 - 9 - 4, 0.41988
+Epilog : job finished at ven. déc. 26 17:03:55 CET 2014
+SAXVSMContinuousGrammarSampler uWaveGestureLibrary_X 
+ CLASSIC  286 - 9 - 4, 0.28252
+ EXACT  282 - 9 - 5, 0.26661
+ NOREDUCTION  259 - 9 - 4, 0.311
+Epilog : job finished at ven. déc. 26 14:07:23 CET 2014
+SAXVSMContinuousGrammarSampler ItalyPowerDemand 
+ CLASSIC  13 - 9 - 4, 0.069
+ EXACT  13 - 9 - 4, 0.069
+ NOREDUCTION  15 - 5 - 6, 0.09815
+Epilog : job finished at jeu. déc. 25 14:57:24 CET 2014
+SAXVSMContinuousGrammarSampler MALLAT 
+ CLASSIC  1002 - 13 - 9, 0.07505
+ EXACT  869 - 11 - 6, 0.08955
+ NOREDUCTION  605 - 35 - 3, 0.2162
+Epilog : job finished at jeu. déc. 25 20:08:26 CET 2014
+SAXVSMContinuousGrammarSampler MedicalImages 
+ CLASSIC  72 - 23 - 4, 0.60132
+ EXACT  31 - 14 - 3, 0.50395
+ NOREDUCTION  21 - 11 - 6, 0.54079
+Epilog : job finished at jeu. déc. 25 17:48:26 CET 2014
+SAXVSMContinuousGrammarSampler MoteStrain 
+ CLASSIC  79 - 21 - 4, 0.25639
+ EXACT  18 - 9 - 3, 0.14297
+ NOREDUCTION  18 - 6 - 3, 0.22364
+Epilog : job finished at jeu. déc. 25 15:33:09 CET 2014
+SAXVSMContinuousGrammarSampler SonyAIBORobot SurfaceII 
+ CLASSIC  30 - 11 - 3, 0.12802
+ EXACT  29 - 9 - 3, 0.11542
+ NOREDUCTION  52 - 18 - 3, 0.27807
+Epilog : job finished at jeu. déc. 25 15:33:16 CET 2014
+SAXVSMContinuousGrammarSampler StarLightCurves 
+ CLASSIC  291 - 147 - 4, 0.14983
+ EXACT  66 - 42 - 14, 0.09458
+ NOREDUCTION  403 - 17 - 5, 0.15335
+Epilog : job finished at jeu. janv.  1 01:51:58 CET 2015
+SAXVSMContinuousGrammarSampler Symbols 
+ CLASSIC  146 - 16 - 3, 0.24422
+ EXACT  184 - 30 - 3, 0.17487
+ NOREDUCTION  332 - 16 - 5, 0.35176
+Epilog : job finished at jeu. déc. 25 15:55:40 CET 2014
+SAXVSMContinuousGrammarSampler uWaveGestureLibrary_X 
+ CLASSIC  286 - 9 - 4, 0.28252
+ EXACT  282 - 9 - 5, 0.26661
+ NOREDUCTION  293 - 9 - 4, 0.30877
+Epilog : job finished at ven. déc. 26 10:24:36 CET 2014
+SAXVSMContinuousGrammarSampler uWaveGestureLibrary_Z 
+ CLASSIC  258 - 9 - 5, 0.33836
+ EXACT  308 - 9 - 4, 0.31714
+ NOREDUCTION  293 - 9 - 4, 0.38219
+Epilog : job finished at sam. déc. 27 09:20:22 CET 2014
+SAXVSMContinuousGrammarSampler CinC_ECG_torso 
+ CLASSIC  452 - 222 - 2, 0.47029
+ EXACT  334 - 237 - 3, 0.52029
+ NOREDUCTION  746 - 207 - 4, 0.68551
+Epilog : job finished at dim. déc. 28 15:54:07 CET 2014
+SAXVSMContinuousDirectSampler uWaveGestureLibrary_Z 
+ CLASSIC  199 - 9 - 3, 0.44752
+ EXACT  206 - 9 - 4, 0.37214
+ NOREDUCTION  206 - 9 - 5, 0.3565
+Epilog : job finished at ven. déc. 26 16:33:00 CET 2014
+SAXVSMContinuousGrammarSampler MedicalImages 
+ CLASSIC  86 - 7 - 10, 0.60526
+ EXACT  29 - 15 - 3, 0.52632
+ NOREDUCTION  31 - 14 - 3, 0.55526
+Epilog : job finished at ven. déc. 26 12:28:35 CET 2014
+SAXVSMContinuousGrammarSampler MedicalImages 
+ CLASSIC  71 - 10 - 10, 0.61184
+ EXACT  31 - 14 - 3, 0.50395
+ NOREDUCTION  11 - 10 - 8, 0.55789
+Epilog : job finished at ven. déc. 26 12:42:46 CET 2014
+SAXVSMContinuousDirectSampler InlineSkate 
+ CLASSIC  504 - 222 - 3, 0.88727
+ EXACT  570 - 212 - 3, 0.70909
+ NOREDUCTION  703 - 237 - 3, 0.71455
+Epilog : job finished at sam. déc. 27 23:42:19 CET 2014
+SAXVSMContinuousGrammarSampler InlineSkate 
+ CLASSIC  903 - 267 - 3, 0.70364
+ EXACT  903 - 252 - 3, 0.68545
+ NOREDUCTION  1301 - 207 - 3, 0.87273
+Epilog : job finished at jeu. janv.  1 06:34:52 CET 2015
+SAXVSMContinuousDirectSampler MALLAT 
+ CLASSIC  429 - 202 - 3, 0.53859
+ EXACT  429 - 207 - 2, 0.21535
+ NOREDUCTION  429 - 237 - 2, 0.22729
+Epilog : job finished at ven. déc. 26 15:58:52 CET 2014
+SAXVSMContinuousGrammarSampler MALLAT 
+ CLASSIC  429 - 356 - 2, 0.24009
+ EXACT  429 - 207 - 2, 0.17228
+ NOREDUCTION  869 - 265 - 4, 0.4823
+Epilog : job finished at sam. déc. 27 16:43:56 CET 2014
+SAXVSMContinuousDirectSampler CinC_ECG_torso 
+ CLASSIC  393 - 222 - 4, 0.86014
+ EXACT  334 - 227 - 3, 0.52536
+ NOREDUCTION  295 - 222 - 3, 0.49058
+Epilog : job finished at ven. déc. 26 21:30:23 CET 2014
+SAXVSMContinuousGrammarSampler AIBO 
+ CLASSIC  39 - 9 - 14, 0.45757
+ EXACT  16 - 9 - 4, 0.32779
+ NOREDUCTION  23 - 9 - 4, 0.39268
+Epilog : job finished at ven. déc. 26 14:08:07 CET 2014
+SAXVSMContinuousDirectSampler arrowhead 
+ CLASSIC  96 - 8 - 3, 0.40571
+ EXACT  123 - 19 - 6, 0.43429
+ NOREDUCTION  74 - 19 - 3, 0.54857
+Epilog : job finished at ven. déc. 26 16:58:00 CET 2014
+SAXVSMContinuousGrammarSampler mallet 
+ CLASSIC  121 - 28 - 4, 0.0351
+ EXACT  130 - 13 - 9, 0.0399
+ NOREDUCTION  158 - 13 - 9, 0.04423
+Epilog : job finished at ven. déc. 26 22:09:40 CET 2014
+SAXVSMContinuousDirectSampler mallet 
+ CLASSIC  102 - 30 - 3, 0.05962
+ EXACT  213 - 13 - 9, 0.0351
+ NOREDUCTION  213 - 13 - 14, 0.05048
+Epilog : job finished at ven. déc. 26 18:31:23 CET 2014
+SAXVSMContinuousGrammarSampler shield 
+ CLASSIC  116 - 35 - 5, 0.06202
+ EXACT  204 - 35 - 2, 0.13178
+ NOREDUCTION  204 - 13 - 5, 0.12403
+Epilog : job finished at sam. déc. 27 07:48:30 CET 2014
+SAXVSMContinuousDirectSampler shield 
+ CLASSIC  71 - 13 - 5, 0.17054
+ EXACT  204 - 168 - 2, 0.12403
+ NOREDUCTION  204 - 35 - 2, 0.1938
+Epilog : job finished at ven. déc. 26 20:05:02 CET 2014
+SAXVSMContinuousDirectSampler AIBO 
+ CLASSIC  13 - 9 - 3, 0.37105
+ EXACT  16 - 9 - 4, 0.30616
+ NOREDUCTION  16 - 9 - 4, 0.30948
+Epilog : job finished at ven. déc. 26 14:08:29 CET 2014
+SAXVSMContinuousGrammarSampler Cricket 
+ CLASSIC  155 - 38 - 14, 0.05102
+ EXACT  88 - 16 - 4, 0.10204
+ NOREDUCTION  155 - 16 - 4, 0.29592
+Epilog : job finished at ven. déc. 26 14:13:09 CET 2014
+SAXVSMContinuousDirectSampler Cricket 
+ CLASSIC  88 - 16 - 6, 0.81633
+ EXACT  155 - 38 - 4, 0.96939
+ NOREDUCTION  155 - 38 - 14, 1.00
+Epilog : job finished at ven. déc. 26 14:14:35 CET 2014
+SAXVSMContinuousDirectSampler ElectricDevices 
+ CLASSIC  20 - 7 - 16, 0.38257
+ EXACT  17 - 8 - 12, 0.37392
+ NOREDUCTION  17 - 8 - 12, 0.37405
+Epilog : job finished at mar. déc. 30 20:51:58 CET 2014
+SAXVSMContinuousGrammarSampler Passgraph 
+ CLASSIC  143 - 38 - 3, 0.35115
+ EXACT  143 - 38 - 3, 0.31298
+ NOREDUCTION  261 - 9 - 4, 0.35878
+Epilog : job finished at ven. déc. 26 16:37:37 CET 2014
+SAXVSMContinuousDirectSampler Passgraph 
+ CLASSIC  183 - 16 - 4, 0.43511
+ EXACT  143 - 38 - 3, 0.34351
+ NOREDUCTION  130 - 38 - 2, 0.37405
+Epilog : job finished at ven. déc. 26 16:45:34 CET 2014
+SAXVSMContinuousGrammarSampler arrowhead 
+ CLASSIC  178 - 8 - 8, 0.31429
+ EXACT  129 - 19 - 6, 0.41714
+ NOREDUCTION  365 - 52 - 14, 0.39429
+Epilog : job finished at ven. déc. 26 17:30:55 CET 2014

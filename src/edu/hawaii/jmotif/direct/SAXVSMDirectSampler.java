@@ -103,7 +103,7 @@ public class SAXVSMDirectSampler {
 
     try {
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
-      consoleLogger.info("processing paramleters: " + Arrays.toString(args));
+      consoleLogger.info("processing parameters: " + Arrays.toString(args));
 
       if (10 == args.length) {
         TRAINING_DATA = args[0];

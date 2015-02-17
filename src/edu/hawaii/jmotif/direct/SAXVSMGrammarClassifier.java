@@ -65,7 +65,7 @@ public class SAXVSMGrammarClassifier {
 
     try {
       // args: <train dataset>, <test dataset>, Wsize , Psize, Asize, Startegy
-      consoleLogger.info("processing paramleters: " + Arrays.toString(args));
+      consoleLogger.info("processing parameters: " + Arrays.toString(args));
 
       WINDOW_SIZE = Integer.valueOf(args[2]);
       PAA_SIZE = Integer.valueOf(args[3]);
@@ -79,7 +79,6 @@ public class SAXVSMGrammarClassifier {
 
 
       TRAINING_DATA = args[0];
-      TEST_DATA = args[1];
       trainData = UCRUtils.readUCRData(TRAINING_DATA);
       consoleLogger.info("trainData classes: " + trainData.size() + ", series length: "
           + trainData.entrySet().iterator().next().getValue().get(0).length);
@@ -87,6 +86,7 @@ public class SAXVSMGrammarClassifier {
         consoleLogger.info(" training class: " + e.getKey() + " series: " + e.getValue().size());
       }
 
+      TEST_DATA = args[1];
       testData = UCRUtils.readUCRData(TEST_DATA);
       consoleLogger.info("testData classes: " + testData.size() + ", series length: "
           + testData.entrySet().iterator().next().getValue().get(0).length);

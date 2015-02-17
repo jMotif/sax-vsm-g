@@ -76,7 +76,7 @@ public class SAXVSMPatternExplorer {
     //
     try {
       // args: <train dataset>, <test dataset>, Wsize , Psize, Asize, Startegy
-      consoleLogger.info("processing paramleters: " + Arrays.toString(args));
+      consoleLogger.info("processing parameters: " + Arrays.toString(args));
 
       TRAINING_DATA = args[0];
       TEST_DATA = args[1];

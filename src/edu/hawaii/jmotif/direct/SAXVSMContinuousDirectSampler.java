@@ -100,27 +100,32 @@ public class SAXVSMContinuousDirectSampler {
   private static Map<String, List<double[]>> testData;
   private static SAXNumerosityReductionStrategy STRATEGY = null;
 
+  /**
+   * Main runnable.
+   * 
+   * @param args
+   * @throws IOException
+   * @throws IndexOutOfBoundsException
+   * @throws TSException
+   */
   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, TSException {
 
     try {
-      // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
-      consoleLogger.info("processing paramleters: " + Arrays.toString(args));
 
+      // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
+      consoleLogger.info("processing parameters: " + Arrays.toString(args));
+
+      // odd a bit, but whatever, it works
       if (10 == args.length || 11 == args.length || 12 == args.length) {
+
+        // working on train data
         TRAINING_DATA = args[0];
-        TEST_DATA = args[1];
         trainData = UCRUtils.readUCRData(TRAINING_DATA);
-        consoleLogger.info("trainData classes: " + trainData.size() + ", series length: "
-            + trainData.entrySet().iterator().next().getValue().get(0).length);
-        for (Entry<String, List<double[]>> e : trainData.entrySet()) {
-          consoleLogger.info(" training class: " + e.getKey() + " series: " + e.getValue().size());
-        }
+        consoleLogger.info(UCRUtils.datasetStats(trainData, "trainData"));
+
+        TEST_DATA = args[1];
         testData = UCRUtils.readUCRData(TEST_DATA);
-        consoleLogger.info("testData classes: " + testData.size() + ", series length: "
-            + testData.entrySet().iterator().next().getValue().get(0).length);
-        for (Entry<String, List<double[]>> e : testData.entrySet()) {
-          consoleLogger.info(" test class: " + e.getKey() + " series: " + e.getValue().size());
-        }
+        consoleLogger.info(UCRUtils.datasetStats(testData, "testData"));
 
         // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout,
         // Iterations
