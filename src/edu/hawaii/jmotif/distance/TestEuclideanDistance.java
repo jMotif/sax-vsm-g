@@ -3,7 +3,6 @@ package edu.hawaii.jmotif.distance;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Test;
-import edu.hawaii.jmotif.timeseries.TSException;
 
 /**
  * Tests the Euclidean distance.
@@ -41,11 +40,11 @@ public class TestEuclideanDistance {
     try {
       //
       // test the distance between points
-      assertEquals("test 1D distance", EuclideanDistance.distance(testPoint1D1, testPoint1D2), Math
-          .abs(testPoint1D2[0] - testPoint1D1[0]), 0.01D);
+      assertEquals("test 1D distance", EuclideanDistance.distance(testPoint1D1, testPoint1D2),
+          Math.abs(testPoint1D2[0] - testPoint1D1[0]), 0.01D);
       assertEquals("test 1D distance",
-          EuclideanDistance.distance(testPoint1D1[0], testPoint1D2[0]), Math.abs(testPoint1D2[0]
-              - testPoint1D1[0]), 0.01D);
+          EuclideanDistance.distance(testPoint1D1[0], testPoint1D2[0]),
+          Math.abs(testPoint1D2[0] - testPoint1D1[0]), 0.01D);
 
       //
       // compute the test value right here
@@ -59,10 +58,10 @@ public class TestEuclideanDistance {
       // multi-dimensional points which in fact are series
       assertEquals("test 1D distance", EuclideanDistance.distance(testPoint3D1, testPoint3D2),
           dist, 0.01D);
-      assertEquals("test series distance", EuclideanDistance.seriesDistance(testPoint3D1,
-          testPoint3D2), dist, 0.01D);
+      assertEquals("test series distance",
+          EuclideanDistance.seriesDistance(testPoint3D1, testPoint3D2), dist, 0.01D);
     }
-    catch (TSException e) {
+    catch (Exception e) {
       fail("Shouldn't throw any exception");
     }
 
@@ -73,7 +72,7 @@ public class TestEuclideanDistance {
       double distance = EuclideanDistance.distance(testPoint1D1, testPoint3D1);
       fail("Exception is not thrown!");
     }
-    catch (TSException e) {
+    catch (Exception e) {
       assert true;
     }
 
@@ -84,7 +83,7 @@ public class TestEuclideanDistance {
       double distance = EuclideanDistance.seriesDistance(testPoint1D1, testPoint3D1);
       fail("Exception is not thrown!");
     }
-    catch (TSException e) {
+    catch (Exception e) {
       assert true;
     }
 
@@ -100,7 +99,7 @@ public class TestEuclideanDistance {
       Double dist = EuclideanDistance.seriesDistance(testSeries1, testSeries2);
       assertEquals("testing distance, ", 3.193743885, dist, 0.01D);
     }
-    catch (TSException e) {
+    catch (Exception e) {
       fail("Should not throw any exception here.");
     }
 
@@ -111,7 +110,7 @@ public class TestEuclideanDistance {
       Double dist = EuclideanDistance.seriesDistance(testSeries1, testSeries3);
       fail("Should throw exception here.");
     }
-    catch (TSException e) {
+    catch (Exception e) {
       assert true;
     }
 

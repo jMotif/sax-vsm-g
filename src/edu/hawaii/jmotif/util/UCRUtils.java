@@ -18,8 +18,6 @@ import java.util.Map.Entry;
  */
 public class UCRUtils {
 
-  private static final Object CR = "\n";
-
   /**
    * Reads bunch of series from file. First column treats as a class label. Rest as a real-valued
    * series.
@@ -28,8 +26,7 @@ public class UCRUtils {
    * @return
    * @throws IOException
    */
-  public synchronized static Map<String, List<double[]>> readUCRData(String fileName)
-      throws IOException {
+  public static Map<String, List<double[]>> readUCRData(String fileName) throws IOException {
 
     Map<String, List<double[]>> res = new HashMap<String, List<double[]>>();
 
@@ -64,7 +61,7 @@ public class UCRUtils {
 
   }
 
-  public synchronized static String datasetStats(Map<String, List<double[]>> data, String prefix) {
+  public static String datasetStats(Map<String, List<double[]>> data, String prefix) {
 
     int globalMinLength = Integer.MAX_VALUE;
     int globalMaxLength = Integer.MIN_VALUE;

@@ -1,6 +1,5 @@
 package edu.hawaii.jmotif.direct;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -15,10 +14,10 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import edu.hawaii.jmotif.sax.SAXNumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
-import edu.hawaii.jmotif.timeseries.TSException;
 import edu.hawaii.jmotif.util.StackTrace;
 import edu.hawaii.jmotif.util.UCRUtils;
 
@@ -99,7 +98,7 @@ public class SAXVSMDirectSampler {
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
 
-  public static void main(String[] args) throws IOException, IndexOutOfBoundsException, TSException {
+  public static void main(String[] args) throws Exception {
 
     try {
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
@@ -132,7 +131,7 @@ public class SAXVSMDirectSampler {
         // Iterations
         HOLD_OUT_NUM = Integer.valueOf(args[8]);
         ITERATIONS_NUM = Integer.valueOf(args[9]);
-        
+
         if (args.length > 10) {
           NORMALIZATION_THRESHOLD = Double.valueOf(args[10]);
         }
@@ -150,21 +149,21 @@ public class SAXVSMDirectSampler {
       System.exit(-10);
     }
 
-    consoleLogger.info("running sampling for " + SAXNumerosityReductionStrategy.CLASSIC.toString()
+    consoleLogger.info("running sampling for " + NumerosityReductionStrategy.MINDIST.toString()
         + " strategy...");
-    int[] classicParams = sample(SAXNumerosityReductionStrategy.CLASSIC);
+    int[] classicParams = sample(NumerosityReductionStrategy.MINDIST);
 
-    consoleLogger.info("running sampling for " + SAXNumerosityReductionStrategy.EXACT.toString()
+    consoleLogger.info("running sampling for " + NumerosityReductionStrategy.EXACT.toString()
         + " strategy...");
-    int[] exactParams = sample(SAXNumerosityReductionStrategy.EXACT);
+    int[] exactParams = sample(NumerosityReductionStrategy.EXACT);
 
-    consoleLogger.info("running sampling for "
-        + SAXNumerosityReductionStrategy.NOREDUCTION.toString() + " strategy...");
-    int[] noredParams = sample(SAXNumerosityReductionStrategy.NOREDUCTION);
+    consoleLogger.info("running sampling for " + NumerosityReductionStrategy.NONE.toString()
+        + " strategy...");
+    int[] noredParams = sample(NumerosityReductionStrategy.NONE);
 
-    classify(classicParams);
-    classify(exactParams);
-    classify(noredParams);
+    classify(classicParams, NumerosityReductionStrategy.MINDIST);
+    classify(exactParams, NumerosityReductionStrategy.EXACT);
+    classify(noredParams, NumerosityReductionStrategy.NONE);
   }
 
   private static String printHelp() {
@@ -187,11 +186,20 @@ public class SAXVSMDirectSampler {
     return sb.toString();
   }
 
-  private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
+  private static void classify(int[] params, NumerosityReductionStrategy STRATEGY) throws Exception {
+
+    int windowSize = Long.valueOf(Math.round(params[0])).intValue();
+    int paaSize = Long.valueOf(Math.round(params[1])).intValue();
+    int alphabetSize = Long.valueOf(Math.round(params[2])).intValue();
+
+    NormalAlphabet na = new NormalAlphabet();
+    TextUtils tu = new TextUtils();
+
     // making training bags collection
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params, NORMALIZATION_THRESHOLD);
+    List<WordBag> bags = tu.labeledSeries2WordBags(trainData, windowSize, paaSize,
+        na.getCuts(alphabetSize), STRATEGY, NORMALIZATION_THRESHOLD);
     // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
     // classifying
     int testSampleSize = 0;
     int positiveTestCounter = 0;
@@ -199,7 +207,8 @@ public class SAXVSMDirectSampler {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         positiveTestCounter = positiveTestCounter
-            + TextUtils.classify(label, series, tfidf, params, NORMALIZATION_THRESHOLD);
+            + tu.classify(label, series, tfidf, windowSize, paaSize, na.getCuts(alphabetSize),
+                STRATEGY, NORMALIZATION_THRESHOLD);
         testSampleSize++;
       }
     }
@@ -213,7 +222,7 @@ public class SAXVSMDirectSampler {
 
   }
 
-  private static int[] sample(SAXNumerosityReductionStrategy strategy) {
+  private static int[] sample(NumerosityReductionStrategy strategy) {
 
     function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy,
         DEFAULT_NORMALIZATION_THRESHOLD);
@@ -907,13 +916,13 @@ public class SAXVSMDirectSampler {
   protected static String toLogStr(int[] p, double accuracy, double error) {
 
     StringBuffer sb = new StringBuffer();
-    if (SAXNumerosityReductionStrategy.CLASSIC.index() == p[3]) {
+    if (NumerosityReductionStrategy.MINDIST.index() == p[3]) {
       sb.append("CLASSIC, ");
     }
-    else if (SAXNumerosityReductionStrategy.EXACT.index() == p[3]) {
+    else if (NumerosityReductionStrategy.EXACT.index() == p[3]) {
       sb.append("EXACT, ");
     }
-    else if (SAXNumerosityReductionStrategy.NOREDUCTION.index() == p[3]) {
+    else if (NumerosityReductionStrategy.NONE.index() == p[3]) {
       sb.append("NOREDUCTION, ");
     }
     sb.append("window ").append(p[0]).append(COMMA);

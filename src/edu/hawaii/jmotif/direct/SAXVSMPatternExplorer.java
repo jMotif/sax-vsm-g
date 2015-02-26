@@ -14,13 +14,10 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import edu.hawaii.jmotif.sax.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
-import edu.hawaii.jmotif.timeseries.TSException;
-import edu.hawaii.jmotif.timeseries.TSUtils;
 import edu.hawaii.jmotif.util.UCRUtils;
 
 /**

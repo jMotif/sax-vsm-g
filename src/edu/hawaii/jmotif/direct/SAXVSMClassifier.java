@@ -1,6 +1,5 @@
 package edu.hawaii.jmotif.direct;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
@@ -13,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
 import edu.hawaii.jmotif.util.UCRUtils;
@@ -27,7 +27,6 @@ public class SAXVSMClassifier {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat fmt = new DecimalFormat("0.00###", otherSymbols);
-  private static final String COMMA = ", ";
 
   private static String TRAINING_DATA;
   private static String TEST_DATA;
@@ -94,16 +93,15 @@ public class SAXVSMClassifier {
       System.err.println("There was parameters error....");
       System.exit(-10);
     }
-    int[] params = new int[] { WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE, STRATEGY.index() };
-    classify(params);
-  }
 
-  private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
-    // making training bags collection
-    List<WordBag> bags = TextUtils.labeledSeries2WordBags(trainData, params,
-        NORMALIZATION_THRESHOLD);
-    // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
+    NormalAlphabet na = new NormalAlphabet();
+    TextUtils tu = new TextUtils();
+
+    List<WordBag> bags = tu.labeledSeries2WordBags(trainData, WINDOW_SIZE, PAA_SIZE,
+        na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
+
     // classifying
     int testSampleSize = 0;
     int positiveTestCounter = 0;
@@ -111,7 +109,8 @@ public class SAXVSMClassifier {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         positiveTestCounter = positiveTestCounter
-            + TextUtils.classify(label, series, tfidf, params, NORMALIZATION_THRESHOLD);
+            + tu.classify(label, series, tfidf, WINDOW_SIZE, PAA_SIZE, na.getCuts(ALPHABET_SIZE),
+                STRATEGY, NORMALIZATION_THRESHOLD);
         testSampleSize++;
       }
     }
@@ -121,29 +120,9 @@ public class SAXVSMClassifier {
     double error = 1.0d - accuracy;
 
     // report results
-    consoleLogger.info("classification results: " + toLogStr(params, accuracy, error));
+    consoleLogger.info("classification results: accuracy " + fmt.format(accuracy) + ", error "
+        + fmt.format(error));
 
-  }
-
-  protected static String toLogStr(int[] p, double accuracy, double error) {
-
-    StringBuffer sb = new StringBuffer();
-    if (SAXNumerosityReductionStrategy.CLASSIC.index() == p[3]) {
-      sb.append("CLASSIC, ");
-    }
-    else if (SAXNumerosityReductionStrategy.EXACT.index() == p[3]) {
-      sb.append("EXACT, ");
-    }
-    else if (SAXNumerosityReductionStrategy.NOREDUCTION.index() == p[3]) {
-      sb.append("NOREDUCTION, ");
-    }
-    sb.append("window ").append(p[0]).append(COMMA);
-    sb.append("PAA ").append(p[1]).append(COMMA);
-    sb.append("alphabet ").append(p[2]).append(COMMA);
-    sb.append(" accuracy ").append(fmt.format(accuracy)).append(COMMA);
-    sb.append(" error ").append(fmt.format(error));
-
-    return sb.toString();
   }
 
 }

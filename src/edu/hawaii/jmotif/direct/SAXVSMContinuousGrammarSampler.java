@@ -20,12 +20,11 @@ import edu.hawaii.jmotif.repair.GrammarRules;
 import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXNumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
-import edu.hawaii.jmotif.timeseries.TSException;
 import edu.hawaii.jmotif.util.StackTrace;
 import edu.hawaii.jmotif.util.UCRUtils;
 
@@ -103,7 +102,7 @@ public class SAXVSMContinuousGrammarSampler {
   private static int HOLD_OUT_NUM = 1;
   private static int ITERATIONS_NUM = 1;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
-  private static SAXNumerosityReductionStrategy STRATEGY = null;
+  private static NumerosityReductionStrategy STRATEGY = null;
 
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
@@ -147,7 +146,7 @@ public class SAXVSMContinuousGrammarSampler {
         }
 
         if (args.length > 11) {
-          STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[11].toUpperCase());
+          STRATEGY = NumerosityReductionStrategy.valueOf(args[11].toUpperCase());
         }
 
       }
@@ -164,27 +163,26 @@ public class SAXVSMContinuousGrammarSampler {
     }
 
     if (null == STRATEGY) {
-      consoleLogger.info("running sampling for "
-          + SAXNumerosityReductionStrategy.CLASSIC.toString() + " strategy...");
-      int[] classicParams = sample(SAXNumerosityReductionStrategy.CLASSIC);
-
-      consoleLogger.info("running sampling for " + SAXNumerosityReductionStrategy.EXACT.toString()
+      consoleLogger.info("running sampling for " + NumerosityReductionStrategy.MINDIST.toString()
           + " strategy...");
-      int[] exactParams = sample(SAXNumerosityReductionStrategy.EXACT);
+      int[] classicParams = sample(NumerosityReductionStrategy.MINDIST);
 
-      consoleLogger.info("running sampling for "
-          + SAXNumerosityReductionStrategy.NOREDUCTION.toString() + " strategy...");
-      int[] noredParams = sample(SAXNumerosityReductionStrategy.NOREDUCTION);
+      consoleLogger.info("running sampling for " + NumerosityReductionStrategy.EXACT.toString()
+          + " strategy...");
+      int[] exactParams = sample(NumerosityReductionStrategy.EXACT);
 
-      classify(classicParams);
-      classify(exactParams);
-      classify(noredParams);
+      consoleLogger.info("running sampling for " + NumerosityReductionStrategy.NONE.toString()
+          + " strategy...");
+      int[] noredParams = sample(NumerosityReductionStrategy.NONE);
+
+      classify(classicParams, NumerosityReductionStrategy.MINDIST);
+      classify(exactParams, NumerosityReductionStrategy.EXACT);
+      classify(noredParams, NumerosityReductionStrategy.NONE);
     }
     else {
       consoleLogger.info("running sampling for " + STRATEGY.toString() + " strategy...");
       int[] params = sample(STRATEGY);
-
-      classify(params);
+      classify(params, STRATEGY);
 
     }
   }
@@ -210,11 +208,22 @@ public class SAXVSMContinuousGrammarSampler {
     return sb.toString();
   }
 
-  private static void classify(int[] params) throws IndexOutOfBoundsException, TSException {
+  private static void classify(int[] params, NumerosityReductionStrategy strategy) throws Exception {
+
+    int windowSize = Long.valueOf(Math.round(params[0])).intValue();
+    int paaSize = Long.valueOf(Math.round(params[1])).intValue();
+    int alphabetSize = Long.valueOf(Math.round(params[2])).intValue();
+
+    NormalAlphabet na = new NormalAlphabet();
+    TextUtils tu = new TextUtils();
+
     // making training bags collection
-    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, params);
+    List<WordBag> bags = tu.labeledSeries2WordBags(trainData, windowSize, paaSize,
+        na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD);
+
     // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags);
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
+
     // classifying
     int testSampleSize = 0;
     int positiveTestCounter = 0;
@@ -235,7 +244,7 @@ public class SAXVSMContinuousGrammarSampler {
 
   }
 
-  private static int[] sample(SAXNumerosityReductionStrategy strategy) {
+  private static int[] sample(NumerosityReductionStrategy strategy) {
 
     function = new SAXVSMGrammarCVErrorFunction(trainData, HOLD_OUT_NUM, strategy);
     // the whole bunch of inits
@@ -1011,13 +1020,13 @@ public class SAXVSMContinuousGrammarSampler {
   protected static String toLogStr(int[] p, double accuracy, double error) {
 
     StringBuffer sb = new StringBuffer();
-    if (SAXNumerosityReductionStrategy.CLASSIC.index() == p[3]) {
+    if (NumerosityReductionStrategy.MINDIST.index() == p[3]) {
       sb.append("CLASSIC, ");
     }
-    else if (SAXNumerosityReductionStrategy.EXACT.index() == p[3]) {
+    else if (NumerosityReductionStrategy.EXACT.index() == p[3]) {
       sb.append("EXACT, ");
     }
-    else if (SAXNumerosityReductionStrategy.NOREDUCTION.index() == p[3]) {
+    else if (NumerosityReductionStrategy.NONE.index() == p[3]) {
       sb.append("NOREDUCTION, ");
     }
     sb.append("window ").append(p[0]).append(COMMA);

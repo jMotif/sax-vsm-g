@@ -19,7 +19,6 @@ import edu.hawaii.jmotif.repair.GrammarRules;
 import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
@@ -27,8 +26,6 @@ import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
 import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
-import edu.hawaii.jmotif.timeseries.TSException;
-import edu.hawaii.jmotif.timeseries.TSUtils;
 import edu.hawaii.jmotif.util.UCRUtils;
 
 /**

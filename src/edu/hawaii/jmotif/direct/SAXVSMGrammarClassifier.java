@@ -18,12 +18,10 @@ import edu.hawaii.jmotif.repair.GrammarRules;
 import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXNumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
-import edu.hawaii.jmotif.timeseries.TSException;
 import edu.hawaii.jmotif.util.UCRUtils;
 
 /**
@@ -47,7 +45,7 @@ public class SAXVSMGrammarClassifier {
   private static Integer ALPHABET_SIZE;
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
-  private static SAXNumerosityReductionStrategy STRATEGY;
+  private static NumerosityReductionStrategy STRATEGY;
   private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
@@ -72,11 +70,10 @@ public class SAXVSMGrammarClassifier {
       ALPHABET_SIZE = Integer.valueOf(args[4]);
 
       STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[5].toUpperCase());
-      
+
       if (args.length > 6) {
         NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);
       }
-
 
       TRAINING_DATA = args[0];
       trainData = UCRUtils.readUCRData(TRAINING_DATA);
@@ -232,7 +229,8 @@ public class SAXVSMGrammarClassifier {
     WordBag resultBag = new WordBag(label);
 
     ParallelSAXImplementation ps = new ParallelSAXImplementation();
-    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy, NORMALIZATION_THRESHOLD);
+    SAXRecords saxData = ps.process(series, 1, windowSize, paaSize, alphabetSize, strategy,
+        NORMALIZATION_THRESHOLD);
     saxData.buildIndex();
 
     @SuppressWarnings("unused")

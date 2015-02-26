@@ -1,6 +1,5 @@
 package edu.hawaii.jmotif.distance;
 
-import edu.hawaii.jmotif.timeseries.TSException;
 
 /**
  * The Euclidean distance implementation for a variety of datatypes.
@@ -36,9 +35,9 @@ public final class EuclideanDistance {
    * @param point1 The first point.
    * @param point2 The second point.
    * @return The Euclidean distance.
-   * @throws TSException In the case of error.
+   * @throws Exception In the case of error.
    */
-  private static double distance2(double[] point1, double[] point2) throws TSException {
+  private static double distance2(double[] point1, double[] point2) throws Exception {
     if (point1.length == point2.length) {
       Double sum = 0D;
       for (int i = 0; i < point1.length; i++) {
@@ -49,7 +48,7 @@ public final class EuclideanDistance {
       return sum;
     }
     else {
-      throw new TSException("Exception in Euclidean distance: array lengths are not equal");
+      throw new Exception("Exception in Euclidean distance: array lengths are not equal");
     }
   }
 
@@ -60,9 +59,9 @@ public final class EuclideanDistance {
    * @param point1 The first point.
    * @param point2 The second point.
    * @return The Euclidean distance.
-   * @throws TSException In the case of error.
+   * @throws Exception In the case of error.
    */
-  private static double distance2(int[] point1, int[] point2) throws TSException {
+  private static double distance2(int[] point1, int[] point2) throws Exception {
     if (point1.length == point2.length) {
       Double sum = 0D;
       for (int i = 0; i < point1.length; i++) {
@@ -73,7 +72,7 @@ public final class EuclideanDistance {
       return sum;
     }
     else {
-      throw new TSException("Exception in Euclidean distance: array lengths are not equal");
+      throw new Exception("Exception in Euclidean distance: array lengths are not equal");
     }
   }
 
@@ -95,9 +94,9 @@ public final class EuclideanDistance {
    * @param point1 The first point.
    * @param point2 The second point.
    * @return The Euclidean distance.
-   * @throws TSException In the case of error.
+   * @throws Exception In the case of error.
    */
-  public static double distance(double[] point1, double[] point2) throws TSException {
+  public static double distance(double[] point1, double[] point2) throws Exception {
     return Math.sqrt(distance2(point1, point2));
   }
 
@@ -107,9 +106,9 @@ public final class EuclideanDistance {
    * @param point1 The first point.
    * @param point2 The second point.
    * @return The Euclidean distance.
-   * @throws TSException In the case of error.
+   * @throws Exception In the case of error.
    */
-  public static double normalizedDistance(double[] point1, double[] point2) throws TSException {
+  public static double normalizedDistance(double[] point1, double[] point2) throws Exception {
     return Math.sqrt(distance2(point1, point2)) / point1.length;
   }
 
@@ -119,9 +118,9 @@ public final class EuclideanDistance {
    * @param point1 The first point.
    * @param point2 The second point.
    * @return The Euclidean distance.
-   * @throws TSException In the case of error.
+   * @throws Exception In the case of error.
    */
-  public static double distance(int[] point1, int[] point2) throws TSException {
+  public static double distance(int[] point1, int[] point2) throws Exception {
     return Math.sqrt(distance2(point1, point2));
   }
 
@@ -131,9 +130,9 @@ public final class EuclideanDistance {
    * @param series1 The first series.
    * @param series2 The second series.
    * @return The eclidean distance.
-   * @throws TSException if error occures.
+   * @throws Exception if error occures.
    */
-  public static double seriesDistance(double[] series1, double[] series2) throws TSException {
+  public static double seriesDistance(double[] series1, double[] series2) throws Exception {
     if (series1.length == series2.length) {
       Double res = 0D;
       for (int i = 0; i < series1.length; i++) {
@@ -142,7 +141,7 @@ public final class EuclideanDistance {
       return Math.sqrt(res);
     }
     else {
-      throw new TSException("Exception in Euclidean distance: array lengths are not equal");
+      throw new Exception("Exception in Euclidean distance: array lengths are not equal");
     }
   }
 
@@ -152,9 +151,9 @@ public final class EuclideanDistance {
    * @param series1 The first series.
    * @param series2 The second series.
    * @return The eclidean distance.
-   * @throws TSException if error occures.
+   * @throws Exception if error occures.
    */
-  public static double seriesDistance(double[][] series1, double[][] series2) throws TSException {
+  public static double seriesDistance(double[][] series1, double[][] series2) throws Exception {
     if (series1.length == series2.length) {
       Double res = 0D;
       for (int i = 0; i < series1.length; i++) {
@@ -163,7 +162,7 @@ public final class EuclideanDistance {
       return Math.sqrt(res);
     }
     else {
-      throw new TSException("Exception in Euclidean distance: array lengths are not equal");
+      throw new Exception("Exception in Euclidean distance: array lengths are not equal");
     }
   }
 
@@ -175,10 +174,10 @@ public final class EuclideanDistance {
    * @param cutoff the cut-off threshold
    * @return the distance if it is less than cutoff or Double.NAN if it is above.
    * 
-   * @throws TSException if error occurs.
+   * @throws Exception if error occurs.
    */
   public static Double earlyAbandonedDistance(double[] series1, double[] series2, double cutoff)
-      throws TSException {
+      throws Exception {
     double cutOff2 = cutoff * cutoff;
     if (series1.length == series2.length) {
       Double res = 0D;
@@ -191,7 +190,7 @@ public final class EuclideanDistance {
       return Math.sqrt(res);
     }
     else {
-      throw new TSException("Exception in Euclidean distance: array lengths are not equal");
+      throw new Exception("Exception in Euclidean distance: array lengths are not equal");
     }
   }
 
