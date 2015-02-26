@@ -304,9 +304,12 @@ public class SAXVSMContinuousGrammarSampler {
     for (String label : tfidf.keySet()) {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
-        positiveTestCounter = positiveTestCounter
-            + tu.classify(label, series, tfidf, windowSize, paaSize, na.getCuts(alphabetSize),
-                strategy, NORMALIZATION_THRESHOLD);
+        WordBag test = seriesToGrammarWordBag("tmp", series, windowSize, paaSize,
+            na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD);
+        String testLabel = tu.classify(test, tfidf);
+        if (label.equalsIgnoreCase(testLabel)) {
+          positiveTestCounter++;
+        }
         testSampleSize++;
       }
     }

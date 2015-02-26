@@ -1,6 +1,5 @@
 package edu.hawaii.jmotif.direct;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -36,20 +35,18 @@ public class SAXVSMGrammarClassifier {
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat fmt = new DecimalFormat("0.00###", otherSymbols);
 
-  private static final String COMMA = ", ";
-
   private static String TRAINING_DATA;
   private static String TEST_DATA;
+  private static Map<String, List<double[]>> trainData;
+  private static Map<String, List<double[]>> testData;
 
   private static Integer WINDOW_SIZE;
   private static Integer PAA_SIZE;
   private static Integer ALPHABET_SIZE;
-  private static Map<String, List<double[]>> trainData;
-  private static Map<String, List<double[]>> testData;
   private static NumerosityReductionStrategy STRATEGY;
+
   private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
-
   private static NormalAlphabet na;
   private static TextUtils tu;
   private static SAXProcessor sp;
@@ -58,13 +55,18 @@ public class SAXVSMGrammarClassifier {
   //
   private static final Logger consoleLogger;
   private static final Level LOGGING_LEVEL = Level.INFO;
-
   static {
     consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarClassifier.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
-  public static void main(String[] args) throws IOException, IndexOutOfBoundsException, Exception {
+  /**
+   * Main CLI runnable.
+   * 
+   * @param args the command line args.
+   * @throws Exception if error occurs.
+   */
+  public static void main(String[] args) throws Exception {
 
     try {
       // args: <train dataset>, <test dataset>, Wsize , Psize, Asize, Startegy
@@ -81,6 +83,7 @@ public class SAXVSMGrammarClassifier {
       }
 
       TRAINING_DATA = args[0];
+      TEST_DATA = args[1];
       trainData = UCRUtils.readUCRData(TRAINING_DATA);
       consoleLogger.info("trainData classes: " + trainData.size() + ", series length: "
           + trainData.entrySet().iterator().next().getValue().get(0).length);
@@ -88,7 +91,6 @@ public class SAXVSMGrammarClassifier {
         consoleLogger.info(" training class: " + e.getKey() + " series: " + e.getValue().size());
       }
 
-      TEST_DATA = args[1];
       testData = UCRUtils.readUCRData(TEST_DATA);
       consoleLogger.info("testData classes: " + testData.size() + ", series length: "
           + testData.entrySet().iterator().next().getValue().get(0).length);
@@ -106,14 +108,9 @@ public class SAXVSMGrammarClassifier {
     tu = new TextUtils();
     sp = new SAXProcessor();
 
-    classify(WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE, STRATEGY);
-  }
-
-  private static void classify(int windowSize, int paaSize, int alphabetSize,
-      NumerosityReductionStrategy strategy) throws Exception {
     // making training bags collection
-    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, alphabetSize, paaSize,
-        alphabetSize, strategy);
+    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE, PAA_SIZE,
+        na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
     // classifying
@@ -122,8 +119,12 @@ public class SAXVSMGrammarClassifier {
     for (String label : tfidf.keySet()) {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
-        positiveTestCounter = positiveTestCounter
-            + classifyGrammar(label, series, tfidf, windowSize, paaSize, alphabetSize, strategy);
+        WordBag test = seriesToGrammarWordBag("tmp", series, WINDOW_SIZE, PAA_SIZE,
+            na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+        String testLabel = tu.classify(test, tfidf);
+        if (label.equalsIgnoreCase(testLabel)) {
+          positiveTestCounter++;
+        }
         testSampleSize++;
       }
     }
@@ -133,64 +134,14 @@ public class SAXVSMGrammarClassifier {
     double error = 1.0d - accuracy;
 
     // report results
-    // report results
     consoleLogger.info("classification results: accuracy " + fmt.format(accuracy) + ", error "
         + fmt.format(error));
 
   }
 
-  private static int classifyGrammar(String classKey, double[] series,
-      HashMap<String, HashMap<String, Double>> tfidf, int windowSize, int paaSize,
-      int alphabetSize, NumerosityReductionStrategy strategy) throws Exception {
-
-    WordBag test = seriesToGrammarWordBag("test", series, windowSize, paaSize, alphabetSize,
-        strategy);
-
-    // it is Cosine similarity,
-    //
-    // which ranges from 0.0 for the angle of 90 to 1.0 for the angle of 0
-    // i.e. LARGES value is a SMALLEST distance
-    double minDist = Double.MIN_VALUE;
-    String className = "";
-    double[] cosines = new double[tfidf.entrySet().size()];
-
-    int index = 0;
-    for (Entry<String, HashMap<String, Double>> e : tfidf.entrySet()) {
-
-      double dist = tu.cosineSimilarity(test, e.getValue());
-      cosines[index] = dist;
-      index++;
-
-      if (dist > minDist) {
-        className = e.getKey();
-        minDist = dist;
-      }
-
-    }
-
-    // sometimes, due to the VECTORs specific layout, all values are the same, NEED to take care
-    boolean allEqual = true;
-    double cosine = cosines[0];
-    for (int i = 1; i < cosines.length; i++) {
-      if (!(cosines[i] == cosine)) {
-        allEqual = false;
-      }
-    }
-
-    // report our findings
-    if (!(allEqual) && className.equalsIgnoreCase(classKey)) {
-      return 1;
-    }
-
-    // System.out.println("all equal " + allEqual + ", assigned to " + className + " instead of " +
-    // classKey);
-
-    return 0;
-  }
-
   private static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
-      int windowSize, int paaSize, int alphabetSize, NumerosityReductionStrategy strategy)
-      throws Exception {
+      int windowSize, int paaSize, double[] cuts, NumerosityReductionStrategy strategy,
+      double nThreshold) throws Exception {
 
     // make a map of resulting bags
     Map<String, WordBag> preRes = new HashMap<String, WordBag>();
@@ -202,8 +153,8 @@ public class SAXVSMGrammarClassifier {
       WordBag bag = new WordBag(classLabel);
 
       for (double[] series : e.getValue()) {
-        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, alphabetSize,
-            strategy);
+        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, cuts, strategy,
+            nThreshold);
         bag.mergeWith(cb);
       }
 
@@ -216,11 +167,12 @@ public class SAXVSMGrammarClassifier {
   }
 
   private static WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
-      int paaSize, int alphabetSize, NumerosityReductionStrategy strategy) throws Exception {
+      int paaSize, double[] cuts, NumerosityReductionStrategy strategy, double nThreshold)
+      throws Exception {
 
     WordBag resultBag = new WordBag(label);
-    SAXRecords saxData = sp.ts2saxViaWindow(series, windowSize, paaSize, na.getCuts(alphabetSize),
-        strategy, NORMALIZATION_THRESHOLD);
+    SAXRecords saxData = sp
+        .ts2saxViaWindow(series, windowSize, paaSize, cuts, strategy, nThreshold);
     saxData.buildIndex();
 
     @SuppressWarnings("unused")
@@ -255,4 +207,5 @@ public class SAXVSMGrammarClassifier {
 
     return resultBag;
   }
+
 }

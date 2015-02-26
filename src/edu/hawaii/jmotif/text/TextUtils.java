@@ -550,7 +550,23 @@ public class TextUtils {
 
     }
 
-    return className;
+    // sometimes, due to the VECTORs specific layout, all values are the same, NEED to take care
+    boolean allEqual = true;
+    double cosine = cosines[0];
+    for (int i = 1; i < cosines.length; i++) {
+      if (!(cosines[i] == cosine)) {
+        allEqual = false;
+      }
+    }
+
+    // report our findings
+    if (!(allEqual)) {
+      return className;
+    }
+
+    // return garbage
+    return String.valueOf(System.currentTimeMillis());
+
   }
 
   public String wordBagToTable(WordBag bag) {
