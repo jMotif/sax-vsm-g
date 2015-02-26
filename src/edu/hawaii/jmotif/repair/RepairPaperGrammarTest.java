@@ -1,6 +1,5 @@
 package edu.hawaii.jmotif.repair;
 
-import edu.hawaii.jmotif.timeseries.TSException;
 
 /**
  * Provides a paper example test implementation.
@@ -15,7 +14,7 @@ public class RepairPaperGrammarTest {
 
   // private static final String input = "a b a b c a b c d a b";
 
-  public static void main(String[] args) throws TSException {
+  public static void main(String[] args) throws Exception {
 
     @SuppressWarnings("unused")
     RePairRule r = RePairFactory.buildGrammar(input);

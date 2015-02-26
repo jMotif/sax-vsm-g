@@ -21,10 +21,9 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import edu.hawaii.jmotif.logic.RuleInterval;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXFactory;
+import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
-import edu.hawaii.jmotif.timeseries.TSException;
 import edu.hawaii.jmotif.util.StackTrace;
 
 public class TS2RePairGrammar {
@@ -54,7 +53,7 @@ public class TS2RePairGrammar {
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
-  public static void main(String[] args) throws TSException {
+  public static void main(String[] args) throws Exception {
 
     // System.in.read(); // this is used for proper performance evaluation using visual jvm
 
@@ -95,7 +94,7 @@ public class TS2RePairGrammar {
 
     System.out.println("Discretized timeseries using SAXRecords into string in "
         + String.valueOf(end.getTime() - fullStart.getTime()) + " ms, "
-        + SAXFactory.timeToString(fullStart.getTime(), end.getTime()));
+        + SAXProcessor.timeToString(fullStart.getTime(), end.getTime()));
 
     Date start = new Date();
     RePairRule rePairGrammar = RePairFactory.buildGrammar(parallelRes);
@@ -103,7 +102,7 @@ public class TS2RePairGrammar {
 
     System.out.println("Inferred grammar with RE-PAIR in  "
         + String.valueOf(end.getTime() - start.getTime()) + " ms, "
-        + SAXFactory.timeToString(start.getTime(), end.getTime()));
+        + SAXProcessor.timeToString(start.getTime(), end.getTime()));
 
     start = new Date();
     RePairRule.expandRules();
@@ -112,7 +111,7 @@ public class TS2RePairGrammar {
 
     System.out.println("Expanded rules and computed intervals  in  "
         + String.valueOf(end.getTime() - start.getTime()) + " ms, "
-        + SAXFactory.timeToString(start.getTime(), end.getTime()));
+        + SAXProcessor.timeToString(start.getTime(), end.getTime()));
 
     start = new Date();
     int[] coverageArray = new int[originalTimeSeries.length];
@@ -127,10 +126,10 @@ public class TS2RePairGrammar {
     end = new Date();
     System.out.println("Computed rule coverage in  "
         + String.valueOf(end.getTime() - start.getTime()) + " ms, "
-        + SAXFactory.timeToString(start.getTime(), end.getTime()));
+        + SAXProcessor.timeToString(start.getTime(), end.getTime()));
 
     System.out.println("Total runtime  " + String.valueOf(end.getTime() - fullStart.getTime())
-        + " ms, " + SAXFactory.timeToString(fullStart.getTime(), end.getTime()));
+        + " ms, " + SAXProcessor.timeToString(fullStart.getTime(), end.getTime()));
 
     // write down the coverage array
     //
