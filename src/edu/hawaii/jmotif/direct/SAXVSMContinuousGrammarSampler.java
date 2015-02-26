@@ -75,7 +75,7 @@ public class SAXVSMContinuousGrammarSampler {
   //
   private static int dimensions = 3;
 
-  private static SAXVSMCVErrorFunction function;
+  private static SAXVSMGrammarCVErrorFunction function;
 
   // static block - we instantiate the logger
   //
@@ -327,7 +327,8 @@ public class SAXVSMContinuousGrammarSampler {
 
   private static int[] sample(NumerosityReductionStrategy strategy) {
 
-    function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy, NORMALIZATION_THRESHOLD);
+    function = new SAXVSMGrammarCVErrorFunction(trainData, HOLD_OUT_NUM, strategy,
+        NORMALIZATION_THRESHOLD);
     // the whole bunch of inits
     //
     centerPoints = new ArrayList<Double[]>();
@@ -980,23 +981,13 @@ public class SAXVSMContinuousGrammarSampler {
   }
 
   protected static String toLogStr(int[] p, double accuracy, double error) {
-
     StringBuffer sb = new StringBuffer();
-    if (NumerosityReductionStrategy.MINDIST.index() == p[3]) {
-      sb.append("CLASSIC, ");
-    }
-    else if (NumerosityReductionStrategy.EXACT.index() == p[3]) {
-      sb.append("EXACT, ");
-    }
-    else if (NumerosityReductionStrategy.NONE.index() == p[3]) {
-      sb.append("NOREDUCTION, ");
-    }
+    sb.append(NumerosityReductionStrategy.fromValue(p[3]).toString()).append(", ");
     sb.append("window ").append(p[0]).append(COMMA);
     sb.append("PAA ").append(p[1]).append(COMMA);
     sb.append("alphabet ").append(p[2]).append(COMMA);
     sb.append(" accuracy ").append(fmt.format(accuracy)).append(COMMA);
     sb.append(" error ").append(fmt.format(error));
-
     return sb.toString();
   }
 

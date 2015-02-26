@@ -288,33 +288,6 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
     return 0;
   }
 
-  private List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
-      int windowSize, int paaSize, int alphabetSize, NumerosityReductionStrategy strategy)
-      throws Exception {
-
-    // make a map of resulting bags
-    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
-
-    // process series one by one building word bags
-    for (Entry<String, List<double[]>> e : data.entrySet()) {
-
-      String classLabel = e.getKey();
-      WordBag bag = new WordBag(classLabel);
-
-      for (double[] series : e.getValue()) {
-        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, alphabetSize,
-            strategy);
-        bag.mergeWith(cb);
-      }
-
-      preRes.put(classLabel, bag);
-    }
-
-    List<WordBag> res = new ArrayList<WordBag>();
-    res.addAll(preRes.values());
-    return res;
-  }
-
   private WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
       int paaSize, int alphabetSize, NumerosityReductionStrategy strategy) throws Exception {
 

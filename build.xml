@@ -44,6 +44,7 @@
  <!-- The compile classpath  -->
  <path id="compile.classpath">
   <fileset file="${lib.dir}/junit/junit-4.10.jar" />
+  <fileset file="${lib.dir}/jmotif-sax20.jar" />
   <fileset dir="${lib.dir}/time" />
   <fileset dir="${lib.dir}/logger" />
  </path>

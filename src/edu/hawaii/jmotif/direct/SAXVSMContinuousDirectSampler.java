@@ -897,23 +897,13 @@ public class SAXVSMContinuousDirectSampler {
   }
 
   protected static String toLogStr(int[] p, double accuracy, double error) {
-
     StringBuffer sb = new StringBuffer();
-    if (NumerosityReductionStrategy.MINDIST.index() == p[3]) {
-      sb.append("CLASSIC, ");
-    }
-    else if (NumerosityReductionStrategy.EXACT.index() == p[3]) {
-      sb.append("EXACT, ");
-    }
-    else if (NumerosityReductionStrategy.NONE.index() == p[3]) {
-      sb.append("NOREDUCTION, ");
-    }
+    sb.append(NumerosityReductionStrategy.fromValue(p[3]).toString()).append(", ");
     sb.append("window ").append(p[0]).append(COMMA);
     sb.append("PAA ").append(p[1]).append(COMMA);
     sb.append("alphabet ").append(p[2]).append(COMMA);
     sb.append(" accuracy ").append(fmt.format(accuracy)).append(COMMA);
     sb.append(" error ").append(fmt.format(error));
-
     return sb.toString();
   }
 

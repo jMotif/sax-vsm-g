@@ -24,6 +24,7 @@
   <unjar src="${lib.dir}/logger/logback-core-1.1.2.jar" dest="${tmp.dir}" />
   <unjar src="${lib.dir}/logger/slf4j-api-1.7.7.jar" dest="${tmp.dir}" />
   <unjar src="${lib.dir}/time/joda-time-2.1.jar" dest="${tmp.dir}" />
+  <unjar src="${lib.dir}/jmotif-sax20.jar" dest="${tmp.dir}" />
 
   <jar destfile="${basedir}/sax-vsm-g${majorVersionNumber}${minorVersionNumber}.jar" basedir="${tmp.dir}">
    <manifest>
