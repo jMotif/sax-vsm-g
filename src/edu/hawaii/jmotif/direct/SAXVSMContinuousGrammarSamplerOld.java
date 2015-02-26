@@ -1,5 +1,6 @@
 package edu.hawaii.jmotif.direct;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -14,8 +15,14 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.repair.GrammarRuleRecord;
+import edu.hawaii.jmotif.repair.GrammarRules;
+import edu.hawaii.jmotif.repair.RePairFactory;
+import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
+import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
 import edu.hawaii.jmotif.util.StackTrace;
@@ -27,7 +34,7 @@ import edu.hawaii.jmotif.util.UCRUtils;
  * @author psenin
  * 
  */
-public class SAXVSMDirectSampler {
+public class SAXVSMContinuousGrammarSamplerOld {
 
   // the number formatter
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
@@ -53,7 +60,6 @@ public class SAXVSMDirectSampler {
 
   // array used to track sampled points and function values
   private static ArrayList<ValuePointColored> coordinates;
-  private static HashMap<String, Double> functionHash;
 
   private static final double precision = 1E-16;
   private static int b = 0;
@@ -68,7 +74,9 @@ public class SAXVSMDirectSampler {
   //
   private static int dimensions = 3;
 
-  private static SAXVSMCVErrorFunction function;
+  private static SAXVSMGrammarCVErrorFunction function;
+
+  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
 
   // static block - we instantiate the logger
   //
@@ -77,10 +85,9 @@ public class SAXVSMDirectSampler {
 
   private static final String COMMA = ", ";
   private static final String CR = "\n";
-  private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05D;
-  private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
+
   static {
-    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMDirectSampler.class);
+    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMContinuousGrammarSamplerOld.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
@@ -94,17 +101,24 @@ public class SAXVSMDirectSampler {
   private static String TEST_DATA;
   private static int HOLD_OUT_NUM = 1;
   private static int ITERATIONS_NUM = 1;
+  private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
+  private static NumerosityReductionStrategy STRATEGY = null;
 
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
+  private static NormalAlphabet na;
+  private static TextUtils tu;
+  private static SAXProcessor sp;
+  private static long tstamp1;
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws IOException, IndexOutOfBoundsException, Exception {
 
     try {
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
       consoleLogger.info("processing parameters: " + Arrays.toString(args));
+      tstamp1 = System.currentTimeMillis();
 
-      if (10 == args.length) {
+      if (10 == args.length || 11 == args.length || 12 == args.length) {
         TRAINING_DATA = args[0];
         TEST_DATA = args[1];
         trainData = UCRUtils.readUCRData(TRAINING_DATA);
@@ -136,6 +150,10 @@ public class SAXVSMDirectSampler {
           NORMALIZATION_THRESHOLD = Double.valueOf(args[10]);
         }
 
+        if (args.length > 11) {
+          STRATEGY = NumerosityReductionStrategy.valueOf(args[11].toUpperCase());
+        }
+
       }
       else {
         System.out.print(printHelp());
@@ -149,21 +167,33 @@ public class SAXVSMDirectSampler {
       System.exit(-10);
     }
 
-    consoleLogger.info("running sampling for " + NumerosityReductionStrategy.MINDIST.toString()
-        + " strategy...");
-    int[] classicParams = sample(NumerosityReductionStrategy.MINDIST);
+    na = new NormalAlphabet();
+    tu = new TextUtils();
+    sp = new SAXProcessor();
 
-    consoleLogger.info("running sampling for " + NumerosityReductionStrategy.EXACT.toString()
-        + " strategy...");
-    int[] exactParams = sample(NumerosityReductionStrategy.EXACT);
+    if (null == STRATEGY) {
+      consoleLogger.info("running sampling for " + NumerosityReductionStrategy.MINDIST.toString()
+          + " strategy...");
+      int[] classicParams = sample(NumerosityReductionStrategy.MINDIST);
 
-    consoleLogger.info("running sampling for " + NumerosityReductionStrategy.NONE.toString()
-        + " strategy...");
-    int[] noredParams = sample(NumerosityReductionStrategy.NONE);
+      consoleLogger.info("running sampling for " + NumerosityReductionStrategy.EXACT.toString()
+          + " strategy...");
+      int[] exactParams = sample(NumerosityReductionStrategy.EXACT);
 
-    classify(classicParams, NumerosityReductionStrategy.MINDIST);
-    classify(exactParams, NumerosityReductionStrategy.EXACT);
-    classify(noredParams, NumerosityReductionStrategy.NONE);
+      consoleLogger.info("running sampling for " + NumerosityReductionStrategy.NONE.toString()
+          + " strategy...");
+      int[] noredParams = sample(NumerosityReductionStrategy.NONE);
+
+      classify(classicParams, NumerosityReductionStrategy.MINDIST);
+      classify(exactParams, NumerosityReductionStrategy.EXACT);
+      classify(noredParams, NumerosityReductionStrategy.NONE);
+    }
+    else {
+      consoleLogger.info("running sampling for " + STRATEGY.toString() + " strategy...");
+      int[] params = sample(STRATEGY);
+      classify(params, STRATEGY);
+
+    }
   }
 
   private static String printHelp() {
@@ -181,51 +211,16 @@ public class SAXVSMDirectSampler {
     sb.append(" [8] cross-validation hold-out number").append(CR);
     sb.append(" [8] maximal amount of sampling iterations").append(CR);
     sb.append(" [9] OPTIONAL: normalization threshold").append(CR);
+    sb.append(" [10] OPTIONAL: specific NR restriction").append(CR);
     sb.append("An execution example: $java -cp \"sax-vsm-classic20.jar\" edu.hawaii.jmotif.direct.SAXVSMDirectSampler");
-    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10 0.01").append(CR);
+    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10 0.01 EXACT").append(CR);
     return sb.toString();
-  }
-
-  private static void classify(int[] params, NumerosityReductionStrategy STRATEGY) throws Exception {
-
-    int windowSize = Long.valueOf(Math.round(params[0])).intValue();
-    int paaSize = Long.valueOf(Math.round(params[1])).intValue();
-    int alphabetSize = Long.valueOf(Math.round(params[2])).intValue();
-
-    NormalAlphabet na = new NormalAlphabet();
-    TextUtils tu = new TextUtils();
-
-    // making training bags collection
-    List<WordBag> bags = tu.labeledSeries2WordBags(trainData, windowSize, paaSize,
-        na.getCuts(alphabetSize), STRATEGY, NORMALIZATION_THRESHOLD);
-    // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
-    // classifying
-    int testSampleSize = 0;
-    int positiveTestCounter = 0;
-    for (String label : tfidf.keySet()) {
-      List<double[]> testD = testData.get(label);
-      for (double[] series : testD) {
-        positiveTestCounter = positiveTestCounter
-            + tu.classify(label, series, tfidf, windowSize, paaSize, na.getCuts(alphabetSize),
-                STRATEGY, NORMALIZATION_THRESHOLD);
-        testSampleSize++;
-      }
-    }
-
-    // accuracy and error
-    double accuracy = (double) positiveTestCounter / (double) testSampleSize;
-    double error = 1.0d - accuracy;
-
-    // report results
-    consoleLogger.info("classification results: " + toLogStr(params, accuracy, error));
-
   }
 
   private static int[] sample(NumerosityReductionStrategy strategy) {
 
-    function = new SAXVSMCVErrorFunction(trainData, HOLD_OUT_NUM, strategy,
-        DEFAULT_NORMALIZATION_THRESHOLD);
+    function = new SAXVSMGrammarCVErrorFunction(trainData, HOLD_OUT_NUM, strategy,
+        NORMALIZATION_THRESHOLD);
     // the whole bunch of inits
     //
     centerPoints = new ArrayList<Double[]>();
@@ -236,7 +231,6 @@ public class SAXVSMDirectSampler {
     functionValues = new ArrayList<Double>();
 
     coordinates = new ArrayList<ValuePointColored>();
-    functionHash = new HashMap<String, Double>();
 
     sampledPoints = 0;
     rectangleCounter = 1;
@@ -286,8 +280,8 @@ public class SAXVSMDirectSampler {
       resultMinimum = minimum(functionValues);
       double[] params = coordinates.get((int) resultMinimum[1]).getPoint().toArray();
       consoleLogger.info("iteration: " + ctr + ", minimal value " + resultMinimum[0] + " at "
-          + (int) Math.round(params[0]) + ", " + (int) Math.round(params[1]) + ", "
-          + (int) Math.round(params[2]));
+          + params[0] + ", " + params[1] + ", " + params[2]);
+      // System.out.println(resultMinimum[0] + ","+params[0] + "," + params[1] + ", " + params[2]);
       potentiallyOptimalRectangles = identifyPotentiallyRec();
       // For each potentially optimal rectangle
       for (int jj = 0; jj < potentiallyOptimalRectangles.size(); jj++) {
@@ -449,16 +443,9 @@ public class SAXVSMDirectSampler {
       // Function value at x_m1
       Point pointToSample1 = Point.at(x_m1);
       // TODO: here needs to be a check
-      Double f_m1 = checkCache(pointToSample1, functionHash);
-      if (null == f_m1) {
-        f_m1 = function.valueAt(pointToSample1);
-        consoleLogger.info("@" + f_m1 + "\t" + pointToSample1.toLogString());
-        saveCache(pointToSample1, f_m1, functionHash);
-      }
-      else {
-        consoleLogger.debug("** saved the computation at "
-            + Arrays.toString(pointToSample1.toArray()));
-      }
+      Double f_m1 = function.valueAt(pointToSample1);
+      consoleLogger.info("@" + f_m1 + "\t" + pointToSample1.toLogString());
+
       // add to all points
       coordinates.add(ValuePointColored.at(pointToSample1, f_m1, false));
       sampledPoints = sampledPoints + 1;
@@ -475,16 +462,8 @@ public class SAXVSMDirectSampler {
       // Function value at x_m2
       Point pointToSample2 = Point.at(x_m2);
       // TODO: here needs to be a check
-      Double f_m2 = checkCache(pointToSample2, functionHash);
-      if (null == f_m2) {
-        f_m2 = function.valueAt(pointToSample2);
-        consoleLogger.info("@" + f_m2 + "\t" + pointToSample2.toLogString());
-        saveCache(pointToSample2, f_m2, functionHash);
-      }
-      else {
-        consoleLogger.debug("** saved the computation at "
-            + Arrays.toString(pointToSample2.toArray()));
-      }
+      Double f_m2 = function.valueAt(pointToSample2);
+      consoleLogger.info("@" + f_m2 + "\t" + pointToSample2.toLogString());
 
       // add to all points
       coordinates.add(ValuePointColored.at(pointToSample2, f_m2, false));
@@ -507,26 +486,6 @@ public class SAXVSMDirectSampler {
 
     devideRec(w, maxSideLengths, delta, j);
 
-  }
-
-  private static void saveCache(Point point, Double value, HashMap<String, Double> cache) {
-    // formatting the string
-    StringBuffer sb = new StringBuffer();
-    for (double d : point.toArray()) {
-      sb.append(String.format("%d", Math.round(d))).append(" ");
-    }
-    // save the value
-    cache.put(sb.toString(), value);
-    // consoleLogger.info(sb.toString() + ", " + value);
-  }
-
-  private static Double checkCache(Point point, HashMap<String, Double> cache) {
-    // formatting the string
-    StringBuffer sb = new StringBuffer();
-    for (double d : point.toArray()) {
-      sb.append(String.format("%d", Math.round(d))).append(" ");
-    }
-    return cache.get(sb.toString());
   }
 
   /**
@@ -913,6 +872,158 @@ public class SAXVSMDirectSampler {
     return res.toArray(new Integer[res.size()]);
   }
 
+  private static void classify(int params[], NumerosityReductionStrategy strategy) throws Exception {
+
+    int windowSize = Long.valueOf(Math.round(params[0])).intValue();
+    int paaSize = Long.valueOf(Math.round(params[1])).intValue();
+    int alphabetSize = Long.valueOf(Math.round(params[2])).intValue();
+
+    // making training bags collection
+    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, alphabetSize, paaSize,
+        alphabetSize, strategy);
+    // getting TFIDF done
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
+    // classifying
+    int testSampleSize = 0;
+    int positiveTestCounter = 0;
+    for (String label : tfidf.keySet()) {
+      List<double[]> testD = testData.get(label);
+      for (double[] series : testD) {
+        positiveTestCounter = positiveTestCounter
+            + classifyGrammar(label, series, tfidf, windowSize, paaSize, alphabetSize, strategy);
+        testSampleSize++;
+      }
+    }
+
+    // accuracy and error
+    double accuracy = (double) positiveTestCounter / (double) testSampleSize;
+    double error = 1.0d - accuracy;
+
+    // report results
+    // report results
+    consoleLogger.info("time since start: "
+        + SAXProcessor.timeToString(tstamp1, System.currentTimeMillis()));
+    consoleLogger.info("classification results: " + toLogStr(params, accuracy, error));
+
+  }
+
+  private static int classifyGrammar(String classKey, double[] series,
+      HashMap<String, HashMap<String, Double>> tfidf, int windowSize, int paaSize,
+      int alphabetSize, NumerosityReductionStrategy strategy) throws Exception {
+
+    WordBag test = seriesToGrammarWordBag("test", series, windowSize, paaSize, alphabetSize,
+        strategy);
+
+    // it is Cosine similarity,
+    //
+    // which ranges from 0.0 for the angle of 90 to 1.0 for the angle of 0
+    // i.e. LARGES value is a SMALLEST distance
+    double minDist = Double.MIN_VALUE;
+    String className = "";
+    double[] cosines = new double[tfidf.entrySet().size()];
+
+    int index = 0;
+    for (Entry<String, HashMap<String, Double>> e : tfidf.entrySet()) {
+
+      double dist = tu.cosineSimilarity(test, e.getValue());
+      cosines[index] = dist;
+      index++;
+
+      if (dist > minDist) {
+        className = e.getKey();
+        minDist = dist;
+      }
+
+    }
+
+    // sometimes, due to the VECTORs specific layout, all values are the same, NEED to take care
+    boolean allEqual = true;
+    double cosine = cosines[0];
+    for (int i = 1; i < cosines.length; i++) {
+      if (!(cosines[i] == cosine)) {
+        allEqual = false;
+      }
+    }
+
+    // report our findings
+    if (!(allEqual) && className.equalsIgnoreCase(classKey)) {
+      return 1;
+    }
+
+    // System.out.println("all equal " + allEqual + ", assigned to " + className + " instead of " +
+    // classKey);
+
+    return 0;
+  }
+
+  private static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
+      int windowSize, int paaSize, int alphabetSize, NumerosityReductionStrategy strategy)
+      throws Exception {
+
+    // make a map of resulting bags
+    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
+
+    // process series one by one building word bags
+    for (Entry<String, List<double[]>> e : data.entrySet()) {
+
+      String classLabel = e.getKey();
+      WordBag bag = new WordBag(classLabel);
+
+      for (double[] series : e.getValue()) {
+        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, alphabetSize,
+            strategy);
+        bag.mergeWith(cb);
+      }
+
+      preRes.put(classLabel, bag);
+    }
+
+    List<WordBag> res = new ArrayList<WordBag>();
+    res.addAll(preRes.values());
+    return res;
+  }
+
+  private static WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
+      int paaSize, int alphabetSize, NumerosityReductionStrategy strategy) throws Exception {
+
+    WordBag resultBag = new WordBag(label);
+    SAXRecords saxData = sp.ts2saxViaWindow(series, windowSize, paaSize, na.getCuts(alphabetSize),
+        strategy, NORMALIZATION_THRESHOLD);
+    saxData.buildIndex();
+
+    @SuppressWarnings("unused")
+    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
+    RePairRule.expandRules();
+    GrammarRules rules = RePairRule.toGrammarRulesData();
+
+    for (GrammarRuleRecord r : rules) {
+      if (0 == r.getRuleNumber()) {
+        // extracting all basic tokens
+        // for (SaxRecord sr : saxData) {
+        // resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
+        // }
+        // words not in rules
+        GrammarRuleRecord r0 = rules.get(0);
+        String[] split = r0.getRuleString().trim().split("\\s");
+        for (String s : split) {
+          if (s.startsWith("R")) {
+            continue;
+          }
+          resultBag.addWord(s);
+        }
+      }
+      else {
+        // extracting all longer tokens
+        String str = r.getExpandedRuleString();
+        resultBag.addWord(str);
+      }
+    }
+
+    // System.out.println("Strategy: " + strategy.index());
+
+    return resultBag;
+  }
+
   protected static String toLogStr(int[] p, double accuracy, double error) {
 
     StringBuffer sb = new StringBuffer();
@@ -933,5 +1044,4 @@ public class SAXVSMDirectSampler {
 
     return sb.toString();
   }
-
 }
