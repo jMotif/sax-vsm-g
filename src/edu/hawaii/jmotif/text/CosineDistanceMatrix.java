@@ -33,7 +33,9 @@ public class CosineDistanceMatrix {
   public CosineDistanceMatrix(HashMap<String, HashMap<String, Double>> tfidf) {
 
     Locale.setDefault(Locale.US);
-    
+
+    TextUtils textUtils = new TextUtils();
+
     rows = tfidf.keySet().toArray(new String[0]);
 
     Arrays.sort(rows);
@@ -45,7 +47,7 @@ public class CosineDistanceMatrix {
       for (int j = 0; j < i; j++) {
         HashMap<String, Double> vectorA = tfidf.get(rows[i]);
         HashMap<String, Double> vectorB = tfidf.get(rows[j]);
-        double distance = TextUtils.cosineDistance(vectorA, vectorB);
+        double distance = textUtils.cosineSimilarity(vectorA, vectorB);
         distances[i][j] = distance;
       }
     }

@@ -15,9 +15,9 @@ public class TestCosineSimilarity {
 
   private static final double TEST_VALUE = 0.8215838362577491D;
 
-  private static final double TEST_PASS_PRECISION = 0.000000000000001;
+  private static final double TEST_PASS_PRECISION = 0.0001;
 
-  private static final double TEST_FAIL_PRECISION = 0.0000000000000001;
+  private static final double TEST_FAIL_PRECISION = 0.000001;
 
   /**
    * Using a dumb example.
@@ -46,7 +46,9 @@ public class TestCosineSimilarity {
     wb2.addWord("than", 1);
     wb2.addWord("more", 1);
 
-    double cosine = TextUtils.cosineDistance(wb1.getWordsAsDoubles(), wb2.getWordsAsDoubles());
+    TextUtils textUtils = new TextUtils();
+
+    double cosine = textUtils.cosineSimilarity(wb1.getWordsAsDoubles(), wb2.getWordsAsDoubles());
 
     assertEquals("Testing cosine similarity", TEST_VALUE, cosine, TEST_PASS_PRECISION);
   }
@@ -78,7 +80,9 @@ public class TestCosineSimilarity {
     wb2.addWord("than", 1);
     wb2.addWord("more", 1);
 
-    double cosine = TextUtils.cosineDistance(wb1.getWordsAsDoubles(), wb2.getWordsAsDoubles());
+    TextUtils textUtils = new TextUtils();
+
+    double cosine = textUtils.cosineSimilarity(wb1.getWordsAsDoubles(), wb2.getWordsAsDoubles());
     assertEquals("Testing cosine similarity", TEST_VALUE, cosine, TEST_PASS_PRECISION);
 
     // grow the vector
@@ -87,7 +91,7 @@ public class TestCosineSimilarity {
     for (Entry<String, Double> e : wbLong.entrySet()) {
       wbLong.put(e.getKey(), e.getValue() * multiplier);
     }
-    double distLong = TextUtils.cosineDistance(wbLong, wb2.getWordsAsDoubles());
+    double distLong = textUtils.cosineSimilarity(wbLong, wb2.getWordsAsDoubles());
 
     assertEquals("Testing cosine similarity", TEST_VALUE, distLong, TEST_PASS_PRECISION);
 
@@ -95,9 +99,9 @@ public class TestCosineSimilarity {
     HashMap<String, HashMap<String, Double>> vectors = new HashMap<String, HashMap<String, Double>>();
     vectors.put("first", wbLong);
     vectors.put("second", wb2.getWordsAsDoubles());
-    vectors = TextUtils.normalizeToUnitVectors(vectors);
+    vectors = textUtils.normalizeToUnitVectors(vectors);
 
-    double distNorm = TextUtils.cosineDistance(vectors.get("first"), vectors.get("second"));
+    double distNorm = textUtils.cosineSimilarity(vectors.get("first"), vectors.get("second"));
 
     assertEquals("Testing cosine similarity", TEST_VALUE, distNorm, TEST_PASS_PRECISION);
   }

@@ -43,9 +43,10 @@ public class TestTextUtils {
    */
   @Test
   public void testTF() {
-    assertTrue(Double.valueOf(3.0D / 5D).doubleValue() == TextUtils.normalizedTF(bag1, BAG1[0][0]));
-    assertTrue(Double.valueOf(2.0D / 4D).doubleValue() == TextUtils.normalizedTF(bag2, BAG2[1][0]));
-    assertTrue(Double.valueOf(4.0D / 4D).doubleValue() == TextUtils.normalizedTF(bag3, BAG3[3][0]));
+    TextUtils textUtils = new TextUtils();
+    assertTrue(Double.valueOf(3.0D / 5D).doubleValue() == textUtils.normalizedTF(bag1, BAG1[0][0]));
+    assertTrue(Double.valueOf(2.0D / 4D).doubleValue() == textUtils.normalizedTF(bag2, BAG2[1][0]));
+    assertTrue(Double.valueOf(4.0D / 4D).doubleValue() == textUtils.normalizedTF(bag3, BAG3[3][0]));
   }
 
   /**
@@ -53,8 +54,9 @@ public class TestTextUtils {
    */
   @Test
   public void testDF() {
-    assertTrue(3 == TextUtils.df(bags, "the"));
-    assertTrue(1 == TextUtils.df(bags, "meadow"));
+    TextUtils textUtils = new TextUtils();
+    assertTrue(3 == textUtils.df(bags, "the"));
+    assertTrue(1 == textUtils.df(bags, "meadow"));
   }
 
   /**
@@ -62,10 +64,11 @@ public class TestTextUtils {
    */
   @Test
   public void testIDF() {
-    assertTrue(Double.POSITIVE_INFINITY == TextUtils.idf(bags, "non"));
-    assertTrue(1.0D == TextUtils.idf(bags, "the"));
-    assertTrue(3.0D / 2.0D == TextUtils.idf(bags, "hill"));
-    assertTrue(3.0D / 1.0D == TextUtils.idf(bags, "air"));
+    TextUtils textUtils = new TextUtils();
+    assertTrue(Double.POSITIVE_INFINITY == textUtils.idf(bags, "non"));
+    assertTrue(1.0D == textUtils.idf(bags, "the"));
+    assertTrue(3.0D / 2.0D == textUtils.idf(bags, "hill"));
+    assertTrue(3.0D / 1.0D == textUtils.idf(bags, "air"));
   }
 
   /**
@@ -73,13 +76,14 @@ public class TestTextUtils {
    */
   @Test
   public void testTFIDF() {
-    HashMap<String, HashMap<String, Double>> tfidf = TextUtils.computeTFIDF(bags.values());
+    TextUtils textUtils = new TextUtils();
+    HashMap<String, HashMap<String, Double>> tfidf = textUtils.computeTFIDF(bags.values());
     assertTrue(0.0D == tfidf.get("bag1").get("the"));
 
-    double tfHill2 = TextUtils.logTF(bag2, "hill");
-    double tfHill3 = TextUtils.logTF(bag3, "hill");
+    double tfHill2 = textUtils.logTF(bag2, "hill");
+    double tfHill3 = textUtils.logTF(bag3, "hill");
 
-    double idfHill = TextUtils.idf(bags, "hill");
+    double idfHill = textUtils.idf(bags, "hill");
 
     double tfidfHill2 = tfHill2 * Math.log10(idfHill);
 
