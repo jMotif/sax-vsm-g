@@ -1,4 +1,4 @@
-package edu.hawaii.jmotif.sax;
+package edu.hawaii.jmotif.logic;
 
 import java.util.Map;
 

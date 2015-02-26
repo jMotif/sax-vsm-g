@@ -12,10 +12,9 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import edu.hawaii.jmotif.text.SAXNumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
-import edu.hawaii.jmotif.timeseries.TSException;
 import edu.hawaii.jmotif.util.UCRUtils;
 
 /**
@@ -38,8 +37,8 @@ public class SAXVSMClassifier {
   private static Integer WINDOW_SIZE;
   private static Integer PAA_SIZE;
   private static Integer ALPHABET_SIZE;
-  private static SAXNumerosityReductionStrategy STRATEGY;
-  
+  private static NumerosityReductionStrategy STRATEGY;
+
   private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
@@ -56,11 +55,9 @@ public class SAXVSMClassifier {
    * Main CLI runnable.
    * 
    * @param args the command line args.
-   * @throws IOException if error occurs.
-   * @throws IndexOutOfBoundsException if error occurs.
-   * @throws TSException if error occurs.
+   * @throws Exception if error occurs.
    */
-  public static void main(String[] args) throws IOException, IndexOutOfBoundsException, TSException {
+  public static void main(String[] args) throws Exception {
 
     try {
       // args: <train dataset>, <test dataset>, Wsize , Psize, Asize, Startegy
@@ -70,7 +67,7 @@ public class SAXVSMClassifier {
       PAA_SIZE = Integer.valueOf(args[3]);
       ALPHABET_SIZE = Integer.valueOf(args[4]);
 
-      STRATEGY = SAXNumerosityReductionStrategy.valueOf(args[5].toUpperCase());
+      STRATEGY = NumerosityReductionStrategy.valueOf(args[5].toUpperCase());
 
       if (args.length > 6) {
         NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);

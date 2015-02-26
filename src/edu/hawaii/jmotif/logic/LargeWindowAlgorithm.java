@@ -1,4 +1,4 @@
-package edu.hawaii.jmotif.sax;
+package edu.hawaii.jmotif.logic;
 
 
 public class LargeWindowAlgorithm implements SlidingWindowMarkerAlgorithm {
