@@ -108,13 +108,13 @@ public class TextUtils {
           double tfValue = 1.0D + Math.log(Integer.valueOf(wordInBagFrequency).doubleValue());
 
           // OSULeaf: 0.1405
-          // double tfValue = normalizedTF(bag, word.getKey());
+//           double tfValue = normalizedTF(bag, word.getKey());
 
           // OSULeaf: 0.08678
-          // double tfValue = augmentedTF(bag, word.getKey());
+//           double tfValue = augmentedTF(bag, word.getKey());
 
           // OSULeaf: 0.08678
-          // double tfValue = logAveTF(bag, word.getKey());
+//           double tfValue = logAveTF(bag, word.getKey());
 
           // compute the IDF
           //
