@@ -3,7 +3,9 @@ package edu.hawaii.jmotif.cbf;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ public class TestCBFGenerator {
 
   /** The timeseries length. */
   private static final int SERIES_LENGTH = 128;
+  private static final int REPEATS = 5;
 
   /**
    * @param args
@@ -31,34 +34,53 @@ public class TestCBFGenerator {
 
     // cylinder sample
     List<double[]> cylinders = new ArrayList<double[]>();
-    for (int i = 0; i < 3; i++) {
-      cylinders.add(CBFGenerator.cylinder(t));
+    for (int k = 0; k < 35; k++) {
+      double[] arr = new double[SERIES_LENGTH * REPEATS];
+      for (int i = 0; i < REPEATS; i++) {
+        double[] c = CBFGenerator.cylinder(t);
+        for (int j = 0; j < SERIES_LENGTH; j++) {
+          arr[i * SERIES_LENGTH + j] = c[j];
+        }
+      }
+      cylinders.add(arr);
     }
-    save("RCode/test/cylinder.csv", "cylinder", cylinders);
+    save("RCode/CBF_explorer/cylinder.csv", "1", cylinders);
 
     // bell sample
     List<double[]> bells = new ArrayList<double[]>();
-    for (int i = 0; i < 3; i++) {
-      bells.add(CBFGenerator.bell(t));
+    for (int k = 0; k < 35; k++) {
+      double[] arr = new double[SERIES_LENGTH * REPEATS];
+      for (int i = 0; i < REPEATS; i++) {
+        double[] c = CBFGenerator.bell(t);
+        for (int j = 0; j < SERIES_LENGTH; j++) {
+          arr[i * SERIES_LENGTH + j] = c[j];
+        }
+      }
+      bells.add(arr);
     }
-    save("RCode/test/bell.csv", "bell", bells);
+    save("RCode/CBF_explorer/bell.csv", "2", bells);
 
     // funnel sample
     List<double[]> funnels = new ArrayList<double[]>();
-    for (int i = 0; i < 3; i++) {
-      funnels.add(CBFGenerator.funnel(t));
+    for (int k = 0; k < 35; k++) {
+      double[] arr = new double[SERIES_LENGTH * REPEATS];
+      for (int i = 0; i < REPEATS; i++) {
+        double[] c = CBFGenerator.funnel(t);
+        for (int j = 0; j < SERIES_LENGTH; j++) {
+          arr[i * SERIES_LENGTH + j] = c[j];
+        }
+      }
+      funnels.add(arr);
     }
-    save("RCode/test/funnel.csv", "funnel", funnels);
+    save("RCode/CBF_explorer/funnel.csv", "3", funnels);
 
   }
 
   private static void save(String fname, String prefix, List<double[]> data) throws IOException {
     BufferedWriter bw = new BufferedWriter(new FileWriter(fname));
-    bw.write("x," + prefix + String.valueOf(0) + "," + prefix + String.valueOf(1) + "," + prefix
-        + String.valueOf(2) + "\n");
-    for (int i = 0; i < SERIES_LENGTH; i++) {
-      bw.write(String.valueOf(i) + "," + data.get(0)[i] + "," + data.get(1)[i] + ","
-          + data.get(2)[i] + "\n");
+    for (double[] arr : data) {
+      bw.write(prefix + " "
+          + Arrays.toString(arr).replace("[", "").replace("]", "").replace(",", " ") + "\n");
     }
     bw.close();
   }

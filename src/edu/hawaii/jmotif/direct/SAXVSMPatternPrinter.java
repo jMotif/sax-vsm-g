@@ -143,7 +143,8 @@ public class SAXVSMPatternPrinter {
         //
         StringBuffer seriesBuff = new StringBuffer("series = c(");
         StringBuffer offsetBuff = new StringBuffer("offsets = c(");
-        Map<Integer, Integer[]> hits = getPatternLocationsForTheClass(className, trainData,
+        StringBuffer lengthBuff = new StringBuffer("lengths = c(");
+        Map<Integer, Integer[]> hits = getPatternLocationsForTheClass(className, testData,
             pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
         int k = 0;
         int printedK = 0;
