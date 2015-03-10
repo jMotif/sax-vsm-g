@@ -12,15 +12,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import edu.hawaii.jmotif.repair.GrammarRuleRecord;
-import edu.hawaii.jmotif.repair.GrammarRules;
 import edu.hawaii.jmotif.repair.RePairFactory;
-import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
-import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
 import edu.hawaii.jmotif.util.StackTrace;
@@ -36,9 +32,6 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
 
   public static final Character DELIMITER = '~';
 
-  /** The latin alphabet, lower case letters a-z. */
-  private static final char[] ALPHABET = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-      'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
   private Alphabet na = new NormalAlphabet();
 
   // the default normalization threshold
@@ -134,8 +127,9 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
         String classLabel = seriesKey.substring(0, seriesKey.indexOf(DELIMITER));
         double[] series = e.getValue();
 
-        WordBag seriesBag = seriesToGrammarWordBag(seriesKey, series, windowSize, paaSize,
-            alphabetSize, numerosityReductionStrategy);
+        WordBag seriesBag = RePairFactory
+            .seriesToGrammarWordBag(seriesKey, series, windowSize, paaSize,
+                na.getCuts(alphabetSize), numerosityReductionStrategy, NORMALIZATION_THRESHOLD);
 
         samples2go.push(seriesKey);
 
@@ -286,47 +280,6 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
     // classKey);
 
     return 0;
-  }
-
-  private WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
-      int paaSize, int alphabetSize, NumerosityReductionStrategy strategy) throws Exception {
-
-    WordBag resultBag = new WordBag(label);
-    SAXRecords saxData = sp.ts2saxViaWindow(series, windowSize, paaSize, na.getCuts(alphabetSize),
-        strategy, this.NORMALIZATION_THRESHOLD);
-    saxData.buildIndex();
-
-    @SuppressWarnings("unused")
-    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
-    RePairRule.expandRules();
-    GrammarRules rules = RePairRule.toGrammarRulesData();
-
-    for (GrammarRuleRecord r : rules) {
-      if (0 == r.getRuleNumber()) {
-        // extracting all basic tokens
-        // for (SaxRecord sr : saxData) {
-        // resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
-        // }
-        // words not in rules
-        GrammarRuleRecord r0 = rules.get(0);
-        String[] split = r0.getRuleString().trim().split("\\s");
-        for (String s : split) {
-          if (s.startsWith("R")) {
-            continue;
-          }
-          resultBag.addWord(s);
-        }
-      }
-      else {
-        // extracting all longer tokens
-        String str = r.getExpandedRuleString();
-        resultBag.addWord(str);
-      }
-    }
-
-    // System.out.println("Strategy: " + strategy.index());
-
-    return resultBag;
   }
 
 }

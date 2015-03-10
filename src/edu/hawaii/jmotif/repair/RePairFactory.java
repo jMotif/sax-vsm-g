@@ -1,7 +1,10 @@
 package edu.hawaii.jmotif.repair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -9,8 +12,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
+import edu.hawaii.jmotif.sax.SAXProcessor;
+import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
+import edu.hawaii.jmotif.text.WordBag;
 
 public final class RePairFactory {
 
@@ -25,11 +32,109 @@ public final class RePairFactory {
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
+  //
+  private static final NormalAlphabet na = new NormalAlphabet();
+  private static final SAXProcessor sp = new SAXProcessor();
+
   /**
    * Disable constructor.
    */
   private RePairFactory() {
     assert true;
+  }
+
+  /**
+   * Converts a time series sample to word bags.
+   * 
+   * @param data
+   * @param windowSize
+   * @param paaSize
+   * @param cuts
+   * @param strategy
+   * @param nThreshold
+   * @return
+   * @throws Exception
+   */
+  public static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
+      int windowSize, int paaSize, double[] cuts, NumerosityReductionStrategy strategy,
+      double nThreshold) throws Exception {
+
+    // make a map of resulting bags
+    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
+
+    // process series one by one building word bags
+    for (Entry<String, List<double[]>> e : data.entrySet()) {
+
+      String classLabel = e.getKey();
+      WordBag bag = new WordBag(classLabel);
+
+      for (double[] series : e.getValue()) {
+        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, cuts, strategy,
+            nThreshold);
+        bag.mergeWith(cb);
+      }
+
+      preRes.put(classLabel, bag);
+    }
+
+    List<WordBag> res = new ArrayList<WordBag>();
+    res.addAll(preRes.values());
+    return res;
+  }
+
+  /**
+   * Converts a single time series into a words bag.
+   * 
+   * @param label
+   * @param series
+   * @param windowSize
+   * @param paaSize
+   * @param cuts
+   * @param strategy
+   * @param nThreshold
+   * @return
+   * @throws Exception
+   */
+  public static WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
+      int paaSize, double[] cuts, NumerosityReductionStrategy strategy, double nThreshold)
+      throws Exception {
+
+    WordBag resultBag = new WordBag(label);
+    SAXRecords saxData = sp
+        .ts2saxViaWindow(series, windowSize, paaSize, cuts, strategy, nThreshold);
+    saxData.buildIndex();
+
+    @SuppressWarnings("unused")
+    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
+    RePairRule.expandRules();
+    GrammarRules rules = RePairRule.toGrammarRulesData();
+
+    for (GrammarRuleRecord r : rules) {
+      if (0 == r.getRuleNumber()) {
+        // extracting all basic tokens
+        // for (SaxRecord sr : saxData) {
+        // resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
+        // }
+        // words not in rules
+        GrammarRuleRecord r0 = rules.get(0);
+        String[] split = r0.getRuleString().trim().split("\\s");
+        for (String s : split) {
+          if (s.startsWith("R")) {
+            continue;
+          }
+          resultBag.addWord(s);
+        }
+      }
+      else {
+        // extracting all longer tokens
+        String str = r.getExpandedRuleString();
+        resultBag.addWord(str);
+      }
+    }
+
+    // System.out.println("Strategy: " + strategy.index());
+
+    return resultBag;
   }
 
   public static RePairRule buildGrammar(SAXRecords saxRecords) {

@@ -2,7 +2,6 @@ package edu.hawaii.jmotif.direct;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,14 +11,10 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import edu.hawaii.jmotif.repair.GrammarRuleRecord;
-import edu.hawaii.jmotif.repair.GrammarRules;
 import edu.hawaii.jmotif.repair.RePairFactory;
-import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
-import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
 import edu.hawaii.jmotif.util.UCRUtils;
@@ -109,8 +104,8 @@ public class SAXVSMGrammarClassifier {
     sp = new SAXProcessor();
 
     // making training bags collection
-    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE, PAA_SIZE,
-        na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+    List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
+        PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
     // classifying
@@ -119,7 +114,7 @@ public class SAXVSMGrammarClassifier {
     for (String label : tfidf.keySet()) {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
-        WordBag test = seriesToGrammarWordBag("tmp", series, WINDOW_SIZE, PAA_SIZE,
+        WordBag test = RePairFactory.seriesToGrammarWordBag("tmp", series, WINDOW_SIZE, PAA_SIZE,
             na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
         String testLabel = tu.classify(test, tfidf);
         if (label.equalsIgnoreCase(testLabel)) {
@@ -137,75 +132,6 @@ public class SAXVSMGrammarClassifier {
     consoleLogger.info("classification results: accuracy " + fmt.format(accuracy) + ", error "
         + fmt.format(error));
 
-  }
-
-  private static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
-      int windowSize, int paaSize, double[] cuts, NumerosityReductionStrategy strategy,
-      double nThreshold) throws Exception {
-
-    // make a map of resulting bags
-    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
-
-    // process series one by one building word bags
-    for (Entry<String, List<double[]>> e : data.entrySet()) {
-
-      String classLabel = e.getKey();
-      WordBag bag = new WordBag(classLabel);
-
-      for (double[] series : e.getValue()) {
-        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, cuts, strategy,
-            nThreshold);
-        bag.mergeWith(cb);
-      }
-
-      preRes.put(classLabel, bag);
-    }
-
-    List<WordBag> res = new ArrayList<WordBag>();
-    res.addAll(preRes.values());
-    return res;
-  }
-
-  private static WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
-      int paaSize, double[] cuts, NumerosityReductionStrategy strategy, double nThreshold)
-      throws Exception {
-
-    WordBag resultBag = new WordBag(label);
-    SAXRecords saxData = sp
-        .ts2saxViaWindow(series, windowSize, paaSize, cuts, strategy, nThreshold);
-    saxData.buildIndex();
-
-    @SuppressWarnings("unused")
-    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
-    RePairRule.expandRules();
-    GrammarRules rules = RePairRule.toGrammarRulesData();
-
-    for (GrammarRuleRecord r : rules) {
-      if (0 == r.getRuleNumber()) {
-        // extracting all basic tokens
-        // for (SaxRecord sr : saxData) {
-        // resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
-        // }
-        // words not in rules
-        GrammarRuleRecord r0 = rules.get(0);
-        String[] split = r0.getRuleString().trim().split("\\s");
-        for (String s : split) {
-          if (s.startsWith("R")) {
-            continue;
-          }
-          resultBag.addWord(s);
-        }
-      }
-      else {
-        // extracting all longer tokens
-        String str = r.getExpandedRuleString();
-        resultBag.addWord(str);
-      }
-    }
-
-    // System.out.println("Strategy: " + strategy.index());
-
-    return resultBag;
   }
 
 }

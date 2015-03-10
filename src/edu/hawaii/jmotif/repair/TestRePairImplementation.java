@@ -45,16 +45,9 @@ public class TestRePairImplementation {
     // Date expandEnd = new Date();
 
     String recoveredString = RePairRule.recoverString();
-
-    // System.out.println("RePair grammar:\n" + RePairRule.toGrammarRules());
-
-    // System.out.println("Recovered string:\n" + recoveredString);
-
-    // System.out.println("Grammar built in  "
-    // + SAXFactory.timeToString(start.getTime(), grammarEnd.getTime()));
-
-    // System.out.println("Rules exanded in "
-    // + SAXFactory.timeToString(grammarEnd.getTime(), expandEnd.getTime()));
+//    System.out.println("RePair grammar:\n" + RePairRule.toGrammarRules());
+//    System.out.println("Recovered string:\n" + recoveredString);
+//    System.out.println("Original SAX string:\n" + saxData.getSAXString(" "));
 
     assertNotNull(grammar);
     assertTrue(inputString.trim().equalsIgnoreCase(recoveredString.trim()));
