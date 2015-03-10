@@ -13,6 +13,7 @@ import java.util.Map;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.repair.BagConstructionStrategy;
 import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.SAXProcessor;
@@ -98,8 +99,11 @@ public class SAXVSMContinuousGrammarSampler {
 
   private static Map<String, List<double[]>> trainData;
   private static Map<String, List<double[]>> testData;
-  private static NumerosityReductionStrategy STRATEGY = null;
   private static long tstamp1;
+
+  private static NumerosityReductionStrategy STRATEGY = null;
+
+  private static BagConstructionStrategy BAG_STRATEGY = BagConstructionStrategy.ALL;
 
   /**
    * Main runnable.
@@ -116,7 +120,7 @@ public class SAXVSMContinuousGrammarSampler {
       tstamp1 = System.currentTimeMillis();
 
       // odd a bit, but whatever, it works
-      if (10 == args.length || 11 == args.length || 12 == args.length) {
+      if (10 == args.length || 11 == args.length || 12 == args.length || 13 == args.length) {
 
         // working on train data
         TRAINING_DATA = args[0];
@@ -147,6 +151,9 @@ public class SAXVSMContinuousGrammarSampler {
           STRATEGY = NumerosityReductionStrategy.valueOf(args[11].toUpperCase());
         }
 
+        if (args.length > 12) {
+          BAG_STRATEGY = BagConstructionStrategy.valueOf(args[12].toUpperCase());
+        }
       }
       else {
         System.out.print(printHelp());
@@ -200,8 +207,10 @@ public class SAXVSMContinuousGrammarSampler {
     sb.append(" [8] maximal amount of sampling iterations").append(CR);
     sb.append(" [9] OPTIONAL: normalization threshold").append(CR);
     sb.append(" [10] OPTIONAL: specific NR restriction").append(CR);
+    sb.append(" [11] OPTIONAL: bag construction strategy").append(CR);
     sb.append("An execution example: $java -cp \"sax-vsm-classic20.jar\" edu.hawaii.jmotif.direct.SAXVSMDirectSampler");
-    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10 0.01 EXACT").append(CR);
+    sb.append(" data/cbf/CBF_TRAIN data/cbf/CBF_TEST 10 120 5 60 2 18 1 10 0.01 EXACT ALL").append(
+        CR);
     return sb.toString();
   }
 
@@ -216,9 +225,9 @@ public class SAXVSMContinuousGrammarSampler {
 
     // making training bags collection
     List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, windowSize,
-        paaSize, na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD);
+        paaSize, na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD, BAG_STRATEGY);
     // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
     // classifying
     int testSampleSize = 0;
     int positiveTestCounter = 0;
@@ -226,7 +235,7 @@ public class SAXVSMContinuousGrammarSampler {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         WordBag test = RePairFactory.seriesToGrammarWordBag("tmp", series, windowSize, paaSize,
-            na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD);
+            na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD, BAG_STRATEGY);
         String testLabel = tu.classify(test, tfidf);
         if (label.equalsIgnoreCase(testLabel)) {
           positiveTestCounter++;
@@ -249,7 +258,7 @@ public class SAXVSMContinuousGrammarSampler {
   private static int[] sample(NumerosityReductionStrategy strategy) {
 
     function = new SAXVSMGrammarCVErrorFunction(trainData, HOLD_OUT_NUM, strategy,
-        NORMALIZATION_THRESHOLD);
+        NORMALIZATION_THRESHOLD, BAG_STRATEGY);
     // the whole bunch of inits
     //
     centerPoints = new ArrayList<Double[]>();

@@ -12,9 +12,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.repair.BagConstructionStrategy;
 import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.alphabet.Alphabet;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.text.TextUtils;
@@ -37,8 +37,11 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
   // the default normalization threshold
   private double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
 
-  // the default numerosity strategy
+  // the numerosity reduction strategy
   private NumerosityReductionStrategy numerosityReductionStrategy;
+
+  // the bag construction strategy
+  private BagConstructionStrategy bagStrategy;
 
   // the data
   private Map<String, double[]> tsData;
@@ -47,7 +50,6 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
   private int holdOutSampleSize;
 
   private TextUtils tu;
-  private SAXProcessor sp;
 
   // static block - we instantiate the logger
   //
@@ -65,10 +67,10 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
    * @param holdOutSampleSize
    */
   public SAXVSMGrammarCVErrorFunction(Map<String, List<double[]>> data, int holdOutSampleSize,
-      NumerosityReductionStrategy strategy, double normalizationThresholdValue) {
+      NumerosityReductionStrategy strategy, double normalizationThresholdValue,
+      BagConstructionStrategy bagStrategyValue) {
 
     this.tsData = new HashMap<String, double[]>();
-    this.sp = new SAXProcessor();
     this.tu = new TextUtils();
 
     for (Entry<String, List<double[]>> e : data.entrySet()) {
@@ -83,6 +85,7 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
     this.holdOutSampleSize = holdOutSampleSize;
     this.numerosityReductionStrategy = strategy;
     this.NORMALIZATION_THRESHOLD = normalizationThresholdValue;
+    this.bagStrategy = bagStrategyValue;
   }
 
   /**
@@ -127,9 +130,9 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
         String classLabel = seriesKey.substring(0, seriesKey.indexOf(DELIMITER));
         double[] series = e.getValue();
 
-        WordBag seriesBag = RePairFactory
-            .seriesToGrammarWordBag(seriesKey, series, windowSize, paaSize,
-                na.getCuts(alphabetSize), numerosityReductionStrategy, NORMALIZATION_THRESHOLD);
+        WordBag seriesBag = RePairFactory.seriesToGrammarWordBag(seriesKey, series, windowSize,
+            paaSize, na.getCuts(alphabetSize), numerosityReductionStrategy,
+            NORMALIZATION_THRESHOLD, bagStrategy);
 
         samples2go.push(seriesKey);
 
@@ -189,7 +192,8 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
         // all stuff from the cache will build a classifier vectors
         //
         // compute TFIDF statistics for training set
-        HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(basisBags.values());
+        HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(basisBags
+            .values());
 
         // Classifying...
         // is this sample correctly classified?

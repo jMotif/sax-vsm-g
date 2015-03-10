@@ -14,8 +14,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.TSProcessor;
-import edu.hawaii.jmotif.sax.alphabet.Alphabet;
-import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 
 /**
  * Implements text statistics and mining utilities.
@@ -30,7 +28,6 @@ public class TextUtils {
   private static final String CR = "\n";
   private static final DecimalFormat df = new DecimalFormat("#0.00000");
 
-  private static final Alphabet a = new NormalAlphabet();
   private TSProcessor tsp;
   private SAXProcessor sp;
 
@@ -125,6 +122,96 @@ public class TextUtils {
           //
           tfidf = tfValue * idfLOGValue;
 
+          // if (word.getKey().contains(" ")) {
+          // int spaceCount = word.getKey().length() - word.getKey().replaceAll(" ", "").length()
+          // + 1;
+          // tfidf = tfidf * spaceCount;
+          // }
+
+        }
+
+        res.get(bagName).put(word.getKey(), tfidf);
+
+      }
+    }
+    return res;
+  }
+
+  /**
+   * Instrumented TF*IDF for sax-vsm-g.
+   * 
+   * @param texts The collection of text documents for which the statistics need to be computed.
+   * @return The map of source documents names to the word - tf*idf weight collections.
+   */
+  public HashMap<String, HashMap<String, Double>> computeTFIDFInstrumented(Collection<WordBag> texts) {
+
+    // the number of docs
+    int totalDocs = texts.size();
+
+    // the result. map of document names to the pairs word - tfidf weight
+    HashMap<String, HashMap<String, Double>> res = new HashMap<String, HashMap<String, Double>>();
+
+    // build a collection of all observed words and their frequency in corpus
+    HashMap<String, AtomicInteger> allWords = new HashMap<String, AtomicInteger>();
+    for (WordBag bag : texts) {
+
+      // here populate result map with empty entries
+      res.put(bag.getLabel(), new HashMap<String, Double>());
+
+      // and get those words
+      for (Entry<String, AtomicInteger> e : bag.getInternalWords().entrySet()) {
+
+        if (allWords.containsKey(e.getKey())) {
+          allWords.get(e.getKey()).incrementAndGet();
+        }
+        else {
+          allWords.put(e.getKey(), new AtomicInteger(1));
+        }
+      }
+
+    }
+
+    // outer loop - iterating over documents
+    for (WordBag bag : texts) {
+
+      // fix the doc name
+      String bagName = bag.getLabel();
+      HashMap<String, AtomicInteger> bagWords = bag.getInternalWords(); // these are words of
+                                                                        // documents
+
+      // what we want to do for TF*IDF is to compute it for all WORDS ever seen in set
+      //
+      for (Entry<String, AtomicInteger> word : allWords.entrySet()) {
+
+        // by default it is zero
+        //
+        double tfidf = 0;
+
+        // if (totalDocs == word.getValue().intValue()) {
+        // System.out.println("excluded: " + word.getKey());
+        // }
+        // if this document contains the word - here we go
+        if (bagWords.containsKey(word.getKey()) & (totalDocs != word.getValue().intValue())) {
+
+          int wordInBagFrequency = bagWords.get(word.getKey()).intValue();
+
+          // OSULeaf: 0.08678
+          double tfValue = 1.0D + Math.log(Integer.valueOf(wordInBagFrequency).doubleValue());
+
+          // compute the IDF
+          //
+          double idfLOGValue = Math.log10(Integer.valueOf(totalDocs).doubleValue()
+              / word.getValue().doubleValue());
+
+          // and the TF-IDF
+          //
+          tfidf = tfValue * idfLOGValue;
+
+          // and adjust for the Rule yield
+          //
+          if (null == word.getKey()) {
+            System.out.println("Gotcha!");
+          }
           if (word.getKey().contains(" ")) {
             int spaceCount = word.getKey().length() - word.getKey().replaceAll(" ", "").length()
                 + 1;

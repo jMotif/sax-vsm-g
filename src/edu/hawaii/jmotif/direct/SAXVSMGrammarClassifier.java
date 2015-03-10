@@ -11,9 +11,9 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.repair.BagConstructionStrategy;
 import edu.hawaii.jmotif.repair.RePairFactory;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
 import edu.hawaii.jmotif.text.TextUtils;
 import edu.hawaii.jmotif.text.WordBag;
@@ -44,7 +44,7 @@ public class SAXVSMGrammarClassifier {
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
   private static NormalAlphabet na;
   private static TextUtils tu;
-  private static SAXProcessor sp;
+  private static BagConstructionStrategy BAG_STRATEGY;
 
   // static block - we instantiate the logger
   //
@@ -77,6 +77,8 @@ public class SAXVSMGrammarClassifier {
         NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);
       }
 
+      BAG_STRATEGY = BagConstructionStrategy.valueOf(args[7].toUpperCase());
+
       TRAINING_DATA = args[0];
       TEST_DATA = args[1];
       trainData = UCRUtils.readUCRData(TRAINING_DATA);
@@ -101,13 +103,12 @@ public class SAXVSMGrammarClassifier {
 
     na = new NormalAlphabet();
     tu = new TextUtils();
-    sp = new SAXProcessor();
 
     // making training bags collection
     List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
-        PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+        PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD, BAG_STRATEGY);
     // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
     // classifying
     int testSampleSize = 0;
     int positiveTestCounter = 0;
@@ -115,7 +116,7 @@ public class SAXVSMGrammarClassifier {
       List<double[]> testD = testData.get(label);
       for (double[] series : testD) {
         WordBag test = RePairFactory.seriesToGrammarWordBag("tmp", series, WINDOW_SIZE, PAA_SIZE,
-            na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+            na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD, BAG_STRATEGY);
         String testLabel = tu.classify(test, tfidf);
         if (label.equalsIgnoreCase(testLabel)) {
           positiveTestCounter++;
