@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -103,7 +105,7 @@ public class SAXVSMContinuousGrammarSampler {
 
   private static NumerosityReductionStrategy STRATEGY = null;
 
-  private static BagConstructionStrategy BAG_STRATEGY = BagConstructionStrategy.ALL;
+  private static BagConstructionStrategy BAG_STRATEGY = BagConstructionStrategy.REDUCED;
 
   /**
    * Main runnable.
@@ -116,6 +118,7 @@ public class SAXVSMContinuousGrammarSampler {
     try {
 
       // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout, Iterations
+      consoleLogger.info("Current date: " + (new DateTime(DateTimeZone.UTC)).toString());
       consoleLogger.info("processing parameters: " + Arrays.toString(args));
       tstamp1 = System.currentTimeMillis();
 
@@ -148,7 +151,9 @@ public class SAXVSMContinuousGrammarSampler {
         }
 
         if (args.length > 11) {
-          STRATEGY = NumerosityReductionStrategy.valueOf(args[11].toUpperCase());
+          if (!"*".equalsIgnoreCase(args[11])) {
+            STRATEGY = NumerosityReductionStrategy.valueOf(args[11].toUpperCase());
+          }
         }
 
         if (args.length > 12) {

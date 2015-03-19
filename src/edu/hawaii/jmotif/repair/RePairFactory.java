@@ -104,7 +104,7 @@ public final class RePairFactory {
         .ts2saxViaWindow(series, windowSize, paaSize, cuts, strategy, nThreshold);
     saxData.buildIndex();
 
-    // add all SAX words if ALL strategy
+    // add all SAX words if ALL strategy THIS WILL NOT WORK FOR REDUCED and COMPRESSED strategies
     //
     if (BagConstructionStrategy.ALL == bagStrategy) {
       for (SaxRecord sr : saxData) {
@@ -121,11 +121,11 @@ public final class RePairFactory {
 
     for (GrammarRuleRecord r : rules) {
 
-      // if the strategy is reduced we shall be adding basic tokens here
+      // if the strategy is REDUCED we shall be adding basic tokens here
+      //
       if (0 == r.getRuleNumber()) {
 
         if (BagConstructionStrategy.REDUCED == bagStrategy) {
-
           // extracting all basic tokens
           //
           GrammarRuleRecord r0 = rules.get(0);
@@ -136,7 +136,6 @@ public final class RePairFactory {
             }
             resultBag.addWord(s);
           }
-
         }
 
       }
@@ -570,5 +569,34 @@ public final class RePairFactory {
       sb.append(string.get(i).toString()).append(SPACE);
     }
     return sb.toString();
+  }
+
+  public static List<WordBag> labeledSeries2ConcatenatedGrammarWordBags(
+      Map<String, List<double[]>> data, int windowSize, int paaSize, double[] cuts,
+      NumerosityReductionStrategy strategy, double nThreshold, BagConstructionStrategy bagStrategy)
+      throws Exception {
+
+    // make a map of resulting bags
+    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
+    Map<String, String> preStrings = new HashMap<String, String>();
+
+    // process series one by one building word bags
+    for (Entry<String, List<double[]>> e : data.entrySet()) {
+
+      String classLabel = e.getKey();
+      WordBag bag = new WordBag(classLabel);
+
+      for (double[] series : e.getValue()) {
+        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, cuts, strategy,
+            nThreshold, bagStrategy);
+        bag.mergeWith(cb);
+      }
+
+      preRes.put(classLabel, bag);
+    }
+
+    List<WordBag> res = new ArrayList<WordBag>();
+    res.addAll(preRes.values());
+    return res;
   }
 }

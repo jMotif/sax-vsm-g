@@ -12,7 +12,10 @@ public enum BagConstructionStrategy {
   ALL(0),
 
   /** Only stand-alone words and expanded rules. */
-  REDUCED(1);
+  REDUCED(1),
+
+  /** Only rule sequences. */
+  COMPRESSED(2);
 
   private final int index;
 
@@ -46,6 +49,8 @@ public enum BagConstructionStrategy {
       return BagConstructionStrategy.ALL;
     case 1:
       return BagConstructionStrategy.REDUCED;
+    case 2:
+      return BagConstructionStrategy.COMPRESSED;
     default:
       throw new RuntimeException("Unknown index:" + value);
     }
@@ -57,6 +62,8 @@ public enum BagConstructionStrategy {
       return "ALL";
     case 1:
       return "REDUCED";
+    case 2:
+      return "COMPRESSED";
     default:
       throw new RuntimeException("Unknown index:" + this.index);
     }

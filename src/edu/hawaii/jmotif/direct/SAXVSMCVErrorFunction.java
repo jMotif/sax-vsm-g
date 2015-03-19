@@ -97,6 +97,10 @@ public class SAXVSMCVErrorFunction implements AbstractErrorFunction {
     int paaSize = Long.valueOf(Math.round(coords[1])).intValue();
     int alphabetSize = Long.valueOf(Math.round(coords[2])).intValue();
 
+    if (windowSize < paaSize) {
+      windowSize = paaSize;
+    }
+
     // if we stepped above window length with PAA size - for some reason - return the max possible
     // error value
     if (paaSize > windowSize) {

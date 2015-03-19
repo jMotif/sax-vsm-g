@@ -13,11 +13,10 @@ import org.junit.Test;
  */
 public class TestCosineSimilarity {
 
-  private static final double TEST_VALUE = 0.8215838362577491D;
+  private static final double TEST_VALUE = 74.23783324621635D;
+  private static final double TEST_VALUE_UNNORMALIZED = 9.0D;
 
   private static final double TEST_PASS_PRECISION = 0.0001;
-
-  private static final double TEST_FAIL_PRECISION = 0.000001;
 
   /**
    * Using a dumb example.
@@ -50,7 +49,7 @@ public class TestCosineSimilarity {
 
     double cosine = textUtils.cosineSimilarity(wb1.getWordsAsDoubles(), wb2.getWordsAsDoubles());
 
-    assertEquals("Testing cosine similarity", TEST_VALUE, cosine, TEST_PASS_PRECISION);
+    assertEquals("Testing cosine similarity", TEST_VALUE_UNNORMALIZED, cosine, TEST_PASS_PRECISION);
   }
 
   /**
@@ -83,7 +82,7 @@ public class TestCosineSimilarity {
     TextUtils textUtils = new TextUtils();
 
     double cosine = textUtils.cosineSimilarity(wb1.getWordsAsDoubles(), wb2.getWordsAsDoubles());
-    assertEquals("Testing cosine similarity", TEST_VALUE, cosine, TEST_PASS_PRECISION);
+    assertEquals("Testing cosine similarity", TEST_VALUE_UNNORMALIZED, cosine, TEST_PASS_PRECISION);
 
     // grow the vector
     HashMap<String, Double> wbLong = wb1.getWordsAsDoubles();
@@ -99,7 +98,7 @@ public class TestCosineSimilarity {
     HashMap<String, HashMap<String, Double>> vectors = new HashMap<String, HashMap<String, Double>>();
     vectors.put("first", wbLong);
     vectors.put("second", wb2.getWordsAsDoubles());
-    vectors = textUtils.normalizeToUnitVectors(vectors);
+    // vectors = textUtils.normalizeToUnitVectors(vectors);
 
     double distNorm = textUtils.cosineSimilarity(vectors.get("first"), vectors.get("second"));
 

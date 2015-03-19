@@ -13,10 +13,8 @@ import java.util.Map.Entry;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import edu.hawaii.jmotif.repair.GrammarRuleRecord;
-import edu.hawaii.jmotif.repair.GrammarRules;
+import edu.hawaii.jmotif.repair.BagConstructionStrategy;
 import edu.hawaii.jmotif.repair.RePairFactory;
-import edu.hawaii.jmotif.repair.RePairRule;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.TSProcessor;
@@ -35,7 +33,7 @@ import edu.hawaii.jmotif.util.UCRUtils;
 public class SAXVSMPatternPrinter {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
-  private static DecimalFormat fmt = new DecimalFormat("0.00###", otherSymbols);
+  private static DecimalFormat df = new DecimalFormat("0.00###", otherSymbols);
 
   private static String TRAINING_DATA;
   private static String TEST_DATA;
@@ -117,35 +115,48 @@ public class SAXVSMPatternPrinter {
     tsp = new TSProcessor();
 
     // making training bags collection
-    List<WordBag> bags = labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE, PAA_SIZE,
-        na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+    List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
+        PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD,
+        BagConstructionStrategy.REDUCED);
+
     // getting TFIDF done
-    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDF(bags);
+    HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
 
-    tfidf = tu.normalizeToUnitVectors(tfidf);
+    // get these normalized
+    // tfidf = tu.normalizeToUnitVectors(tfidf);
 
-    // get best patterns for each class
-    DecimalFormat df = new DecimalFormat("0.00##");
+    // get best patterns for each class printed
+    //
     for (Entry<String, HashMap<String, Double>> e : tfidf.entrySet()) {
 
+      // sort the class' patterns
+      //
       String className = e.getKey();
-
       ArrayList<Entry<String, Double>> values = new ArrayList<Entry<String, Double>>();
       values.addAll(e.getValue().entrySet());
-
       Collections.sort(values, new TfIdfEntryComparator());
 
+      // print the class' key
+      //
       System.out.print("Class key: " + className + CR);
+
+      // while stopping criterion isn't met, iterate
+      //
       for (int i = 0; i < MAX_PATTERNS_2PRINT; i++) {
+
+        // the pattern we working with
         String pattern = values.get(i).getKey();
         Double weight = values.get(i).getValue();
         System.out.println("pattern=\"" + pattern + "\"; weight=" + df.format(weight));
-        //
+
+        // init buffers
         StringBuffer seriesBuff = new StringBuffer("series = c(");
         StringBuffer offsetBuff = new StringBuffer("offsets = c(");
         StringBuffer lengthBuff = new StringBuffer("lengths = c(");
-        Map<Integer, Integer[]> hits = getPatternLocationsForTheClass(className, testData,
-            pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
+
+        Map<Integer, Integer[]> hits = getPatternLocationsForTheClass(className, testData, pattern,
+            WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
+
         int k = 0;
         int printedK = 0;
         do {
@@ -187,8 +198,9 @@ public class SAXVSMPatternPrinter {
       List<double[]> testD = testData.get(label);
 
       for (double[] series : testD) {
-        WordBag test = seriesToGrammarWordBag("tmp", series, WINDOW_SIZE, PAA_SIZE,
-            na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD);
+        WordBag test = RePairFactory.seriesToGrammarWordBag("tmp", series, WINDOW_SIZE, PAA_SIZE,
+            na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD,
+            BagConstructionStrategy.REDUCED);
         String testLabel = tu.classify(test, tfidf);
 
         if (label.equalsIgnoreCase(testLabel)) {
@@ -207,8 +219,8 @@ public class SAXVSMPatternPrinter {
     double error = 1.0d - accuracy;
 
     // report results
-    consoleLogger.info("classification results: accuracy " + fmt.format(accuracy) + ", error "
-        + fmt.format(error));
+    consoleLogger.info("classification results: accuracy " + df.format(accuracy) + ", error "
+        + df.format(error));
 
   }
 
@@ -240,75 +252,6 @@ public class SAXVSMPatternPrinter {
     }
 
     return res;
-  }
-
-  private static List<WordBag> labeledSeries2GrammarWordBags(Map<String, List<double[]>> data,
-      int windowSize, int paaSize, double[] cuts, NumerosityReductionStrategy strategy,
-      double nThreshold) throws Exception {
-
-    // make a map of resulting bags
-    Map<String, WordBag> preRes = new HashMap<String, WordBag>();
-
-    // process series one by one building word bags
-    for (Entry<String, List<double[]>> e : data.entrySet()) {
-
-      String classLabel = e.getKey();
-      WordBag bag = new WordBag(classLabel);
-
-      for (double[] series : e.getValue()) {
-        WordBag cb = seriesToGrammarWordBag("tmp", series, windowSize, paaSize, cuts, strategy,
-            nThreshold);
-        bag.mergeWith(cb);
-      }
-
-      preRes.put(classLabel, bag);
-    }
-
-    List<WordBag> res = new ArrayList<WordBag>();
-    res.addAll(preRes.values());
-    return res;
-  }
-
-  private static WordBag seriesToGrammarWordBag(String label, double[] series, int windowSize,
-      int paaSize, double[] cuts, NumerosityReductionStrategy strategy, double nThreshold)
-      throws Exception {
-
-    WordBag resultBag = new WordBag(label);
-    SAXRecords saxData = sp
-        .ts2saxViaWindow(series, windowSize, paaSize, cuts, strategy, nThreshold);
-    saxData.buildIndex();
-
-    @SuppressWarnings("unused")
-    RePairRule rePairGrammar = RePairFactory.buildGrammar(saxData);
-    RePairRule.expandRules();
-    GrammarRules rules = RePairRule.toGrammarRulesData();
-
-    for (GrammarRuleRecord r : rules) {
-      if (0 == r.getRuleNumber()) {
-        // extracting all basic tokens
-        // for (SaxRecord sr : saxData) {
-        // resultBag.addWord(String.valueOf(sr.getPayload()), sr.getIndexes().size());
-        // }
-        // words not in rules
-        GrammarRuleRecord r0 = rules.get(0);
-        String[] split = r0.getRuleString().trim().split("\\s");
-        for (String s : split) {
-          if (s.startsWith("R")) {
-            continue;
-          }
-          resultBag.addWord(s);
-        }
-      }
-      else {
-        // extracting all longer tokens
-        String str = r.getExpandedRuleString();
-        resultBag.addWord(str);
-      }
-    }
-
-    // System.out.println("Strategy: " + strategy.index());
-
-    return resultBag;
   }
 
 }

@@ -134,6 +134,14 @@ public class TextUtils {
 
       }
     }
+
+    for (Entry<String, HashMap<String, Double>> e : res.entrySet()) {
+      // double oldNorm = magnitude(e.getValue().values());
+      e.setValue(normalizeToUnitVector(e.getValue()));
+      // double newNorm = magnitude(e.getValue().values());
+      // System.out.println("old and new norms " + oldNorm + ", " + newNorm);
+    }
+
     return res;
   }
 
@@ -209,9 +217,6 @@ public class TextUtils {
 
           // and adjust for the Rule yield
           //
-          if (null == word.getKey()) {
-            System.out.println("Gotcha!");
-          }
           if (word.getKey().contains(" ")) {
             int spaceCount = word.getKey().length() - word.getKey().replaceAll(" ", "").length()
                 + 1;
@@ -224,6 +229,14 @@ public class TextUtils {
 
       }
     }
+
+    for (Entry<String, HashMap<String, Double>> e : res.entrySet()) {
+      // double oldNorm = magnitude(e.getValue().values());
+      e.setValue(normalizeToUnitVector(e.getValue()));
+      // double newNorm = magnitude(e.getValue().values());
+      // System.out.println("old and new norms " + oldNorm + ", " + newNorm);
+    }
+
     return res;
   }
 
@@ -375,7 +388,7 @@ public class TextUtils {
    * @param vector the vector.
    * @return normalized vector.
    */
-  public HashMap<String, Double> normalizeToUnitVector(HashMap<String, Double> vector) {
+  private HashMap<String, Double> normalizeToUnitVector(HashMap<String, Double> vector) {
     double sum = 0d;
     for (double value : vector.values()) {
       sum = sum + value * value;
@@ -388,21 +401,21 @@ public class TextUtils {
     return res;
   }
 
-  /**
-   * Computes a cosine normalization of TFIDF statistics.
-   * 
-   * @param data The data.
-   * @return The normalized tfidf statistics.
-   */
-  public HashMap<String, HashMap<String, Double>> normalizeToUnitVectors(
-      HashMap<String, HashMap<String, Double>> data) {
-    HashMap<String, HashMap<String, Double>> res = new HashMap<String, HashMap<String, Double>>();
-    for (Entry<String, HashMap<String, Double>> e : data.entrySet()) {
-      HashMap<String, Double> normalE = normalizeToUnitVector(e.getValue());
-      res.put(e.getKey(), normalE);
-    }
-    return res;
-  }
+  // /**
+  // * Computes a cosine normalization of TFIDF statistics.
+  // *
+  // * @param data The data.
+  // * @return The normalized tfidf statistics.
+  // */
+  // private HashMap<String, HashMap<String, Double>> normalizeToUnitVectors(
+  // HashMap<String, HashMap<String, Double>> data) {
+  // HashMap<String, HashMap<String, Double>> res = new HashMap<String, HashMap<String, Double>>();
+  // for (Entry<String, HashMap<String, Double>> e : data.entrySet()) {
+  // HashMap<String, Double> normalE = normalizeToUnitVector(e.getValue());
+  // res.put(e.getKey(), normalE);
+  // }
+  // return res;
+  // }
 
   /**
    * Computes a cosine similarity.
@@ -418,9 +431,10 @@ public class TextUtils {
         res = res + entry.getValue().doubleValue() * mapB.get(entry.getKey()).doubleValue();
       }
     }
-    double m1 = magnitude(mapA.values());
-    double m2 = magnitude(mapB.values());
-    return res / (m1 * m2);
+    return res;
+    // double m1 = magnitude(mapA.values());
+    // double m2 = magnitude(mapB.values());
+    // return res / (m1 * m2);
   }
 
   public double cosineSimilarity(WordBag testSample, HashMap<String, Double> weightVector) {
@@ -430,9 +444,10 @@ public class TextUtils {
         res = res + entry.getValue().doubleValue() * weightVector.get(entry.getKey()).doubleValue();
       }
     }
-    double m1 = magnitude(testSample.getWordsAsDoubles().values());
-    double m2 = magnitude(weightVector.values());
-    return res / (m1 * m2);
+    return res;
+    // double m1 = magnitude(testSample.getWordsAsDoubles().values());
+    // double m2 = magnitude(weightVector.values());
+    // return res / (m1 * m2);
   }
 
   public CosineDistanceMatrix getCosineDistanceMatrix(HashMap<String, HashMap<String, Double>> tfidf) {
@@ -440,33 +455,33 @@ public class TextUtils {
     return res;
   }
 
-  /**
-   * Compute the magnitude of the vector.
-   * 
-   * @param vector The vector.
-   * @return The magnitude.
-   */
-  public double magnitude(double[] vector) {
-    return Math.sqrt(dotProduct(vector, vector));
-  }
-
-  /**
-   * Compute the magnitude of the vector.
-   * 
-   * @param vector The vector.
-   * @return The magnitude.
-   */
-  public double magnitude(Double[] vector) {
-    return Math.sqrt(dotProduct(vector, vector));
-  }
-
-  private double magnitude(Collection<Double> values) {
-    Double res = 0.0D;
-    for (Double v : values) {
-      res = res + v * v;
-    }
-    return Math.sqrt(res.doubleValue());
-  }
+  // /**
+  // * Compute the magnitude of the vector.
+  // *
+  // * @param vector The vector.
+  // * @return The magnitude.
+  // */
+  // private double magnitude(double[] vector) {
+  // return Math.sqrt(dotProduct(vector, vector));
+  // }
+  //
+  // /**
+  // * Compute the magnitude of the vector.
+  // *
+  // * @param vector The vector.
+  // * @return The magnitude.
+  // */
+  // private double magnitude(Double[] vector) {
+  // return Math.sqrt(dotProduct(vector, vector));
+  // }
+  //
+  // private double magnitude(Collection<Double> values) {
+  // double res = 0.0D;
+  // for (double v : values) {
+  // res = res + v * v;
+  // }
+  // return Math.sqrt(res);
+  // }
 
   /**
    * Compute the dot product of two vectors.
@@ -742,4 +757,5 @@ public class TextUtils {
     }
     return sb.toString();
   }
+
 }
