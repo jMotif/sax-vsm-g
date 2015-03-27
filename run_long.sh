@@ -1,0 +1,17 @@
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler Adiac/Adiac_TRAIN Adiac/Adiac_TEST 2 176 2 60 2 10 1 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler ARSim/ARSim_TRAIN ARSim/ARSim_TEST 2 500 2 60 2 10 50 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler FordA/Ford_A_TRAIN FordA/Ford_A_TEST 2 500 2 60 2 10 100 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler FordB/Ford_B_TRAIN FordB/Ford_B_TEST 2 500 2 60 2 10 100 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler Cricket_X/Cricket_X_TRAIN Cricket_X/Cricket_X_TEST 2 300 2 60 2 10 2 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler Cricket_Y/Cricket_Y_TRAIN Cricket_Y/Cricket_Y_TEST 2 300 2 60 2 10 2 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler Cricket_Z/Cricket_Z_TRAIN Cricket_Z/Cricket_Z_TEST 2 300 2 60 2 10 2 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler ElectricDevices/ElectricDevices_TRAIN ElectricDevices/ElectricDevices_TEST 2 96 2 60 2 12 35 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler MedicalImages/MedicalImages_TRAIN MedicalImages/MedicalImages_TEST 2 99 2 30 2 10 1 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler WordsSynonyms/WordsSynonyms_TRAIN WordsSynonyms/WordsSynonyms_TEST 2 270 2 60 2 10 1 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler uWaveGestureLibrary_X/uWaveGestureLibrary_X_TRAIN uWaveGestureLibrary_X/uWaveGestureLibrary_X_TEST 2 315 2 60 2 10 5 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TRAIN uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TEST 2 315 2 60 2 10 5 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TRAIN uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TEST 2 315 2 60 2 10 5 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler HandOutlines/HandOutlines_TRAIN HandOutlines/HandOutlines_TEST 2 1500 2 100 2 10 50 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler StarLightCurves/StarLightCurves_TRAIN StarLightCurves/StarLightCurves_TEST 2 1024 2 100 2 10 30 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler InlineSkate/InlineSkate_TRAIN InlineSkate/InlineSkate_TEST 2 1500 2 100 2 12 1 30 0.001 '*' COMPRESSED
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler NonInvasiveFatalECG/NonInvasiveFatalECG_Thorax1_TRAIN NonInvasiveFatalECG/NonInvasiveFatalECG_Thorax2_TEST 2 750 2 60 2 12 5 30 0.001 '*' COMPRESSED

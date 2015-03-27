@@ -1,11 +1,45 @@
+#
+require(reshape)
+require(plyr)
+require(stringr)
+#
 require(ggplot2)
 require(Cairo)
-require(reshape)
 require(scales)
 require(RColorBrewer)
 require(grid)
 require(gridExtra)
 require(lattice)
+
+#
+data=read.table("../data/cbf/CBF_TRAIN")
+unique(data$V1)
+
+cylinder=(data[data$V1==1,])[,-1]
+plot(as.numeric(cylinder[1,]),type="l")
+
+bell=(data[data$V1==2,])[,-1]
+plot(as.numeric(bell[1,]),type="l")
+
+funnel=(data[data$V1==3,])[,-1]
+plot(as.numeric(funnel[1,]),type="l")
+
+#Class key: 1
+#pattern="aeee aeee"; weight=0.23291
+#0: [10]
+#1: [11, 12, 13, 14, 15]
+#2: [12]
+#3: [18, 19, 20, 21]
+#4: [15, 16, 17, 18]
+#5: [15, 18, 19]
+#6: [11, 12, 13]
+#7: [14]
+#8: [5, 6, 7]
+#10: [6, 7, 8, 9, 10]
+series = c(1,2,2,2,2,2,3,4,4,4,4,5,5,5,5,6,6,6,7,7,7,8,9,9,9,11,11,11,11,11)
+starts = c(11,12,13,14,15,16,13,19,20,21,22,16,17,18,19,16,19,20,12,13,14,15,6,7,8,7,8,9,10,11)
+stops = c(58,59,60,61,62,63,60,66,67,68,69,63,64,65,66,63,66,67,59,60,61,62,53,54,55,54,55,5657,58,)
+
 
 cylinders=read.table("CBF_explorer/cylinder.csv")
 plot(unlist(data[1,-1]),type="l")
