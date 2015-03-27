@@ -220,7 +220,7 @@ public class TextUtils {
           if (word.getKey().contains(" ")) {
             int spaceCount = word.getKey().length() - word.getKey().replaceAll(" ", "").length()
                 + 1;
-            tfidf = tfidf * spaceCount;
+            tfidf = tfidf * (1 + Math.log(spaceCount) / Math.log(2));
           }
 
         }

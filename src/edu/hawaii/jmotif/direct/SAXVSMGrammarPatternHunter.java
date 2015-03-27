@@ -30,7 +30,7 @@ import edu.hawaii.jmotif.util.UCRUtils;
  * @author psenin
  * 
  */
-public class SAXVSMGrammarPatternPrinter {
+public class SAXVSMGrammarPatternHunter {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat df = new DecimalFormat("0.00###", otherSymbols);
@@ -58,10 +58,10 @@ public class SAXVSMGrammarPatternPrinter {
   private static final Level LOGGING_LEVEL = Level.INFO;
 
   private static final String CR = "\n";
-  private static final int MAX_PATTERNS_2PRINT = 30;
+  private static final int MAX_PATTERNS_2PRINT = 9;
   private static final int MAX_SERIES_2PRINT = 10;
   static {
-    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarPatternPrinter.class);
+    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarPatternHunter.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
@@ -117,7 +117,7 @@ public class SAXVSMGrammarPatternPrinter {
     // making training bags collection
     List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
         PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD,
-        BagConstructionStrategy.REDUCED);
+        BagConstructionStrategy.COMPRESSED);
 
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
@@ -151,20 +151,21 @@ public class SAXVSMGrammarPatternPrinter {
 
         // init buffers
         StringBuffer seriesBuff = new StringBuffer("series = c(");
-        StringBuffer offsetBuff = new StringBuffer("offsets = c(");
-        StringBuffer lengthBuff = new StringBuffer("lengths = c(");
+        StringBuffer startsBuff = new StringBuffer("starts = c(");
+        StringBuffer stopsBuff = new StringBuffer("stops = c(");
 
-        Map<Integer, Integer[]> hits = getPatternLocationsForTheClass(className, testData, pattern,
-            WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
+        Map<Integer, Map<String, Integer[]>> hits = getPatternLocationsForTheClass(className,
+            testData, pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
 
         int k = 0;
         int printedK = 0;
         do {
-          if (hits.get(k).length > 0) {
-            System.out.println(k + ": " + Arrays.toString(hits.get(k)));
-            for (int offset : hits.get(k)) {
+          if (hits.get(k).get("starts").length > 0) {
+            System.out.println(k + ": " + Arrays.toString(hits.get(k).get("starts")));
+            for (int j = 0; j < hits.get(k).get("starts").length; j++) {
               seriesBuff.append(String.valueOf(k + 1) + ",");
-              offsetBuff.append(String.valueOf(offset + 1) + ",");
+              startsBuff.append(String.valueOf(hits.get(k).get("starts")[j] + 1) + ",");
+              stopsBuff.append(String.valueOf(hits.get(k).get("stops")[j] + 1) + ",");
             }
             printedK++;
           }
@@ -174,20 +175,12 @@ public class SAXVSMGrammarPatternPrinter {
 
         System.out.print(seriesBuff.delete(seriesBuff.length() - 1, seriesBuff.length()).toString()
             + ")" + CR);
-        System.out.print(offsetBuff.delete(offsetBuff.length() - 1, offsetBuff.length()).toString()
+        System.out.print(startsBuff.delete(startsBuff.length() - 1, startsBuff.length()).toString()
+            + ")" + CR);
+        System.out.print(stopsBuff.delete(stopsBuff.length() - 1, stopsBuff.length()).toString()
             + ")" + CR + "#" + CR);
 
       }
-      // List<double[]> testD = testData.get(CLASS_UNDER_INVESTIGATION);
-      // int seriesIdx = 0;
-      // for (double[] series : testD) {
-      // int classificationResult = TextUtils.classify(className, series, tfidf, PAA_SIZE,
-      // ALPHABET_SIZE, WINDOW_SIZE, strategy);
-      // if (0 == classificationResult) {
-      // System.out.println(seriesIdx + 1);
-      // }
-      // seriesIdx++;
-      // }
     }
 
     // classifying
@@ -224,30 +217,46 @@ public class SAXVSMGrammarPatternPrinter {
 
   }
 
-  private static Map<Integer, Integer[]> getPatternLocationsForTheClass(String className,
-      Map<String, List<double[]>> trainData, String pattern, int windowSize, int paaSize,
-      int alphabetSize) throws Exception {
+  private static Map<Integer, Map<String, Integer[]>> getPatternLocationsForTheClass(
+      String className, Map<String, List<double[]>> trainData, String pattern, int windowSize,
+      int paaSize, int alphabetSize) throws Exception {
 
-    Map<Integer, Integer[]> res = new HashMap<Integer, Integer[]>();
+    // the resulting map
+    Map<Integer, Map<String, Integer[]>> res = new HashMap<Integer, Map<String, Integer[]>>();
 
+    // series counter
     int seriesCounter = 0;
+    // iterating over class' data
     for (double[] ts : trainData.get(className)) {
 
+      // get the SAX conversion out
       SAXRecords saxData = sp.ts2saxViaWindow(ts, windowSize, paaSize, na.getCuts(alphabetSize),
           STRATEGY, NORMALIZATION_THRESHOLD);
       saxData.buildIndex();
-
       String str = saxData.getSAXString(" ");
 
-      List<Integer> arr = new ArrayList<Integer>();
+      // search for pattern's hits on the raw string
+      List<Integer> starts = new ArrayList<Integer>();
+      List<Integer> stops = new ArrayList<Integer>();
       int idx = str.indexOf(pattern, 0);
       while (idx > -1) {
+        // if there is a hit
+        // [1] extract the string position
         int spaceCount = idx - str.substring(0, idx + 1).replaceAll(" ", "").length();
-        arr.add(saxData.mapStringIndexToTSPosition(spaceCount + 1));
+        // [2] convert this into the real time series index
+        starts.add(saxData.mapStringIndexToTSPosition(spaceCount + 1));
+        // [3] the length of this pattern
+        int patternSpaceCount = pattern.length() - pattern.replaceAll(" ", "").length();
+        stops.add(saxData.mapStringIndexToTSPosition(spaceCount + 1 + patternSpaceCount)
+            + windowSize);
+        // update the current hit index
         idx = str.indexOf(pattern, idx + 1);
       }
 
-      res.put(seriesCounter, arr.toArray(new Integer[0]));
+      Map<String, Integer[]> entry = new HashMap<String, Integer[]>();
+      entry.put("starts", starts.toArray(new Integer[starts.size()]));
+      entry.put("stops", stops.toArray(new Integer[stops.size()]));
+      res.put(seriesCounter, entry);
       seriesCounter++;
     }
 

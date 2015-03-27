@@ -1,5 +1,8 @@
 package edu.hawaii.jmotif.direct;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -128,10 +131,12 @@ public class SAXVSMContinuousGrammarSampler {
         // working on train data
         TRAINING_DATA = args[0];
         trainData = UCRUtils.readUCRData(TRAINING_DATA);
+        // trainData.remove("2");
         consoleLogger.info(UCRUtils.datasetStats(trainData, "trainData"));
 
         TEST_DATA = args[1];
         testData = UCRUtils.readUCRData(TEST_DATA);
+        // testData.remove("2");
         consoleLogger.info(UCRUtils.datasetStats(testData, "testData"));
 
         // args: <train dataset>, <test dataset>, Wmin Wmax, Pmin Pmax, Amin Amax, Holdout,
@@ -233,6 +238,14 @@ public class SAXVSMContinuousGrammarSampler {
         paaSize, na.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD, BAG_STRATEGY);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
+
+    // ===============
+    BufferedWriter of = new BufferedWriter(new FileWriter(new File("tfidf_table_"
+        + strategy.toString() + "_" + BAG_STRATEGY.toString() + ".csv")));
+    of.write(tu.tfidfToTable(tfidf));
+    of.close();
+    // ===============
+
     // classifying
     int testSampleSize = 0;
     int positiveTestCounter = 0;

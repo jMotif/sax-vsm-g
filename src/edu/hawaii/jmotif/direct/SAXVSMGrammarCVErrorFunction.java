@@ -194,12 +194,6 @@ public class SAXVSMGrammarCVErrorFunction implements AbstractErrorFunction {
         // compute TFIDF statistics for training set
         HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(basisBags
             .values());
-        for (Entry<String, HashMap<String, Double>> e : tfidf.entrySet()) {
-          // double oldNorm = tu.magnitude(e.getValue().values());
-          // e.setValue(tu.normalizeToUnitVector(e.getValue()));
-          // double newNorm = tu.magnitude(e.getValue().values());
-          // System.out.println("old and new norms " + oldNorm + ", " + newNorm);
-        }
 
         // Classifying...
         // is this sample correctly classified?
