@@ -21,6 +21,9 @@ public class Symbol {
    */
   private Integer stringPosition;
 
+  public boolean connectRight = true;
+  public boolean connectLeft = true;
+
   /**
    * Constructor.
    */

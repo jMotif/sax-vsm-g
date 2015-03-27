@@ -25,7 +25,7 @@ import edu.hawaii.jmotif.util.UCRUtils;
  * @author psenin
  * 
  */
-public class SAXVSMGrammarClassifier {
+public class SAXVSMGrammarClassifier2 {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat fmt = new DecimalFormat("0.00###", otherSymbols);
@@ -51,7 +51,7 @@ public class SAXVSMGrammarClassifier {
   private static final Logger consoleLogger;
   private static final Level LOGGING_LEVEL = Level.INFO;
   static {
-    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarClassifier.class);
+    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarClassifier2.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 
@@ -105,8 +105,9 @@ public class SAXVSMGrammarClassifier {
     tu = new TextUtils();
 
     // making training bags collection
-    List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
-        PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD, BAG_STRATEGY);
+    List<WordBag> bags = RePairFactory.labeledSeries2ConcatenatedGrammarWordBags(trainData,
+        WINDOW_SIZE, PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD,
+        BAG_STRATEGY);
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
     System.out.println(tu.tfidfToTable(tfidf));

@@ -30,7 +30,7 @@ import edu.hawaii.jmotif.util.UCRUtils;
  * @author psenin
  * 
  */
-public class SAXVSMPatternPrinter {
+public class SAXVSMGrammarPatternPrinter {
 
   private static final DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
   private static DecimalFormat df = new DecimalFormat("0.00###", otherSymbols);
@@ -61,7 +61,7 @@ public class SAXVSMPatternPrinter {
   private static final int MAX_PATTERNS_2PRINT = 30;
   private static final int MAX_SERIES_2PRINT = 10;
   static {
-    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMPatternPrinter.class);
+    consoleLogger = (Logger) LoggerFactory.getLogger(SAXVSMGrammarPatternPrinter.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
   }
 

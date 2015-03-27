@@ -8,7 +8,7 @@ require(gridExtra)
 require(lattice)
 
 cylinders=read.table("CBF_explorer/cylinder.csv")
-plot(unlist(cylinders[1,-1]),type="l")
+plot(unlist(data[1,-1]),type="l")
 
 bells=read.table("CBF_explorer/bell.csv")
 plot(unlist(bells[1,-1]),type="l")
@@ -23,14 +23,19 @@ lines(cylinders[2,]);lines(x=c(11:57),y=cylinders[2,11:57],lwd=2,col="red")
 lines(cylinders[3,])
 
 
-data = read.table("../data/cbf/CBF_TRAIN",header=F)
-cylinders=matrix(unlist(dat[data$V1==1,-1]),byrow=F,ncol=128)
-bells=matrix(unlist(dat[data$V1==2,-1]),byrow=F,ncol=128)
-funnels=matrix(unlist(dat[data$V1==3,-1]),byrow=F,ncol=128)
-len=128
+data = read.table("../data/cbf/cbf5x.txt",header=F)
+cylinders=matrix(unlist(data[data$V1==1,-1]),byrow=F,ncol=640)
+bells=matrix(unlist(dat[data$V1==2,-1]),byrow=F,ncol=640)
+funnels=matrix(unlist(dat[data$V1==3,-1]),byrow=F,ncol=640)
+len=640
 
 par(mfrow=c(1,1))
-plot(cylinders[1,],type="l");lines(x=c(26:78),y=cylinders[1,26:78],lwd=2,col="red")
+plot(cylinders[3,],type="l");
+
+lines(x=c(526:576),y=cylinders[3,526:576],lwd=2,col="red");
+lines(x=c(403:453),y=cylinders[3,403:453],lwd=2,col="red");
+lines(x=c(144:190),y=cylinders[3,144:190],lwd=2,col="red");
+
 lines(cylinders[2,]);lines(x=c(11:57),y=cylinders[2,11:57],lwd=2,col="red")
 lines(cylinders[3,])
 
