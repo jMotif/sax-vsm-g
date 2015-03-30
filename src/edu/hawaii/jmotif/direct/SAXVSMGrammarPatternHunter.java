@@ -44,6 +44,7 @@ public class SAXVSMGrammarPatternHunter {
   private static Integer PAA_SIZE;
   private static Integer ALPHABET_SIZE;
   private static NumerosityReductionStrategy STRATEGY;
+  private static BagConstructionStrategy CONSTRUCTION_STRATEGY;
 
   private static final double DEFAULT_NORMALIZATION_THRESHOLD = 0.05;
   private static double NORMALIZATION_THRESHOLD = DEFAULT_NORMALIZATION_THRESHOLD;
@@ -86,6 +87,9 @@ public class SAXVSMGrammarPatternHunter {
       if (args.length > 6) {
         NORMALIZATION_THRESHOLD = Double.valueOf(args[6]);
       }
+      if (args.length > 7) {
+        CONSTRUCTION_STRATEGY = BagConstructionStrategy.valueOf(args[7].toUpperCase());
+      }
 
       TRAINING_DATA = args[0];
       TEST_DATA = args[1];
@@ -117,11 +121,12 @@ public class SAXVSMGrammarPatternHunter {
     // making training bags collection
     List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
         PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD,
-        BagConstructionStrategy.COMPRESSED);
+        CONSTRUCTION_STRATEGY);
 
     // getting TFIDF done
     HashMap<String, HashMap<String, Double>> tfidf = tu.computeTFIDFInstrumented(bags);
 
+    // System.out.println(tu.tfidfToTable(tfidf));
     // get these normalized
     // tfidf = tu.normalizeToUnitVectors(tfidf);
 
