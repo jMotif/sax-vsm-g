@@ -119,7 +119,7 @@ public class SAXVSMGrammarPatternHunter {
     tsp = new TSProcessor();
 
     // making training bags collection
-    List<WordBag> bags = RePairFactory.labeledSeries2GrammarWordBags(trainData, WINDOW_SIZE,
+    List<WordBag> bags = RePairFactory.labeledSeries2ConcatenatedGrammarWordBags(trainData, WINDOW_SIZE,
         PAA_SIZE, na.getCuts(ALPHABET_SIZE), STRATEGY, NORMALIZATION_THRESHOLD,
         CONSTRUCTION_STRATEGY);
 
@@ -160,7 +160,7 @@ public class SAXVSMGrammarPatternHunter {
         StringBuffer stopsBuff = new StringBuffer("stops = c(");
 
         Map<Integer, Map<String, Integer[]>> hits = getPatternLocationsForTheClass(className,
-            testData, pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
+            trainData, pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
 
         int k = 0;
         int printedK = 0;
