@@ -1,3 +1,4 @@
+java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler 50words/50words_TRAIN 50words/50words_TEST 2 270 2 60 2 16 1 30 0.001 '*' COMPRESSED
 java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler arrowhead/arrowhead_TRAIN arrowhead/arrowhead_TEST 2 475 2 60 2 12 1 30 0.001 '*' COMPRESSED
 java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler Beef/Beef_TRAIN Beef/Beef_TEST 2 470 2 60 2 12 1 30 0.0001 '*' COMPRESSED
 java -Xmx16G -cp sax-vsm-g20.jar edu.hawaii.jmotif.direct.SAXVSMContinuousGrammarSampler CBF/CBF_TRAIN CBF/CBF_TEST 2 128 2 60 2 12 1 30 0.001 '*' COMPRESSED
