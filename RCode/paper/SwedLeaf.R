@@ -23,7 +23,7 @@ unique(data[,1])
 
 fours=(data[data$V1==4,])[,-1]
 ser=as.numeric(fours[1,])
-for(i in 2:36){
+for(i in 2:16){
   ser=c(ser,as.numeric(fours[i,]))
 }
 write.table(ser,"/media//Stock//swleaf.csv",col.names=F,row.names=F)
