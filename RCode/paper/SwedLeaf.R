@@ -18,18 +18,20 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
 #scale_colour_manual(values=cbPalette)
 
 #get the data
-data=read.table("/home/psenin/workspace/data/SwedishLeaf/SwedishLeaf_TRAIN")
+data=read.table("../data/SwedishLeaf/SwedishLeaf_TRAIN")
 unique(data[,1])
 
 fours=(data[data$V1==4,])[,-1]
 ser=as.numeric(fours[1,])
-for(i in 2:14){
+for(i in 2:36){
   ser=c(ser,as.numeric(fours[i,]))
 }
+write.table(ser,"/media//Stock//swleaf.csv",col.names=F,row.names=F)
+
 plot(ser,type="l")
 dm=data.frame(x=c(1:length(ser)),y=ser)
 p = ggplot(dm, aes(x, y)) +
-  theme_bw() + geom_line(size=0.5,col=cbbPalette[1])+
+  theme_bw() + geom_line(size=1,col=cbPalette[1])+
   theme(axis.line=element_blank(),
         #axis.text.x=element_blank(),
         #axis.text.y=element_blank(),
@@ -52,7 +54,7 @@ p
 
 dm=data.frame(x=c(1:128),y=as.numeric(fours[32,]))
 p0 = ggplot(dm, aes(x, y)) +
-  theme_bw() + geom_line(size=0.5,col=cbbPalette[1])+
+  theme_bw() + geom_line(size=1,col=cbPalette[1])+
   theme(axis.line=element_blank(),
         #axis.text.x=element_blank(),
         #axis.text.y=element_blank(),
@@ -76,8 +78,8 @@ p0
 gg=arrangeGrob(p0, p, ncol=2, widths=c(0.3,0.7))
 gg
 
-CairoPDF(file = "/home/psenin/git/sax-vsm-g.git/RCode/swed_leaf_concatenation",
-         width = 10, height = 3, onefile = TRUE, family = "Helvetica",
+CairoPDF(file = "swed_leaf_concatenation",
+         width = 10, height = 2.5, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(gg)
