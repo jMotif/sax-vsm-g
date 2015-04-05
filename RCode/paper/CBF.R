@@ -211,7 +211,7 @@ dev.off()
 grid.arrange(p, arrangeGrob(p1, p2, p3, ncol=2), ncol=1, heights=c(3/5, 2/5))
 
 CairoPDF(file = "cbf_figure",
-         width = 12, height = 5, onefile = TRUE, family = "Helvetica",
+         width = 12, height = 4.5, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print( 

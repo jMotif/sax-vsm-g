@@ -56,7 +56,7 @@ pn = ggplot(dm, aes(x = index, y = value, group = X2, color=class,linetype=class
 pn
 
 
-dat = read.table("../data/GunPoint_data_shifted",sep=" ",header=F)[,-152]
+dat = read.table("../data/GunPoint_data_shifted",sep=",",header=F)[,-152]
 unique(dat[,1])
 
 ones=as.numeric((dat[dat$V1==1,])[2,-1])
@@ -104,7 +104,7 @@ dev.off()
 ########################
 ########################
   
-dat = read.table("../data/GunPoint_data_shifted",header=F)[,-152]
+dat = read.table("../data/GunPoint_data_shifted",sep=",",header=F)[,-152]
 
 class0=(dat[dat$V1==1,])[,-1]
 df0=data.frame(x=rep(c(1:150),76), 
@@ -185,7 +185,7 @@ dev.off()
 grid.arrange(arrangeGrob(pn, ps, ncol=2), arrangeGrob(p1, p2, ncol=2), ncol=1, heights=c(3/5, 2/5))
 
 CairoPDF(file = "gunpoint_figure",
-         width = 12, height = 6, onefile = TRUE, family = "Helvetica",
+         width = 12, height = 5, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(grid.arrange(arrangeGrob(pn, ps, ncol=2), 

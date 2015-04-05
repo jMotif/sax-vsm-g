@@ -79,7 +79,7 @@ gg=arrangeGrob(p0, p, ncol=2, widths=c(0.3,0.7))
 gg
 
 CairoPDF(file = "swed_leaf_concatenation",
-         width = 10, height = 2.5, onefile = TRUE, family = "Helvetica",
+         width = 10, height = 2.2, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(gg)
