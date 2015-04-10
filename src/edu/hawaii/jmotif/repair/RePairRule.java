@@ -82,34 +82,44 @@ public class RePairRule {
 
   public static void expandRules() {
 
-    // iterate over all SAX containers
+    // iterate over all Repair rules
+    //
+    // obviously rules created first are expanded, so we start with them
+    //
     for (int currentPositionIndex = 1; currentPositionIndex < theRules.size(); currentPositionIndex++) {
 
       RePairRule rr = theRules.get(currentPositionIndex);
-      String resultString = rr.toRuleString();
+      String ruleString = rr.toRuleString();
+      StringBuffer expandedString = new StringBuffer();
 
-      int currentSearchStart = resultString.indexOf(THE_R);
-      while (currentSearchStart >= 0) {
-
-        int spaceIdx = resultString.indexOf(SPACE, currentSearchStart);
-
-        String ruleName = resultString.substring(currentSearchStart, spaceIdx + 1);
-        Integer ruleId = Integer.valueOf(ruleName.substring(1, ruleName.length() - 1));
-
-        RePairRule rule = theRules.get(ruleId);
-        if (rule != null) {
-          if (rule.expandedRuleString.charAt(rule.expandedRuleString.length() - 1) == ' ') {
-            resultString = resultString.replaceAll(ruleName, rule.expandedRuleString);
-          }
-          else {
-            resultString = resultString.replaceAll(ruleName, rule.expandedRuleString + SPACE);
-          }
-        }
-
-        currentSearchStart = resultString.indexOf("R", spaceIdx);
+      // do not expand already expanded rules
+      if (-1 == ruleString.indexOf(THE_R)) {
+        rr.expandedRuleString = ruleString.trim();
+        continue;
       }
 
-      rr.setExpandedRule(resultString.trim());
+      // this rule is always digram; plus, by the design of this procedure all rules with less ID
+      // are expanded
+      int spaceIdx = ruleString.indexOf(SPACE);
+      
+      // check the first part if it has R in there
+      if (ruleString.startsWith("R")) {
+        Integer ruleId = Integer.valueOf(ruleString.substring(1, spaceIdx));
+        expandedString.append(theRules.get(ruleId).expandedRuleString).append(SPACE);
+      }
+      else {
+        expandedString.append(ruleString.substring(0, spaceIdx));
+      }
+      // check the second part if it has R in there
+      if (ruleString.indexOf(THE_R, spaceIdx + 1) >= 0) {
+        Integer ruleId = Integer.valueOf(ruleString.substring(spaceIdx + 2).trim());
+        expandedString.append(theRules.get(ruleId).expandedRuleString);
+      }
+      else {
+        expandedString.append(ruleString.substring(spaceIdx + 1));
+      }
+
+      rr.setExpandedRule(expandedString.toString().trim());
 
     }
 

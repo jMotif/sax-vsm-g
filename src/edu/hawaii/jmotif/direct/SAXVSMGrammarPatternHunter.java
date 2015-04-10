@@ -160,7 +160,7 @@ public class SAXVSMGrammarPatternHunter {
         StringBuffer stopsBuff = new StringBuffer("stops = c(");
 
         Map<Integer, Map<String, Integer[]>> hits = getPatternLocationsForTheClass(className,
-            trainData, pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
+            testData, pattern, WINDOW_SIZE, PAA_SIZE, ALPHABET_SIZE);
 
         int k = 0;
         int printedK = 0;

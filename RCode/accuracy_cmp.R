@@ -1,37 +1,41 @@
 #
-require(reshape)
-require(plyr)
-require(stringr)
-#
 require(ggplot2)
 require(Cairo)
-require(scales)
-require(RColorBrewer)
-require(grid)
-require(gridExtra)
-require(lattice)
 #
-data=data.frame(read.table("../data/perf_accuracy.csv",header=T,as.is=T))
-pe=ggplot(data=data,aes(x=data$"SAX.VSM.G",y=data$"Euclidean1NN")) + geom_point() + 
-  scale_x_continuous(limits=c(0,0.75)) + scale_y_continuous(limits=c(0,0.75)) + 
-  theme_bw()
-pe
-positions <- data.frame(x=c(0,0.7,0.7),y=c(0,0.7,0))
-pe + geom_polygon(data=positions, aes(x,y))
+data=data.frame(read.table("paper/datainpaper/accuracy.csv",header=T,as.is=T))
+names(data) <- c("N","Dataset","1NN.Euclidean","1NN.DTW","SAX.VSM","FastShapelet","PatternsSelection")
 
+CairoPDF(file = "accuracy_plots",
+         width = 10, height = 3.5, onefile = TRUE, family = "Helvetica",
+         title = "R Graphics Output", fonts = NULL, version = "1.1",
+         paper = "special")
 
-plot(x=data$"SAX.VSM.G",y=data$"Euclidean1NN",xlim=c(0, 0.8), ylim=c(0, 0.8),
-     xlab="Euclidean wins", ylab="SAX-VSM-G wins",pch=16,main="SAX-VSM-G vs Euclidean 1NN")
+par(mfrow=c(1,3))
+plot(x=data$"1NN.DTW",y=data$"PatternsSelection",xlim=c(0, 0.8), ylim=c(0, 0.8),
+     xlab="", ylab="",pch=16,col="brown1",
+     main="1NN DTW vs PatternsSelection",cex.main=1.6)
 positions <- data.frame(x=c(-1,1,1),y=c(-1,1,-1))
 polygon(positions$x, positions$y, col = alpha("cyan", 0.5), border=NA)
+points(x=data$"1NN.DTW",y=data$"PatternsSelection",pch=16,col="brown1")
+text(x=0.56, y=0.05, "Our method wins",cex=1.5)
+text(x=0.2, y=0.75, "1NN DTW wins",cex=1.5)
 
-
-plot(x=data$"SAX.VSM.G",y=data$"DTW.1NN",xlim=c(0, 0.8), ylim=c(0, 0.8),
-     xlab="DTW wins", ylab="SAX-VSM-G wins",pch=16,main="SAX-VSM-G vs DTW 1NN")
+plot(x=data$"SAX.VSM",y=data$"PatternsSelection",xlim=c(0, 0.8), ylim=c(0, 0.8),
+     xlab="", ylab="",pch=16,col="brown1",
+     main="SAX-VSM vs PatternsSelection",cex.main=1.6)
 positions <- data.frame(x=c(-1,1,1),y=c(-1,1,-1))
 polygon(positions$x, positions$y, col = alpha("cyan", 0.5), border=NA)
+points(x=data$"SAX.VSM",y=data$"PatternsSelection",pch=16,col="brown1",)
+text(x=0.56, y=0.05, "Our method wins",cex=1.5)
+text(x=0.2, y=0.75, "SAX-VSM wins",cex=1.5)
 
-plot(x=data$"SAX.VSM.G",y=data$"SAX.VSM",xlim=c(0, 0.8), ylim=c(0, 0.8),
-     xlab="SAX-VSM wins", ylab="SAX-VSM-G wins",pch=16,main="SAX-VSM-G vs SAX-VSM")
+plot(x=data$"FastShapelet",y=data$"PatternsSelection",xlim=c(0, 0.8), ylim=c(0, 0.8),
+     xlab="", ylab="",pch=16,col="brown1",
+     main="FastShapelets vs PatternsSelection",cex.main=1.6)
 positions <- data.frame(x=c(-1,1,1),y=c(-1,1,-1))
 polygon(positions$x, positions$y, col = alpha("cyan", 0.5), border=NA)
+points(x=data$"FastShapelet",y=data$"PatternsSelection",pch=16,col="brown1",)
+text(x=0.56, y=0.05, "Our method wins",cex=1.5)
+text(x=0.25, y=0.75, "FastShapelets wins",cex=1.5)
+
+dev.off()
