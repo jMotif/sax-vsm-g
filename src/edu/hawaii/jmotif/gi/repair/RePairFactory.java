@@ -1,4 +1,4 @@
-package edu.hawaii.jmotif.repair;
+package edu.hawaii.jmotif.gi.repair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import edu.hawaii.jmotif.gi.GrammarRuleRecord;
+import edu.hawaii.jmotif.gi.GrammarRules;
 import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
 import edu.hawaii.jmotif.sax.SAXProcessor;
 import edu.hawaii.jmotif.sax.datastructures.SAXRecords;

@@ -1,4 +1,4 @@
-package edu.hawaii.jmotif.repair;
+package edu.hawaii.jmotif.gi.repair;
 
 import java.util.ArrayList;
 import java.util.Collections;

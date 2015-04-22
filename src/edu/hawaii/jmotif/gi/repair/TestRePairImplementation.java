@@ -1,4 +1,4 @@
-package edu.hawaii.jmotif.repair;
+package edu.hawaii.jmotif.gi.repair;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
