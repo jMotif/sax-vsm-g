@@ -3,10 +3,10 @@ package edu.hawaii.jmotif.gi.repair;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
+import net.seninp.jmotif.sax.datastructures.SAXRecords;
 import edu.hawaii.jmotif.gi.GrammarRuleRecord;
 import edu.hawaii.jmotif.gi.GrammarRules;
 import edu.hawaii.jmotif.logic.RuleInterval;
-import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 
 public class RePairRule {
 

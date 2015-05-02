@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
-import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXProcessor;
-import edu.hawaii.jmotif.sax.TSProcessor;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.SAXProcessor;
+import net.seninp.jmotif.sax.TSProcessor;
 
 /**
  * Implements text statistics and mining utilities.
@@ -220,8 +220,8 @@ public class TextUtils {
           if (word.getKey().contains(" ")) {
             int spaceCount = word.getKey().length() - word.getKey().replaceAll(" ", "").length()
                 + 1;
-             tfidf = tfidf * (1 + Math.log(spaceCount) / Math.log(2));
-//            tfidf = tfidf * Math.log(spaceCount);
+            tfidf = tfidf * (1 + Math.log(spaceCount) / Math.log(2));
+            // tfidf = tfidf * Math.log(spaceCount);
           }
 
         }
@@ -757,6 +757,23 @@ public class TextUtils {
       }
     }
     return sb.toString();
+  }
+
+  /**
+   * Finds a maxinal value in an array.
+   * 
+   * @param array the array to work with.
+   * @return max element.
+   * 
+   */
+  public int max(int[] array) {
+    int max = Integer.MIN_VALUE;
+    for (int i : array) {
+      if (i > max) {
+        max = i;
+      }
+    }
+    return max;
   }
 
 }

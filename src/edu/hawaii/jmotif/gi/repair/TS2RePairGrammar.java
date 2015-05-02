@@ -16,15 +16,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Map.Entry;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.SAXProcessor;
+import net.seninp.jmotif.sax.datastructures.SAXRecords;
+import net.seninp.jmotif.sax.parallel.ParallelSAXImplementation;
+import net.seninp.util.StackTrace;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import edu.hawaii.jmotif.logic.RuleInterval;
-import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXProcessor;
-import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
-import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
-import edu.hawaii.jmotif.util.StackTrace;
 
 public class TS2RePairGrammar {
 

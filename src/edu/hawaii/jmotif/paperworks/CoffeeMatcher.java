@@ -3,7 +3,7 @@ package edu.hawaii.jmotif.paperworks;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import edu.hawaii.jmotif.distance.EuclideanDistance;
+import net.seninp.jmotif.distance.EuclideanDistance;
 import edu.hawaii.jmotif.util.UCRUtils;
 
 public class CoffeeMatcher {

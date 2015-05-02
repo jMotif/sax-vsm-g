@@ -1,6 +1,7 @@
 package edu.hawaii.jmotif.util;
 
 import static org.junit.Assert.assertTrue;
+import net.seninp.util.StackTrace;
 import org.junit.Test;
 
 /**

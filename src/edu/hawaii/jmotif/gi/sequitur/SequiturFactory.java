@@ -6,20 +6,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.atomic.AtomicInteger;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.SAXProcessor;
+import net.seninp.jmotif.sax.TSProcessor;
+import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
+import net.seninp.jmotif.sax.datastructures.SAXRecords;
+import net.seninp.jmotif.sax.datastructures.SaxRecord;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import edu.hawaii.jmotif.gi.GrammarRuleRecord;
 import edu.hawaii.jmotif.gi.GrammarRules;
+import edu.hawaii.jmotif.gi.repair.Symbol;
 import edu.hawaii.jmotif.logic.RuleInterval;
-import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.SAXProcessor;
-import edu.hawaii.jmotif.sax.TSProcessor;
-import edu.hawaii.jmotif.sax.alphabet.NormalAlphabet;
-import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
 
 /**
  * Sort of a stand-alone factory to digesting strings with Sequitur.
@@ -379,6 +383,52 @@ public final class SequiturFactory {
     consoleLogger.debug("Mapping expanded rules to time-series intervals...");
     SequiturFactory.updateRuleIntervals(rules, saxFrequencyData, true, timeseries, saxWindowSize,
         saxPAASize);
+
+    return rules;
+
+  }
+
+  public static GrammarRules series2SequiturRulesWithSkip(double[] ts, Integer windowSize,
+      Integer paaSize, Integer alphabetSize, NumerosityReductionStrategy strategy,
+      double normalizationThreshold, ArrayList<Integer> skips) throws Exception {
+
+    HashSet<Integer> skipSet = new HashSet<Integer>();
+    skipSet.addAll(skips);
+
+    SAXRecords saxRecords = sp.ts2saxViaWindowSkipping(ts, windowSize, paaSize,
+        normalA.getCuts(alphabetSize), strategy, NORMALIZATION_THRESHOLD, skips);
+    saxRecords.buildIndex();
+
+    // reset Sequitur structures
+    SAXRule.numRules = new AtomicInteger(0);
+    SAXRule.theRules.clear();
+    SAXSymbol.theDigrams.clear();
+    SAXRule grammar = new SAXRule();
+    SAXRule.arrRuleRecords = new ArrayList<GrammarRuleRecord>();
+
+    // get all indexes and sort them
+    Set<Integer> index = saxRecords.getIndexes();
+    Integer[] sortedSAXWords = index.toArray(new Integer[index.size()]);
+
+    int stringPositionCounter = 0;
+    for (Integer saxWordPosition : sortedSAXWords) {
+
+      SaxRecord r = saxRecords.getByIndex(saxWordPosition);
+      Symbol symbol = new Symbol(r, stringPositionCounter);
+
+      grammar.last().insertAfter(new SAXTerminal(String.valueOf(r.getPayload()), stringPositionCounter));
+
+      if (!(skipSet.contains(saxWordPosition - 1))) {
+        grammar.last().p.check();
+      }
+
+      stringPositionCounter++;
+    }
+
+    GrammarRules rules = grammar.toGrammarRulesData();
+
+    consoleLogger.debug("Mapping expanded rules to time-series intervals...");
+    SequiturFactory.updateRuleIntervals(rules, saxRecords, true, ts, windowSize, paaSize);
 
     return rules;
 

@@ -3,12 +3,12 @@ package edu.hawaii.jmotif.gi.repair;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.TSProcessor;
+import net.seninp.jmotif.sax.datastructures.SAXRecords;
+import net.seninp.jmotif.sax.datastructures.SaxRecord;
+import net.seninp.jmotif.sax.parallel.ParallelSAXImplementation;
 import org.junit.Test;
-import edu.hawaii.jmotif.sax.NumerosityReductionStrategy;
-import edu.hawaii.jmotif.sax.TSProcessor;
-import edu.hawaii.jmotif.sax.datastructures.SAXRecords;
-import edu.hawaii.jmotif.sax.datastructures.SaxRecord;
-import edu.hawaii.jmotif.sax.parallel.ParallelSAXImplementation;
 
 public class TestParallelRePairImplementation {
 

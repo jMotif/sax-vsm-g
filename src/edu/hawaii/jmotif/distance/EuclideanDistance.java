@@ -1,5 +1,6 @@
 package edu.hawaii.jmotif.distance;
 
+import java.util.Arrays;
 
 /**
  * The Euclidean distance implementation for a variety of datatypes.
@@ -194,4 +195,22 @@ public final class EuclideanDistance {
     }
   }
 
+  public static Double earlyAbandonedAnyPlaceDistance(double[] series1, double[] series2,
+      double cutoff) throws Exception {
+
+    if (series1.length == series2.length) {
+      return earlyAbandonedDistance(series1, series2, cutoff);
+    }
+
+    double minDistance = cutoff;
+    for (int s = 0; s < series2.length - series1.length; s++) {
+      Double cdist = earlyAbandonedDistance(series1,
+          Arrays.copyOfRange(series2, s, s + series1.length), minDistance);
+      if (cdist < minDistance) {
+        minDistance = cdist;
+      }
+    }
+    return minDistance;
+
+  }
 }

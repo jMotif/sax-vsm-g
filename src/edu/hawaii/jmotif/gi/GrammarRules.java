@@ -1,5 +1,6 @@
 package edu.hawaii.jmotif.gi;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -33,6 +34,11 @@ public class GrammarRules implements Iterable<GrammarRuleRecord> {
 
   public int size() {
     return this.rules.size();
+  }
+
+  public Collection<GrammarRuleRecord> getRecords() {
+    // TODO Auto-generated method stub
+    return this.rules.values();
   }
 
 }
