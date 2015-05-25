@@ -103,14 +103,18 @@ public class RePairRule {
       // this rule is always digram; plus, by the design of this procedure all rules with less ID
       // are expanded
       int spaceIdx = ruleString.indexOf(SPACE);
-      
+
       // check the first part if it has R in there
       if (ruleString.startsWith("R")) {
         Integer ruleId = Integer.valueOf(ruleString.substring(1, spaceIdx));
-        expandedString.append(theRules.get(ruleId).expandedRuleString).append(SPACE);
+        expandedString.append(theRules.get(ruleId).expandedRuleString);
       }
       else {
         expandedString.append(ruleString.substring(0, spaceIdx));
+      }
+      // take care about spacing
+      if(SPACE != expandedString.charAt(expandedString.length()-1)){
+        expandedString.append(SPACE);
       }
       // check the second part if it has R in there
       if (ruleString.indexOf(THE_R, spaceIdx + 1) >= 0) {
@@ -205,7 +209,7 @@ public class RePairRule {
       rec.setRuleNumber(rule.ruleNumber);
       rec.setRuleString(rule.toRuleString());
       rec.setExpandedRuleString(rule.expandedRuleString);
-      rec.setRuleYield(countSpaces(rule.expandedRuleString));
+      rec.setRuleYield(countSpaces(rule.expandedRuleString) + 1);
       rec.setOccurrences(rule.getPositions());
       rec.setRuleIntervals(rule.getRuleIntervals());
       rec.setRuleLevel(rule.getLevel());

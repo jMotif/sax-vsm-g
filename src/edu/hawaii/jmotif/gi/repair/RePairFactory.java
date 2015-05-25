@@ -644,6 +644,12 @@ public final class RePairFactory {
           // adding the expanded rule
           //
           String str = r.getExpandedRuleString();
+          if (r.getRuleYield() % 2 == 1) {
+            System.out.println(r.getExpandedRuleString());
+          }
+          if (r.getRuleYield() > 3) {
+            continue;
+          }
           bag.addWord(str, r.getOccurrences().size());
         }
       }

@@ -224,7 +224,7 @@ public class RePairConcatenationTinker {
             // earlyAbandonedDistance implementation abandons full distance computation
             // if current value is above the best known
             //
-            Double distance = EuclideanDistance.earlyAbandonedAnyPlaceDistance(referenceSeries,
+            Double distance = EuclideanDistance.earlyAbandonedDistance(referenceSeries,
                 querySeries, bestDistance);
             // Double distance = EuclideanDistance.earlyAbandonedDistance(
             // TSUtils.zNormalize(querySeries), TSUtils.zNormalize(referenceSeries), bestDistance);
