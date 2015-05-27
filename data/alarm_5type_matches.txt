@@ -1,0 +1,24 @@
+Class 1: Asystole
+866, 1104
+1297, 1505
+873, 1117
+
+Class 2: Extreme bradycardia
+716, 971
+1339, 1587
+720, 974
+
+Class3: Extreme tachycardia
+169, 372
+684, 889
+166, 373
+
+Class 4: VTach 
+637, 847
+1831, 2046
+1310, 1533
+
+Class 5: VTach/VFib
+1521, 1727
+1475, 1685
+1521, 1731
