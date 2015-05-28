@@ -1,6 +1,6 @@
-package edu.hawaii.jmotif.cbf;
+package net.seninp.saxvsm.cbf;
 
-import edu.hawaii.jmotif.util.StdRandom;
+import net.seninp.saxvsm.util.StdRandom;
 
 /**
  * CBF Domain data generator.

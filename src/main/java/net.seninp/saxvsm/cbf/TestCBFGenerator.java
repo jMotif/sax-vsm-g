@@ -1,4 +1,4 @@
-package edu.hawaii.jmotif.cbf;
+package net.seninp.saxvsm.cbf;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
