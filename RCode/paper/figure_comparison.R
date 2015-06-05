@@ -27,7 +27,18 @@ znorm <- function(ts){
   (ts - ts.mean)/ts.dev
 }
 #
+dat = read.table("../data/Cricket/Cricket_TEST",header=F)
+ones=as.data.frame(t(dat[dat[,1]==1,]-1))
+names(ones)<-paste("series_",c(1:5),sep="")
+dm=melt(ones)
+dm$X=rep(c(1:309),5)
+p0=ggplot(dm,aes(x=X,y=value,group=variable)) + geom_line(color=cbPalette[1])+theme_bw()
+p0
+print(arrangeGrob(p, p0, ncol=1))
+
+write.table(dat,"../data/Cricket/Cricket_TEST00",col.names=F,row.names=F)
 dat = read.table("../data/Cricket/Cricket_TRAIN",header=F)
+write.table(dat,"../data/Cricket/Cricket_TRAIN00",col.names=F,row.names=F)
 #
 # first goes SAX-VSM pattern, not the map
 # [data/Cricket/Cricket_TRAIN, data/Cricket/Cricket_TEST, 88, 16, 6, CLASSIC]
@@ -57,7 +68,7 @@ lines(x=c(rl_start:(rl_start+rl_len)),y=red_line,lwd=2,col="red")
 #
 df1=data.frame(time=c(1:length(series)),value=series)
 df1_red<-df1;df1_red$value<-rep(NA,length(series));df1_red[rl_start:(rl_start+rl_len),]$value<-red_line
-p1 <- ggplot(df1, aes(time, value)) + geom_line(color=cbPalette[1], lwd=1) + theme_bw() + 
+p1 <- ggplot(df1, aes(time, value)) + geom_line(color=cbPalette[3], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
@@ -65,7 +76,7 @@ p1 <- ggplot(df1, aes(time, value)) + geom_line(color=cbPalette[1], lwd=1) + the
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("SAX-VSM, best pattern for Class #1")
-p1=p1 + geom_line(aes(df1_red$time,df1_red$value),color=cbPalette[4],size=3)
+p1=p1 + geom_line(aes(df1_red$time,df1_red$value),color=cbPalette[8],size=2)
 #
 #Class key: 2
 #pattern="ffdbbbbbccccbbbb"; weight=0.17488
@@ -89,7 +100,7 @@ p2 <- ggplot(df2, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + the
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("SAX-VSM, best pattern for Class #2")
-p2=p2 + geom_line(aes(df2_red$time,df2_red$value),color=cbPalette[6],size=3)
+p2=p2 + geom_line(aes(df2_red$time,df2_red$value),color=cbPalette[6],size=2)
 p2
 #
 # following Xing's results
@@ -123,7 +134,7 @@ p3 <- ggplot(df3, aes(time, value)) + geom_line(color=cbPalette[3], lwd=1) + the
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("Pattern Selection, best pattern for Class #1")
-p3=p3 + geom_line(aes(df3_red$time,df3_red$value),color=cbPalette[7],size=3)
+p3=p3 + geom_line(aes(df3_red$time,df3_red$value),color=cbPalette[7],size=2)
 p3
 #
 #
@@ -148,7 +159,7 @@ series=unlist(twos[1,])
 df4=data.frame(time=c(1:length(series)),value=series)
 df4_red<-df4;df4_red$value<-rep(NA,length(series));df4_red[103:(102+length(pat2)),]$value<-pat2
 #
-p4 <- ggplot(df4, aes(time, value)) + geom_line(color=cbPalette[4], lwd=1) + theme_bw() + 
+p4 <- ggplot(df4, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
@@ -156,16 +167,66 @@ p4 <- ggplot(df4, aes(time, value)) + geom_line(color=cbPalette[4], lwd=1) + the
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("Pattern Selection, best pattern for Class #2")
-p4=p4 + geom_line(aes(df4_red$time,df4_red$value),color=cbPalette[8],size=3)
+p4=p4 + geom_line(aes(df4_red$time,df4_red$value),color=cbPalette[4],size=2)
 p4
 #
 #
 print(grid.arrange(p3, p4, p1, p2, ncol=2, heights=c(2.2/5, 2.8/5)))
+#
+shapelet=c(-0.166000, -0.152300, -0.136700, -0.126900, -0.144500, -0.140600, -0.142500, -0.140600, -0.148400, -0.148400, -0.144500, -0.125000, -0.113200, -0.158200, -0.152300, -0.146500, -0.138600, -0.113200, -0.119100, -0.125000, -0.123000, -0.119100, -0.123000, -0.119100, -0.123000, -0.119100, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.123000, -0.121100, -0.062500, -0.058600, -0.105400, -0.099600, -0.093700, -0.105400, -0.097600, -0.074200, -0.074200, -0.080000, -0.082000, -0.082000, -0.082000, -0.123000, -0.115200, -0.076100, -0.070300, -0.080000, -0.109300, -0.125000, -0.128900, -0.125000, -0.126900, -0.121100, -0.121100, -0.123000, -0.119100, -0.125000, -0.123000, -0.121100, -0.121100, -0.125000, -0.123000, -0.121100, -0.123000, -0.125000, -0.123000, -0.125000, -0.123000, -0.123000, -0.125000, -0.123000, -0.123000, -0.123000, -0.123000, -0.121100, -0.132800, -0.134700, -0.156200, -0.099600, -0.046900, -0.001900, 0.027400, 0.029300, 0.031300, 0.029300, 0.029300, 0.025400, 0.027400, 0.025400, 0.005900, -0.041000, -0.109400, -0.121100, -0.132800, -0.128900, -0.123000, -0.126900, -0.126900, -0.126900, -0.125000, -0.125000, -0.119100, -0.123000, -0.125000, -0.126900, -0.119100, -0.121100, -0.121100, -0.121100, -0.126900, -0.121100)
+plot(shapelet,type="l")
+dd_twos=rep(0,3)
+for(i in c(1:4)){
+  dd = unlist(twos[i,])
+  for(k in c(1:(length(dd)-length(shapelet)))){
+    distance=dist(rbind(shapelet,dd[k:(k+length(shapelet))]))
+    print(paste(i,k,distance))
+    dd_twos=rbind(dd_twos,c(i,k,distance))
+  }
+}
+dd_twos=dd_twos[-1,]
+which(dd_twos[,3] == min(dd_twos[,3]))
+dd_twos[81,]
+#
+dd_ones=rep(0,3)
+for(i in c(1:5)){
+  dd = unlist(ones[i,])
+  for(k in c(1:(length(dd)-length(shapelet)))){
+    distance=dist(rbind(shapelet,dd[k:(k+length(shapelet))]))
+    print(paste(i,k,distance))
+    dd_ones=rbind(dd_ones,c(i,k,distance))
+  }
+}
+dd_ones=dd_ones[-1,]
+which(dd_ones[,3] == min(dd_ones[,3]))
+dd_ones[704,]
+#
+series=unlist(twos[1,])
+df5=data.frame(time=c(1:length(series)),value=series)
+df5_red<-df5;df5_red$value<-rep(NA,length(series));df5_red[81:(80+length(shapelet)),]$value<-shapelet
+#
+p5 <- ggplot(df5, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
+  theme(axis.line=element_blank(),
+        axis.title.x=element_blank(), axis.title.y=element_blank(),
+        panel.background=element_blank(), plot.background=element_blank(),
+        legend.position="bottom", plot.title = element_text(size = 16),
+        legend.text=element_text(size=14), legend.title=element_text(size=14),
+        legend.key.width=unit(2, "cm")) +
+  ggtitle("Fast Shapelets, the best branching shapelet")
+p5=p5 + geom_line(aes(df5_red$time,df5_red$value),color=pal2[1],size=2)
+p5
 #
 #
 CairoPDF(file = "cricket_saxvsm",
          width = 12, height = 6, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
-print(grid.arrange(p3, p4, p1, p2, ncol=2, heights=c(2.2/5, 2.8/5)))
+print(
+grid.arrange(
+  arrangeGrob(p3, p4, ncol=2), 
+  arrangeGrob(p1, p2, ncol=2), 
+  arrangeGrob(rectGrob(gp=gpar(col=NA)), p5, ncol=2), ncol=1
+)
+)
 dev.off()
+#print(grid.arrange(p3, p4, p1, p2, ncol=2, heights=c(2.2/5, 2.8/5)))
