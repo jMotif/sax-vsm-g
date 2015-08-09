@@ -4,11 +4,11 @@ dat=read.csv("../results/sax-vsm-eval0.csv")
 names(dat)
 
 results = matrix(
-           unlist(select(dat,ED,DTW,SAX.VSM,FS,PS,SAX.VSM.G)),
+           unlist(select(dat,ED,DTWB,SAX.VSM,FS,PS,SAX.VSM.G)),
            ncol=6,
            byrow=F,
            dimnames = list(dat$Dataset,
-            c("Euclidean", "DTW", "SAX-VSM", "FS", 
+            c("Euclidean", "DTWB", "SAX-VSM", "FS", 
               "PS","SAX-VSM-G"))
            )
 str(results)
@@ -28,7 +28,7 @@ results = matrix(
   ncol=8,
   byrow=F,
   dimnames = list(dat$Dataset,
-                  c("Euclidean", "DTW", "SAX-VSM", "FS", 
+                  c("Euclidean", "DTWB", "SAX-VSM", "FS", 
                     "PS","SAX-VSM-G","SL","TSBF"))
 )
 str(results)
