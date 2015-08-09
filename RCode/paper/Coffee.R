@@ -147,7 +147,7 @@ gg=arrangeGrob(p1, p2, ncol=2)
 gg
 
 CairoPDF(file = "coffee_class_patterns",
-         width = 12, height = 3.5, onefile = TRUE, family = "Helvetica",
+         width = 12, height = 4.5, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(gg)
@@ -155,8 +155,8 @@ dev.off()
 
 grid.arrange(p, arrangeGrob(p1, p2, ncol=2), ncol=1, heights=c(3/5, 2/5))
 
-CairoPDF(file = "coffee_figure",
-         width = 12, height = 2.5, onefile = TRUE, family = "Helvetica",
+CairoPDF(file = "coffee_figure_new",
+         width = 12, height = 3, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 #print( grid.arrange(p, arrangeGrob(p1, p2, ncol=2), ncol=1, heights=c(0.57, 0.43)) )

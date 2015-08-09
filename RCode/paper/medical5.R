@@ -35,12 +35,12 @@ df1=data.frame(x=rep(c(1:sl),l1),
                series=rep(paste("ser",c(1:l1),sep=""),each=sl),
                y=as.numeric(unlist(t(data[data[,1]==1,-1]))))
 p1=ggplot(df1,aes(x,y,group=series)) + theme_bw() + 
-  geom_line(size=0.2,col=cbPalette[1],alpha=0.8)+ 
+  geom_line(size=0.2,col=cbPalette[2],alpha=0.8)+ 
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
-        legend.text=element_text(size=14), legend.title=element_text(size=14),
+        legend.position="bottom", plot.title = element_text(size = 20),
+        legend.text=element_text(size=14), legend.title=element_text(size=16),
         legend.key.width=unit(2, "cm")) +
   ggtitle("Asystole") 
 p1
@@ -60,8 +60,8 @@ p2=ggplot(df2,aes(x,y,group=series)) + theme_bw() +
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
-        legend.text=element_text(size=14), legend.title=element_text(size=14),
+        legend.position="bottom", plot.title = element_text(size = 20),
+        legend.text=element_text(size=14), legend.title=element_text(size=16),
         legend.key.width=unit(2, "cm")) +
   ggtitle("Extreme bradycardia") 
 p2
@@ -81,7 +81,8 @@ p3=ggplot(df3,aes(x,y,group=series)) + theme_bw() +
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        plot.title = element_text(size = 16)) +  ggtitle("Extreme tachycardia") 
+        plot.title = element_text(size = 20),
+        legend.text=element_text(size=14), legend.title=element_text(size=16)) +  ggtitle("Extreme tachycardia") 
 p3
 df3=data[data[,1]==3,-1]
 pattern1=data.frame(y=as.numeric(df3[5,1072:(1072+204)]),x=c(1072:(1072+204)),series=rep("pattern1",205))
@@ -100,7 +101,8 @@ p4=ggplot(df4,aes(x,y,group=series)) + theme_bw() +
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        plot.title = element_text(size = 16)) +  ggtitle("VTach") 
+        plot.title = element_text(size = 20),
+        legend.text=element_text(size=14), legend.title=element_text(size=16)) +  ggtitle("VTach") 
 p4
 df4=data[data[,1]==4,-1]
 pattern1=data.frame(y=as.numeric(df4[6,424:(424+211)]),x=c(424:(424+211)),series=rep("pattern1",212))
@@ -119,7 +121,7 @@ p5=ggplot(df5,aes(x,y,group=series)) + theme_bw() +
   theme(axis.line=element_blank(),
         axis.title.x=element_blank(), axis.title.y=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        plot.title = element_text(size = 16)) +  ggtitle("VTach/VFib") 
+        plot.title = element_text(size = 20),legend.text=element_text(size=14), legend.title=element_text(size=16)) +  ggtitle("VTach/VFib") 
 p5
 df5=data[data[,1]==5,-1]
 pattern1=data.frame(y=as.numeric(df5[7,177:(177+207)]),x=c(177:(177+207)),series=rep("pattern1",208))
@@ -135,8 +137,8 @@ grid.arrange(
   p5, ncol=1
 )
 
-CairoPDF(file = "med5_figure",
-         width = 12, height = 6, onefile = TRUE, family = "Helvetica",
+CairoPDF(file = "med5_figure_new",
+         width = 12, height = 8, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(grid.arrange(
