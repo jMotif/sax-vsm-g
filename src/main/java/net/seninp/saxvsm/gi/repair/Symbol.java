@@ -1,7 +1,7 @@
 package net.seninp.saxvsm.gi.repair;
 
 import java.util.Arrays;
-import net.seninp.jmotif.sax.datastructures.SaxRecord;
+import net.seninp.jmotif.sax.datastructure.SAXRecord;
 
 /**
  * The symbol class.
@@ -38,7 +38,7 @@ public class Symbol {
    * @param r the SAX record to use for the symbol construction.
    * @param stringPosition the position of the symbol in the string.
    */
-  public Symbol(SaxRecord r, Integer stringPosition) {
+  public Symbol(SAXRecord r, Integer stringPosition) {
     super();
     this.string = Arrays.copyOf(r.getPayload(), r.getPayload().length);
     this.stringPosition = stringPosition;

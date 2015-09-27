@@ -16,7 +16,7 @@ import net.seninp.jmotif.sax.SAXException;
 import net.seninp.jmotif.sax.SAXProcessor;
 import net.seninp.jmotif.sax.alphabet.Alphabet;
 import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
-import net.seninp.jmotif.sax.datastructures.SAXRecords;
+import net.seninp.jmotif.sax.datastructure.SAXRecords;
 import net.seninp.saxvsm.direct.TfIdfEntryComparator;
 import net.seninp.saxvsm.gi.repair.BagConstructionStrategy;
 import net.seninp.saxvsm.gi.repair.RePairFactory;

@@ -10,18 +10,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import net.seninp.jmotif.sax.NumerosityReductionStrategy;
-import net.seninp.jmotif.sax.SAXProcessor;
-import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
-import net.seninp.util.StackTrace;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.SAXProcessor;
+import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
 import net.seninp.saxvsm.text.TextUtils;
 import net.seninp.saxvsm.text.WordBag;
 import net.seninp.saxvsm.util.UCRUtils;
+import net.seninp.util.StackTrace;
 
 /**
  * Implements a cross-validation DIRECT-based procedure for SAX-VSM parameters optimization.

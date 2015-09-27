@@ -2,8 +2,8 @@ package net.seninp.saxvsm.distance;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import net.seninp.jmotif.distance.EuclideanDistance;
 import org.junit.Test;
+import net.seninp.jmotif.distance.EuclideanDistance;
 
 /**
  * Tests the Euclidean distance.
@@ -37,14 +37,13 @@ public class TestEuclideanDistance {
    */
   @Test
   public void testPointDistance() {
-
+    EuclideanDistance ed = new EuclideanDistance();
     try {
       //
       // test the distance between points
-      assertEquals("test 1D distance", EuclideanDistance.distance(testPoint1D1, testPoint1D2),
+      assertEquals("test 1D distance", ed.distance(testPoint1D1, testPoint1D2),
           Math.abs(testPoint1D2[0] - testPoint1D1[0]), 0.01D);
-      assertEquals("test 1D distance",
-          EuclideanDistance.distance(testPoint1D1[0], testPoint1D2[0]),
+      assertEquals("test 1D distance", ed.distance(testPoint1D1[0], testPoint1D2[0]),
           Math.abs(testPoint1D2[0] - testPoint1D1[0]), 0.01D);
 
       //
@@ -57,10 +56,9 @@ public class TestEuclideanDistance {
 
       //
       // multi-dimensional points which in fact are series
-      assertEquals("test 1D distance", EuclideanDistance.distance(testPoint3D1, testPoint3D2),
-          dist, 0.01D);
-      assertEquals("test series distance",
-          EuclideanDistance.seriesDistance(testPoint3D1, testPoint3D2), dist, 0.01D);
+      assertEquals("test 1D distance", ed.distance(testPoint3D1, testPoint3D2), dist, 0.01D);
+      assertEquals("test series distance", ed.seriesDistance(testPoint3D1, testPoint3D2), dist,
+          0.01D);
     }
     catch (Exception e) {
       fail("Shouldn't throw any exception");
@@ -70,7 +68,7 @@ public class TestEuclideanDistance {
     // test for exception
     try {
       @SuppressWarnings("unused")
-      double distance = EuclideanDistance.distance(testPoint1D1, testPoint3D1);
+      double distance = ed.distance(testPoint1D1, testPoint3D1);
       fail("Exception is not thrown!");
     }
     catch (Exception e) {
@@ -81,7 +79,7 @@ public class TestEuclideanDistance {
     // test for exception
     try {
       @SuppressWarnings("unused")
-      double distance = EuclideanDistance.seriesDistance(testPoint1D1, testPoint3D1);
+      double distance = ed.seriesDistance(testPoint1D1, testPoint3D1);
       fail("Exception is not thrown!");
     }
     catch (Exception e) {
@@ -96,8 +94,9 @@ public class TestEuclideanDistance {
    */
   @Test
   public void testSeriesDistance() {
+    EuclideanDistance ed = new EuclideanDistance();
     try {
-      Double dist = EuclideanDistance.seriesDistance(testSeries1, testSeries2);
+      Double dist = ed.seriesDistance(testSeries1, testSeries2);
       assertEquals("testing distance, ", 3.193743885, dist, 0.01D);
     }
     catch (Exception e) {
@@ -108,7 +107,7 @@ public class TestEuclideanDistance {
     // test for exception
     try {
       @SuppressWarnings("unused")
-      Double dist = EuclideanDistance.seriesDistance(testSeries1, testSeries3);
+      Double dist = ed.seriesDistance(testSeries1, testSeries3);
       fail("Should throw exception here.");
     }
     catch (Exception e) {

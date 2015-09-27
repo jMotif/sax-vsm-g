@@ -16,20 +16,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import net.seninp.jmotif.distance.EuclideanDistance;
 import net.seninp.jmotif.sax.NumerosityReductionStrategy;
-import net.seninp.jmotif.sax.SAXException;
 import net.seninp.jmotif.sax.SAXProcessor;
 import net.seninp.jmotif.sax.alphabet.Alphabet;
 import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
-import net.seninp.jmotif.sax.datastructures.SAXRecords;
-import net.seninp.saxvsm.direct.TfIdfEntryComparator;
+import net.seninp.jmotif.sax.datastructure.SAXRecords;
 import net.seninp.saxvsm.gi.repair.BagConstructionStrategy;
 import net.seninp.saxvsm.gi.repair.RePairFactory;
 import net.seninp.saxvsm.gi.repair.RePairRule;
-import net.seninp.saxvsm.gi.sequitur.SequiturFactory;
 import net.seninp.saxvsm.logic.Interval;
 import net.seninp.saxvsm.logic.RuleInterval;
 import net.seninp.saxvsm.text.TextUtils;
-import net.seninp.saxvsm.text.WordBag;
 import net.seninp.saxvsm.util.UCRUtils;
 
 public class RePairConcatenationTinker {
@@ -38,10 +34,10 @@ public class RePairConcatenationTinker {
   private static DecimalFormat df = new DecimalFormat("0.00###", otherSymbols);
   private static final String CR = "\n";
 
-//  private static final String TRAIN_DATASET_NAME = "data/cbf/CBF_TRAIN";
-//  private static final String TEST_DATASET_NAME = "data/cbf/CBF_TEST";
-   private static final String TRAIN_DATASET_NAME = "data/synthetic_control/synthetic_control_TRAIN";
-   private static final String TEST_DATASET_NAME = "data/synthetic_control/synthetic_control_TEST";
+  // private static final String TRAIN_DATASET_NAME = "data/cbf/CBF_TRAIN";
+  // private static final String TEST_DATASET_NAME = "data/cbf/CBF_TEST";
+  private static final String TRAIN_DATASET_NAME = "data/synthetic_control/synthetic_control_TRAIN";
+  private static final String TEST_DATASET_NAME = "data/synthetic_control/synthetic_control_TEST";
 
   private static final double NORMALIZATION_THRESHOLD = 0.001;
   private static final NumerosityReductionStrategy STRATEGY = NumerosityReductionStrategy.NONE;
@@ -50,7 +46,7 @@ public class RePairConcatenationTinker {
   private static final Alphabet na = new NormalAlphabet();
   private static final TextUtils tu = new TextUtils();
   private static final SAXProcessor sp = new SAXProcessor();
-
+  private static final EuclideanDistance ed = new EuclideanDistance();
   private static final int MAX_SERIES_2PRINT = 12;
   private static final int MAX_PATTERNS_2PRINT = 1;
 
@@ -162,8 +158,8 @@ public class RePairConcatenationTinker {
       // saving the coverage
       //
       String currentPath = new File(".").getCanonicalPath();
-      BufferedWriter bw = new BufferedWriter(new FileWriter(new File(currentPath + File.separator
-          + "repair_coverage" + classLabel + ".txt")));
+      BufferedWriter bw = new BufferedWriter(new FileWriter(
+          new File(currentPath + File.separator + "repair_coverage" + classLabel + ".txt")));
       for (double i : globalCoverage) {
         bw.write(i + "\n");
       }
@@ -224,8 +220,7 @@ public class RePairConcatenationTinker {
             // earlyAbandonedDistance implementation abandons full distance computation
             // if current value is above the best known
             //
-            Double distance = EuclideanDistance.earlyAbandonedDistance(referenceSeries,
-                querySeries, bestDistance);
+            Double distance = ed.earlyAbandonedDistance(referenceSeries, querySeries, bestDistance);
             // Double distance = EuclideanDistance.earlyAbandonedDistance(
             // TSUtils.zNormalize(querySeries), TSUtils.zNormalize(referenceSeries), bestDistance);
 

@@ -3,7 +3,7 @@ package net.seninp.saxvsm.gi.repair;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
-import net.seninp.jmotif.sax.datastructures.SAXRecords;
+import net.seninp.jmotif.sax.datastructure.SAXRecords;
 import net.seninp.saxvsm.gi.GrammarRuleRecord;
 import net.seninp.saxvsm.gi.GrammarRules;
 import net.seninp.saxvsm.logic.RuleInterval;

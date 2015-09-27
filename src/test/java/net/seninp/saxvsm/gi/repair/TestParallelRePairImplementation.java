@@ -3,12 +3,12 @@ package net.seninp.saxvsm.gi.repair;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
+import org.junit.Test;
 import net.seninp.jmotif.sax.NumerosityReductionStrategy;
 import net.seninp.jmotif.sax.TSProcessor;
-import net.seninp.jmotif.sax.datastructures.SAXRecords;
-import net.seninp.jmotif.sax.datastructures.SaxRecord;
+import net.seninp.jmotif.sax.datastructure.SAXRecord;
+import net.seninp.jmotif.sax.datastructure.SAXRecords;
 import net.seninp.jmotif.sax.parallel.ParallelSAXImplementation;
-import org.junit.Test;
 
 public class TestParallelRePairImplementation {
 
@@ -44,9 +44,9 @@ public class TestParallelRePairImplementation {
     ParallelGrammarKeeper grammar = toGrammarKeeper(saxData);
     ParallelRePairImplementation pr = new ParallelRePairImplementation();
     ParallelGrammarKeeper res = pr.buildGrammar(grammar, THREADS_NUM);
-//    System.out.println("RePair grammar:\n" + res.toGrammarRules());
-//    System.out.println("Recovered string:\n" + res.r0ExpandedString);
-//    System.out.println("Original SAX string:\n" + saxData.getSAXString(" "));
+    // System.out.println("RePair grammar:\n" + res.toGrammarRules());
+    // System.out.println("Recovered string:\n" + res.r0ExpandedString);
+    // System.out.println("Original SAX string:\n" + saxData.getSAXString(" "));
 
     assertNotNull(res);
     res.expandR0();
@@ -57,7 +57,7 @@ public class TestParallelRePairImplementation {
   private ParallelGrammarKeeper toGrammarKeeper(SAXRecords saxData) {
     ArrayList<Symbol> string = new ArrayList<Symbol>();
     for (int i = 0; i < saxData.size(); i++) {
-      SaxRecord r = saxData.getByIndex(saxData.mapStringIndexToTSPosition(i));
+      SAXRecord r = saxData.getByIndex(saxData.mapStringIndexToTSPosition(i));
       Symbol symbol = new Symbol(r, i);
       string.add(symbol);
     }

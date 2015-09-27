@@ -10,13 +10,13 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.atomic.AtomicInteger;
-import net.seninp.jmotif.sax.NumerosityReductionStrategy;
-import net.seninp.jmotif.sax.SAXProcessor;
-import net.seninp.jmotif.sax.datastructures.SAXRecords;
-import net.seninp.jmotif.sax.datastructures.SaxRecord;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.SAXProcessor;
+import net.seninp.jmotif.sax.datastructure.SAXRecord;
+import net.seninp.jmotif.sax.datastructure.SAXRecords;
 import net.seninp.saxvsm.gi.GrammarRuleRecord;
 import net.seninp.saxvsm.gi.GrammarRules;
 import net.seninp.saxvsm.text.WordBag;
@@ -110,7 +110,7 @@ public final class RePairFactory {
     // add all SAX words if ALL strategy THIS WILL NOT WORK FOR REDUCED and COMPRESSED strategies
     //
     if (BagConstructionStrategy.ALL == bagStrategy) {
-      for (SaxRecord sr : saxData) {
+      for (SAXRecord sr : saxData) {
         String word = String.valueOf(sr.getPayload());
         int frequency = sr.getIndexes().size();
         resultBag.addWord(word, frequency);
@@ -182,7 +182,7 @@ public final class RePairFactory {
     for (Integer saxWordPosition : sortedSAXWords) {
       // i is the index of a symbol in the input discretized string
       // counter is the index in the grammar rule R0 string
-      SaxRecord r = saxRecords.getByIndex(saxWordPosition);
+      SAXRecord r = saxRecords.getByIndex(saxWordPosition);
       Symbol symbol = new Symbol(r, stringPositionCounter);
       // put it into the string
       string.add(symbol);
@@ -697,7 +697,7 @@ public final class RePairFactory {
       // }
       // i is the index of a symbol in the input discretized string
       // counter is the index in the grammar rule R0 string
-      SaxRecord r = saxRecords.getByIndex(saxWordPosition);
+      SAXRecord r = saxRecords.getByIndex(saxWordPosition);
       Symbol symbol = new Symbol(r, stringPositionCounter);
       // / MOD *****
       if (skipSet.contains(saxWordPosition + 1)) {

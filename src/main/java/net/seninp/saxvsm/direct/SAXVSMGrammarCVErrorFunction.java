@@ -9,17 +9,17 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
-import net.seninp.jmotif.sax.NumerosityReductionStrategy;
-import net.seninp.jmotif.sax.alphabet.Alphabet;
-import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
-import net.seninp.util.StackTrace;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import net.seninp.jmotif.sax.NumerosityReductionStrategy;
+import net.seninp.jmotif.sax.alphabet.Alphabet;
+import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
 import net.seninp.saxvsm.gi.repair.BagConstructionStrategy;
 import net.seninp.saxvsm.gi.repair.RePairFactory;
 import net.seninp.saxvsm.text.TextUtils;
 import net.seninp.saxvsm.text.WordBag;
+import net.seninp.util.StackTrace;
 
 /**
  * This computes the cross-validation classification error given the set of parameters.

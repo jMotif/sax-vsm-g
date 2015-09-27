@@ -11,18 +11,17 @@ import java.util.Hashtable;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import net.seninp.jmotif.sax.NumerosityReductionStrategy;
 import net.seninp.jmotif.sax.SAXProcessor;
 import net.seninp.jmotif.sax.TSProcessor;
 import net.seninp.jmotif.sax.alphabet.NormalAlphabet;
-import net.seninp.jmotif.sax.datastructures.SAXRecords;
-import net.seninp.jmotif.sax.datastructures.SaxRecord;
-import org.slf4j.LoggerFactory;
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
+import net.seninp.jmotif.sax.datastructure.SAXRecord;
+import net.seninp.jmotif.sax.datastructure.SAXRecords;
 import net.seninp.saxvsm.gi.GrammarRuleRecord;
 import net.seninp.saxvsm.gi.GrammarRules;
-import net.seninp.saxvsm.gi.repair.Symbol;
 import net.seninp.saxvsm.logic.RuleInterval;
 
 /**
@@ -48,6 +47,7 @@ public final class SequiturFactory {
   //
   private static Logger consoleLogger;
   private static Level LOGGING_LEVEL = Level.INFO;
+
   static {
     consoleLogger = (Logger) LoggerFactory.getLogger(SequiturFactory.class);
     consoleLogger.setLevel(LOGGING_LEVEL);
@@ -92,7 +92,7 @@ public final class SequiturFactory {
     while (st.hasMoreTokens()) {
 
       String token = st.nextToken();
-      // System.out.println("  processing the token " + token);
+      // System.out.println(" processing the token " + token);
 
       // extract next token
       SAXTerminal symbol = new SAXTerminal(token, currentPosition);
@@ -151,7 +151,7 @@ public final class SequiturFactory {
     while (st.hasMoreTokens()) {
 
       String token = st.nextToken();
-      // System.out.println("  processing the token " + token);
+      // System.out.println(" processing the token " + token);
 
       if (null != alphabetSize && null != threshold) {
         //
@@ -225,9 +225,8 @@ public final class SequiturFactory {
       int[] extractedPositions = new int[expandedRuleSplit.length];
       for (int i = 0; i < expandedRuleSplit.length; i++) {
         consoleLogger.trace("currentIndex " + currentIndex + ", i: " + i);
-        extractedStr = extractedStr.concat(" ").concat(
-            String.valueOf(saxFrequencyData.getByIndex(saxWordsIndexes.get(currentIndex + i))
-                .getPayload()));
+        extractedStr = extractedStr.concat(" ").concat(String.valueOf(
+            saxFrequencyData.getByIndex(saxWordsIndexes.get(currentIndex + i)).getPayload()));
         extractedPositions[i] = saxWordsIndexes.get(currentIndex + i);
       }
       // System.out.println("Recovered string: " + extractedStr);
@@ -345,8 +344,8 @@ public final class SequiturFactory {
       double normalizationThreshold) throws Exception, IOException {
 
     consoleLogger.debug("Discretizing time series...");
-    SAXRecords saxFrequencyData = discretize(timeseries, numerosityReductionStrategy,
-        saxWindowSize, saxPAASize, saxAlphabetSize, normalizationThreshold);
+    SAXRecords saxFrequencyData = discretize(timeseries, numerosityReductionStrategy, saxWindowSize,
+        saxPAASize, saxAlphabetSize, normalizationThreshold);
 
     consoleLogger.debug("Inferring the grammar...");
     // this is a string we are about to feed into Sequitur
@@ -413,10 +412,11 @@ public final class SequiturFactory {
     int stringPositionCounter = 0;
     for (Integer saxWordPosition : sortedSAXWords) {
 
-      SaxRecord r = saxRecords.getByIndex(saxWordPosition);
-      Symbol symbol = new Symbol(r, stringPositionCounter);
+      SAXRecord r = saxRecords.getByIndex(saxWordPosition);
+      // Symbol symbol = new Symbol(r, stringPositionCounter);
 
-      grammar.last().insertAfter(new SAXTerminal(String.valueOf(r.getPayload()), stringPositionCounter));
+      grammar.last()
+          .insertAfter(new SAXTerminal(String.valueOf(r.getPayload()), stringPositionCounter));
 
       if (!(skipSet.contains(saxWordPosition - 1))) {
         grammar.last().p.check();
@@ -436,7 +436,7 @@ public final class SequiturFactory {
 
   public static GrammarRules series2RulesWithLog(double[] timeseries, int saxWindowSize,
       int saxPAASize, int saxAlphabetSize, double normalizationThreshold, String prefix)
-      throws Exception, IOException {
+          throws Exception, IOException {
 
     consoleLogger.debug("Discretizing time series...");
     SAXRecords saxFrequencyData = discretize(timeseries, NumerosityReductionStrategy.EXACT,
