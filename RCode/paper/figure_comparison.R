@@ -226,7 +226,8 @@ print(
 grid.arrange(
   arrangeGrob(p3, p4, ncol=2), 
   arrangeGrob(p1, p2, ncol=2), 
-  arrangeGrob(rectGrob(gp=gpar(col=NA)), p5, ncol=2), ncol=1
+  arrangeGrob(rectGrob(gp=gpar(col=NA)), p5, 
+              rectGrob(gp=gpar(col=NA)), ncol=3), ncol=1
 )
 )
 dev.off()

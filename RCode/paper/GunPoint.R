@@ -48,11 +48,11 @@ pn = ggplot(dm, aes(x = index, y = value, group = X2, color=class,linetype=class
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 16),
+        plot.title = element_text(size = 22),
         legend.text=element_text(size=12),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Two classes from GunPoint dataset")
+  ggtitle("GunPoint dataset classes")
 pn
 
 
@@ -85,14 +85,15 @@ ps = ggplot(dm, aes(x = index, y = value, group = X2, color=class,linetype=class
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 16),
+        plot.title = element_text(size = 22),
         legend.text=element_text(size=12),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Two classes from the shifted Gun Point dataset")
+  ggtitle("Shifted GunPoint dataset classes")
 ps
 
 gg = arrangeGrob(pn, ps, ncol=2)
+gg
 
 CairoPDF(file = "gunpoint_figure",
          width = 12, height = 4, onefile = TRUE, family = "Helvetica",
@@ -131,11 +132,11 @@ p1=ggplot(df0,aes(x,y,group=series)) + theme_bw() +
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 16),
+        plot.title = element_text(size = 22),
         legend.text=element_text(size=14),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Shifted Class 1 and the best representative patterns") 
+  ggtitle("Shifted Class 1 representative patterns") 
 p1
 pattern1=data.frame(y=as.numeric(class0[72,67:(67+29)]),
                     x=c(67:(67+29)),series=rep("pattern1",30))
@@ -159,11 +160,11 @@ p2=ggplot(df1,aes(x,y,group=series)) + theme_bw() +
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 16),
+        plot.title = element_text(size = 22),
         legend.text=element_text(size=14),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Shifted Class 2 and the best representative patterns") 
+  ggtitle("Shifted Class 2 representative patterns") 
 
 pattern1=data.frame(y=as.numeric(class1[32,97:(97+43)]),
                     x=c(97:(97+43)),series=rep("pattern1",44))
@@ -185,7 +186,7 @@ dev.off()
 grid.arrange(arrangeGrob(pn, ps, ncol=2), arrangeGrob(p1, p2, ncol=2), ncol=1, heights=c(3/5, 2/5))
 
 CairoPDF(file = "gunpoint_figure",
-         width = 12, height = 5, onefile = TRUE, family = "Helvetica",
+         width = 12, height = 6.5, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(grid.arrange(arrangeGrob(pn, ps, ncol=2), 

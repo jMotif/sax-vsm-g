@@ -97,11 +97,11 @@ p1=ggplot(df0,aes(x,y,group=series)) + theme_bw() +
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 16),
+        plot.title = element_text(size = 20),
         legend.text=element_text(size=14),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Class #1 and the best representative pattern") 
+  ggtitle("Class #1 best representative pattern") 
 
 pattern1=data.frame(y=as.numeric(class0[9,56:(56+60)]),
                     x=c(56:(56+60)),series=rep("pattern1",61))
@@ -123,11 +123,11 @@ p2=ggplot(df1,aes(x,y,group=series)) + theme_bw() +
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 16),
+        plot.title = element_text(size = 20),
         legend.text=element_text(size=14),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Class #2 and the best representative pattern") 
+  ggtitle("Class #2 best representative pattern") 
 p2
 
 pattern1=data.frame(y=as.numeric(class1[1,23:(23+58)]),
