@@ -70,13 +70,14 @@ df1=data.frame(time=c(1:length(series)),value=series)
 df1_red<-df1;df1_red$value<-rep(NA,length(series));df1_red[rl_start:(rl_start+rl_len),]$value<-red_line
 p1 <- ggplot(df1, aes(time, value)) + geom_line(color=cbPalette[3], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title.x=element_blank(), axis.title.y=element_blank(),
+        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
         legend.position="bottom", plot.title = element_text(size = 16),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("SAX-VSM, best pattern for Class #1")
+  ggtitle("SAX-VSM, the best pattern for Class #1")
 p1=p1 + geom_line(aes(df1_red$time,df1_red$value),color=cbPalette[8],size=2)
+p1
 #
 #Class key: 2
 #pattern="ffdbbbbbccccbbbb"; weight=0.17488
@@ -94,12 +95,12 @@ df2=data.frame(time=c(1:length(series)),value=series)
 df2_red<-df2;df2_red$value<-rep(NA,length(series));df2_red[rl_start:(rl_start+rl_len),]$value<-red_line
 p2 <- ggplot(df2, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title.x=element_blank(), axis.title.y=element_blank(),
+        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
         legend.position="bottom", plot.title = element_text(size = 16),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("SAX-VSM, best pattern for Class #2")
+  ggtitle("SAX-VSM, the best pattern for Class #2")
 p2=p2 + geom_line(aes(df2_red$time,df2_red$value),color=cbPalette[6],size=2)
 p2
 #
@@ -128,12 +129,12 @@ df3_red<-df3;df3_red$value<-rep(NA,length(series));df3_red[38:(37+length(pat1)),
 #
 p3 <- ggplot(df3, aes(time, value)) + geom_line(color=cbPalette[3], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title.x=element_blank(), axis.title.y=element_blank(),
+        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
         legend.position="bottom", plot.title = element_text(size = 16),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Pattern Selection, best pattern for Class #1")
+  ggtitle("FRP, the best pattern for Class #1")
 p3=p3 + geom_line(aes(df3_red$time,df3_red$value),color=cbPalette[7],size=2)
 p3
 #
@@ -161,12 +162,12 @@ df4_red<-df4;df4_red$value<-rep(NA,length(series));df4_red[103:(102+length(pat2)
 #
 p4 <- ggplot(df4, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title.x=element_blank(), axis.title.y=element_blank(),
+        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
         legend.position="bottom", plot.title = element_text(size = 16),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Pattern Selection, best pattern for Class #2")
+  ggtitle("FRP, the best pattern for Class #2")
 p4=p4 + geom_line(aes(df4_red$time,df4_red$value),color=cbPalette[4],size=2)
 p4
 #
@@ -207,7 +208,7 @@ df5_red<-df5;df5_red$value<-rep(NA,length(series));df5_red[81:(80+length(shapele
 #
 p5 <- ggplot(df5, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title.x=element_blank(), axis.title.y=element_blank(),
+        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
         legend.position="bottom", plot.title = element_text(size = 16),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
@@ -218,7 +219,7 @@ p5
 #
 #
 CairoPDF(file = "cricket_saxvsm",
-         width = 12, height = 6, onefile = TRUE, family = "Helvetica",
+         width = 11, height = 6.5, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 print(
