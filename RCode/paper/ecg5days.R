@@ -97,11 +97,11 @@ p1=ggplot(df0,aes(x,y,group=series)) + theme_bw() +
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 20),
+        plot.title = element_text(size = 20,hjust = 0.5),
         legend.text=element_text(size=14),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Class #1 best representative pattern") 
+  ggtitle("ECGFiveDays class #1\n best representative pattern") 
 
 pattern1=data.frame(y=as.numeric(class0[9,56:(56+60)]),
                     x=c(56:(56+60)),series=rep("pattern1",61))
@@ -123,11 +123,11 @@ p2=ggplot(df1,aes(x,y,group=series)) + theme_bw() +
         #panel.grid.minor=element_blank(),
         plot.background=element_blank(),
         legend.position="bottom",
-        plot.title = element_text(size = 20),
+        plot.title = element_text(size = 20,hjust = 0.5),
         legend.text=element_text(size=14),
         legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
-  ggtitle("Class #2 best representative pattern") 
+  ggtitle("ECGFiveDays class #2\nbest representative pattern") 
 p2
 
 pattern1=data.frame(y=as.numeric(class1[1,23:(23+58)]),
@@ -146,8 +146,8 @@ dev.off()
 
 grid.arrange(p, arrangeGrob(p1, p2, ncol=2), ncol=1, heights=c(3/5, 2/5))
 
-CairoPDF(file = "ecg5days_figure_new",
-         width = 12, height = 3, onefile = TRUE, family = "Helvetica",
+CairoPDF(file = "ecg5days_figure_FRP",
+         width = 10, height = 3, onefile = TRUE, family = "Helvetica",
          title = "R Graphics Output", fonts = NULL, version = "1.1",
          paper = "special")
 #print( grid.arrange(p, arrangeGrob(p1, p2, ncol=2), ncol=1, heights=c(0.52, 0.48)) )

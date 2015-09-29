@@ -70,9 +70,9 @@ df1=data.frame(time=c(1:length(series)),value=series)
 df1_red<-df1;df1_red$value<-rep(NA,length(series));df1_red[rl_start:(rl_start+rl_len),]$value<-red_line
 p1 <- ggplot(df1, aes(time, value)) + geom_line(color=cbPalette[3], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
+        axis.title=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
+        legend.position="bottom", plot.title = element_text(size = 20),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("SAX-VSM, the best pattern for Class #1")
@@ -95,9 +95,9 @@ df2=data.frame(time=c(1:length(series)),value=series)
 df2_red<-df2;df2_red$value<-rep(NA,length(series));df2_red[rl_start:(rl_start+rl_len),]$value<-red_line
 p2 <- ggplot(df2, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
+        axis.title=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
+        legend.position="bottom", plot.title = element_text(size = 20),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("SAX-VSM, the best pattern for Class #2")
@@ -129,9 +129,9 @@ df3_red<-df3;df3_red$value<-rep(NA,length(series));df3_red[38:(37+length(pat1)),
 #
 p3 <- ggplot(df3, aes(time, value)) + geom_line(color=cbPalette[3], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
+        axis.title=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
+        legend.position="bottom", plot.title = element_text(size = 20),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("FRP, the best pattern for Class #1")
@@ -162,9 +162,9 @@ df4_red<-df4;df4_red$value<-rep(NA,length(series));df4_red[103:(102+length(pat2)
 #
 p4 <- ggplot(df4, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
+        axis.title=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
+        legend.position="bottom", plot.title = element_text(size = 20),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("FRP, the best pattern for Class #2")
@@ -208,9 +208,9 @@ df5_red<-df5;df5_red$value<-rep(NA,length(series));df5_red[81:(80+length(shapele
 #
 p5 <- ggplot(df5, aes(time, value)) + geom_line(color=cbPalette[2], lwd=1) + theme_bw() + 
   theme(axis.line=element_blank(),
-        axis.title=element_blank(),axis.text=element_blank(),axis.ticks=element_blank(),
+        axis.title=element_blank(),
         panel.background=element_blank(), plot.background=element_blank(),
-        legend.position="bottom", plot.title = element_text(size = 16),
+        legend.position="bottom", plot.title = element_text(size = 20),
         legend.text=element_text(size=14), legend.title=element_text(size=14),
         legend.key.width=unit(2, "cm")) +
   ggtitle("Fast Shapelets, the best branching shapelet")
@@ -227,7 +227,7 @@ grid.arrange(
   arrangeGrob(p3, p4, ncol=2), 
   arrangeGrob(p1, p2, ncol=2), 
   arrangeGrob(rectGrob(gp=gpar(col=NA)), p5, 
-              rectGrob(gp=gpar(col=NA)), ncol=3), ncol=1
+              rectGrob(gp=gpar(col=NA)), ncol=3, widths=c(0.4,1.2,0.4)), ncol=1
 )
 )
 dev.off()
